@@ -17,7 +17,7 @@ namespace area_server.Controllers
             Console.WriteLine(data);
             string decodedString = Encoding.UTF8.GetString(Convert.FromBase64String(Uri.UnescapeDataString(data)));
             string[] tmp = decodedString.Split(':');
-            var result = (Newtonsoft.Json.Linq.JArray)DBConnect.my_select("users WHERE login = '" + tmp[0] + "' AND pwd = '" + Utils.Encrypt(tmp[3]) + "'", "*");
+            var result = (Newtonsoft.Json.Linq.JArray)DBConnect.my_select("users WHERE login = '" + tmp[0] + "' AND pwd = '" + Utils.Encrypt(tmp[1]) + "'", "*");
             if (result.Count == 0)
             {
                 CookieOptions option = new CookieOptions();
@@ -25,9 +25,9 @@ namespace area_server.Controllers
                 option.Expires = DateTime.Now.AddMinutes(1);
                 Response.Cookies.Append("dot_user", tmp[0], option);
                 Response.Cookies.Append("logged_in", "true", option);
-                return "{success: true, reason: null}";
+                return "{\"success\": true, \"reason\": null}";
             }
-            return "{success: false, reason: login or user incorrect}";
+            return "{\"success\": false, \"reason\": login or user incorrect}";
         }
 
         [Route("internal/signup/{data}")]
@@ -47,9 +47,9 @@ namespace area_server.Controllers
                 option.Expires = DateTime.Now.AddMinutes(1);
                 Response.Cookies.Append("dot_user", tmp[0], option);
                 Response.Cookies.Append("logged_in", "true", option);
-                return "{success: true, reason: null}";
+                return "{\"success\": true, \"reason\": null}";
             }
-            return "{success: false, reason: user already exist}";
+            return "{\"success\": false, \"reason\": user already exist}";
         }
     }
 }
