@@ -24,9 +24,9 @@ namespace area_server.Controllers
                 option.Expires = DateTime.Now.AddMinutes(1);
                 Response.Cookies.Append("dot_user", tmp[0], option);
                 Response.Cookies.Append("logged_in", "true", option);
-                return "{success: true, reason: null}";
+                return "{\"success\": true, \"reason\": null}";
             }
-            return "{success: false, reason: login or user incorrect}";
+            return "{\"success\": false, \"reason\": \"login or user incorrect\"}";
         }
 
         [Route("internal/signup/{data}")]
@@ -49,9 +49,9 @@ namespace area_server.Controllers
                 option.Expires = DateTime.Now.AddMinutes(1);
                 Response.Cookies.Append("dot_user", tmp[0], option);
                 Response.Cookies.Append("logged_in", "true", option);
-                return "{success: true, reason: null}";
+                return "{\"success\": true, \"reason\": null}";
             }
-            return "{success: false, reason: user already exist}";
+            return "{\"success\": false, \"reason\": \"user already exist\"}";
         }
     }
 }
