@@ -14,10 +14,9 @@ namespace area_server.Controllers
         [HttpGet]
         public ActionResult<string> Login(string data)
         {
-            Console.WriteLine(data);
             string decodedString = Encoding.UTF8.GetString(Convert.FromBase64String(Uri.UnescapeDataString(data)));
             string[] tmp = decodedString.Split(':');
-            var result = (Newtonsoft.Json.Linq.JArray)DBConnect.my_select("users WHERE login = '" + tmp[0] + "' AND pwd = '" + Utils.Encrypt(tmp[3]) + "'", "*");
+            var result = (Newtonsoft.Json.Linq.JArray)DBConnect.my_select("users WHERE login = '" + tmp[0] + "' AND pwd = '" + Utils.Encrypt(tmp[1]) + "'", "*");
             if (result.Count == 0)
             {
                 CookieOptions option = new CookieOptions();
@@ -36,6 +35,9 @@ namespace area_server.Controllers
         {
             string decodedString = Encoding.UTF8.GetString(Convert.FromBase64String(Uri.UnescapeDataString(data)));
             string[] tmp = decodedString.Split(':');
+
+            Console.Write(tmp);
+
             var result = (Newtonsoft.Json.Linq.JArray)DBConnect.my_select("users WHERE login = '" + tmp[0] + "' AND email = '" + tmp[1] + "'", "*");
 
             if (result.Count == 0)
