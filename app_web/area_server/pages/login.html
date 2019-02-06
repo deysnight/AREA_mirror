@@ -2,18 +2,22 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard - Login</title>
+    <title>AREA - Login</title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" type="text/css" href="css/registration.css" />
     <link rel="stylesheet" href="css/header.css" />
-    
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="218486788454-sj94rgdng7h0i1dvfug155ndlv7p7i0t.apps.googleusercontent.com">
 </head>
 <body>
     <header>
         <div id="header_nav">
-            <h2><a class="header_text_title" href="#">AREA</a></h2>
+            <h2><a class="header_text_title" href="/">AREA</a></h2>
+            <ul id="header_list">
+                <li><a class="header_text_menu" href="/signup">S'inscrire</a></li>
+            </ul>
         </div>
     </header>
     <div id="glob">
@@ -30,6 +34,7 @@
                         <input id="login_pass1" type="password" placeholder="Votre mot de passe" />
                     </div>
                     <a class="redirect_form" href="/signup"><br/>Cliquez-ici pour créer un compte.</a>
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     <button id="login_button" class="link_button" type="submit"><span>Se connecter</span></button>
                 </form>
             </div>

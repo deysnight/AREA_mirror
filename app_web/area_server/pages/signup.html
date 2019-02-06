@@ -2,18 +2,23 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard - Créer son compte</title>
+    <title>AREA - Créer son compte</title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/registration.css" />
     <link rel="stylesheet" href="css/header.css" />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="218486788454-sj94rgdng7h0i1dvfug155ndlv7p7i0t.apps.googleusercontent.com">
 </head>
 <body>
     <header>
         <div id="header_nav">
-            <h2><a class="header_text_title" href="#">AREA</a></h2>
+            <h2><a class="header_text_title" href="/">AREA</a></h2>
+            <ul id="header_list">
+                <li><a class="header_text_menu" href="/login">Se connecter</a></li>
+            </ul>
          </div>
      </header>
     <div id="glob">
@@ -37,6 +42,7 @@
                     </div>
                     <a class="redirect_form" href="/login"><br/>Cliquez-ici si vous possedez déjà un compte.</a>
                     <button id="signup_button" class="link_button" type="submit"><span>Créer un compte</span></button>
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
                 </form>
             </div>
         </div>
