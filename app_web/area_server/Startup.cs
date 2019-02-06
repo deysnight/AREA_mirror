@@ -35,6 +35,8 @@ namespace area_server
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStatusCodePagesWithReExecute("/error/{0}.html");
+
             app.UseStaticFiles(new StaticFileOptions()
             {
                 OnPrepareResponse = context =>
@@ -43,7 +45,11 @@ namespace area_server
                     context.Context.Response.Headers.Add("Expires", "-1");
                 }
             });
-            app.UseStatusCodePagesWithReExecute("/error/{0}");
+
+            app.UseMvc(routes =>
+            {
+                
+            });
 
             app.UseMvc();
         }

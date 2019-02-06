@@ -108,6 +108,7 @@ $("#signup_button").click(function () {
                 error_signup_login = 0;
                 $("#error_signup_mail").remove();
                 error_signup_mail = 0;
+                location.reload();
             }
             else {
                 if (response == "KO LOGIN") {
