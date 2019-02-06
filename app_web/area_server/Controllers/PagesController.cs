@@ -21,7 +21,7 @@ namespace area_server.Controllers
             if (Utils.user_logged(Request) != true)
                 Response.Redirect("/login");
             else
-                return "lol";
+                return Utils.Retrive_file("dashboard.html", "text/html", "pages");
             return "";
         }
 
