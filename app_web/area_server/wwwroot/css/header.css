@@ -11,6 +11,7 @@
 #header_list {
     list-style-type: none;
     display: flex;
+    padding: 0;
     padding-top: 11px;
 }
 
@@ -19,18 +20,21 @@
     font-size: 28px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .header_text_menu {
     color: rgb(218, 223, 226);    
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    transition: color ease-in-out 0.3s;
+    transition: color ease-in-out 0.1s;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .header_text_menu:hover {
     color: white;
-    transition: color ease-in-out 0.3s;
+    transition: color ease-in-out 0.1s;
 }
 
 @media screen and ( max-width: 1250px ) {

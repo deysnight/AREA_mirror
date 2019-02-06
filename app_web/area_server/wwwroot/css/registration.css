@@ -46,41 +46,18 @@ textarea {
     border: 2px solid #EA3D3D;
     margin: 1.3em auto auto;
 	background-color: #EA3D3D;
-    padding: 1.2em 3em;
+    padding: 0.8em 1.3em;
     text-decoration: none;
 	text-align: center;
-	transition: transform 0.5s;
-	-moz-transition: transform 0.5s;
-	-webkit-transition: transform 0.5s;
-	-o-transition: transform 0.5s;
-	-ms-transition: transform 0.5s;
     cursor: pointer;
     margin-top: 2em;
+    transition: all 0.2s ease-in-out;
 }
 
-.link_button span {
-	cursor: pointer;
-	display: inline-block;
-	position: relative;
-	transition: 0.5s;
-}
-
-.link_button span:after {
-	content: '\00bb';
-	position: absolute;
-	opacity: 0;
-	top: 0;
-	right: -20px;
-	transition: 0.5s;
-}
-
-.link_button:hover span {
-	padding-right: 25px;
-}
-
-.link_button:hover span:after {
-    opacity: 1;
-    right: 0;
+.link_button:hover {
+    background-color: #292A2C;
+    border-color: #292A2C;
+    transition: all 0.2s ease-in-out;
 }
 
 .redirect_form {

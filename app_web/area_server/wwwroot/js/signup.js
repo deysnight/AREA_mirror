@@ -100,9 +100,10 @@ $("#signup_button").click(function () {
         type: "get",
         async: false,
         success: function(response){
-
             let jsonObject = JSON.parse(response);
             console.log(jsonObject);
+            console.log(jsonObject.success);
+            console.log(jsonObject.reason);
             if (jsonObject.success == true) {
                 $("#error_signup_login").remove();
                 error_signup_login = 0;
@@ -111,7 +112,7 @@ $("#signup_button").click(function () {
                 location.reload();
             }
             else {
-                if (response == "KO LOGIN") {
+                if (jsonObject.reason == "user already exist") {
                     if (error_signup_login < 1) {
                        input = $('<p class="error_fade" id="error_signup_login">Ce nom de compte est déjà utilisé.</p>');
                        input.insertAfter('.pass2_div');
@@ -124,7 +125,7 @@ $("#signup_button").click(function () {
                     $("#error_signup_login").remove();
                     error_signup_login = 0
                 }    
-                if (response == "KO MAIL") {
+                if (jsonObject.reason == "email already exist") {
                     if (error_signup_mail < 1) {
                         input = $('<p class="error_fade" id="error_signup_mail">Cette adresse email est déjà utilisée.</p>');
                         input.insertAfter('.pass2_div');
