@@ -48,10 +48,7 @@ $("#login_button").click(function () {
                 if (jsonObject.success == true) {
                     $("#error_login").remove();
                     cpt_login_error = 0;
-<<<<<<< HEAD
                     location.reload();
-=======
->>>>>>> master
                 }
                 else {
                     if (cpt_login_error < 1) {

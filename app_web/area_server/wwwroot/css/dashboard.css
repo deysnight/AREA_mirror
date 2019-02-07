@@ -1,0 +1,214 @@
+#glob {
+    margin: 0;
+}
+
+#wrap01 h2 {
+    margin-top: 2em;
+    font-size: 30px;
+    font-family: 'Montserrat SemiBold', sans-serif;
+}
+
+#wrap02 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#card-wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#action-reaction-wrap {
+    flex: 4;
+    margin-bottom: 4em;
+}
+
+.card {
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3em;
+    margin-left: 22px;
+    margin-right: 22px;
+    text-align: center;
+    padding-top: 2em;
+    padding-bottom: 4px;
+    padding-left: 3em;
+    padding-right: 3em;
+    border-radius: 10px;
+    justify-content: space-between;
+    margin-bottom: 3em;
+    cursor: pointer;
+    transition: all ease-in-out 0.15s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    transition: all ease-in-out 0.15s;
+}
+
+.card_title {
+    font-size: 30px;
+    color: white;
+    margin: 0;
+    margin-top: 15px;
+    font-family: 'Montserrat SemiBold', sans-serif;
+}
+
+.card_separator {
+    margin: 0;
+    margin-top: 2em;
+    width: 100%;
+}
+
+.data_arrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 13px;
+}
+
+.data_arrow img {
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    align-self: center;
+}
+
+.arrow_none {
+    display: none;
+}
+
+.arrow_ok {
+    display: block;
+}
+
+.connect_button {
+    margin: 0;
+    font-size: 14px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    color: white;
+    font-family: 'Montserrat', sans-serif;    
+    font-weight: bold;
+}
+
+#ytb_card {
+    background-color: #FF0000
+}
+
+#twitch_card {
+    background-color: #4B367C;
+}
+
+#onedrive_card {
+    background-color: #0948AC;
+}
+
+#gmail_card {
+    background-color: #D93025
+}
+
+#fb_card {
+    background-color: #4267B2;
+}
+
+#slack_card {
+    background-color: #2EB67D;
+}
+
+.card i {
+    margin: 0;
+    margin-top: 12px;
+    color: white;
+    font-size: 80px;
+}
+
+.reaction {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.reaction_card {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 180px;
+    height: 100%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-top: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
+    border-radius: 10px;
+    transition: all ease-in-out 0.15s;
+    cursor: pointer;
+}
+
+.reaction_card:hover {
+    transform: scale(1.05);
+    transition: all ease-in-out 0.15s;
+}
+
+.reaction_card div p {
+    align-self: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: white;
+}
+
+.reaction_title {
+    font-size: 24px;
+    margin: 0;
+}
+
+.reaction_description {
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.compatible {
+    align-self: center;
+}
+
+.compatible i {
+    margin-top: 10px;
+    color: white;
+}
+
+#ytb_reaction .reaction_card {
+    background-color: #FF0000;
+}
+
+#fb_reaction .reaction_card {
+    background-color: #4267B2;
+}
+
+#twitch_reaction .reaction_card {
+    background-color: #4B367C;
+}
+
+#slack_reaction .reaction_card {
+    background-color: #2EB67D;
+}
+
+#gmail_reaction .reaction_card {
+    background-color: #D93025;
+}
+
+#onedrive_reaction .reaction_card {
+    background-color: #0948AC;
+}
+
+.reaction_none {
+    display: none;
+}
