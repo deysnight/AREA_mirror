@@ -7,7 +7,7 @@ function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
+    for(var i = 0; i < ca.length; i++) {
       var c = ca[i];
       while (c.charAt(0) == ' ') {
         c = c.substring(1);
@@ -27,18 +27,3 @@ function listCookies() {
     }
     return aString;
 }
-
-console.log(listCookies());
-
-var username = getCookie("dot_user");
-console.log(username);
-
-var ul = document.getElementById("header_list");
-var li = document.createElement("li");
-li.appendChild(document.createTextNode("<a href=\"#\">" + username + "</a>"));
-ul.appendChild(li);
-
-var ul = document.getElementById("header_list");
-var li = document.createElement("li");
-li.appendChild(document.createTextNode("<a href=\"#\">Logout</a>"));
-ul.appendChild(li);

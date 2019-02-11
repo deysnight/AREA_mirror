@@ -112,7 +112,7 @@ $("#signup_button").click(function () {
                 location.reload();
             }
             else {
-                if (jsonObject.reason == "user already exist") {
+                if (jsonObject.reason == "login already exist") {
                     if (error_signup_login < 1) {
                        input = $('<p class="error_fade" id="error_signup_login">Ce nom de compte est déjà utilisé.</p>');
                        input.insertAfter('.pass2_div');

@@ -1,0 +1,34 @@
+.active_card_ytb {
+    box-shadow: 0px 0px 60px 0px #FF0000;
+    transform: scale(1.05);
+}
+
+.active_card_fb {
+    box-shadow: 0px 0px 60px 0px #4267B2;
+    transform: scale(1.05);
+}
+
+.active_card_twitch {
+    box-shadow: 0px 0px 60px 0px #4B367C;
+    transform: scale(1.05);
+}
+
+.active_card_slack {
+    box-shadow: 0px 0px 60px 0px #2EB67D;
+    transform: scale(1.05);
+}
+
+.active_card_gmail {
+    box-shadow: 0px 0px 60px 0px #D93025;
+    transform: scale(1.05);
+}
+
+.active_card_onedrive {
+    box-shadow: 0px 0px 60px 0px #0948AC;
+    transform: scale(1.05);
+}
+
+.unactive_card {
+    box-shadow: 0px 0px 60px 0px transparent;
+    transform: scale(1.0);
+}
