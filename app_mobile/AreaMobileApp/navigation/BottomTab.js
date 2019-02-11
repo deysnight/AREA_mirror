@@ -4,7 +4,7 @@ import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
 import ScreenHome from "../Screens/ScreenHome";
 
 
-const TabNavigator = createBottomTabNavigator(
+const AppNavigation = createBottomTabNavigator(
     {
         Home: ScreenHome,
     },
@@ -27,4 +27,4 @@ const TabNavigator = createBottomTabNavigator(
     }
 );
 
-export default createAppContainer(TabNavigator);
+export default createAppContainer(AppNavigation);

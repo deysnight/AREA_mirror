@@ -26,16 +26,13 @@ export default class LoginForm extends Component {
                 style={styles.input}
                 ref={(input) => this.passwordInput = input}
                 />
-            <TouchableOpacity style={styles.buttonContainer} onPress={this.login_function}>
+            <TouchableOpacity style={styles.buttonContainer}
+                
+                >
                 <Text style={styles.buttonText}>Se connecter</Text>
             </TouchableOpacity>
             </View>
         );
-
-        login_function = async () => {
-            await AsyncStorage.setItem('userToken', 'abc');
-            this.props.navigation.navigate('App');
-          };
     }
 }
 
