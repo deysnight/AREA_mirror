@@ -141,7 +141,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 180px;
-    height: 100%;
+    height: 300px;
     padding-top: 1em;
     padding-bottom: 1em;
     padding-left: 2em;
@@ -183,6 +183,14 @@
 .compatible i {
     margin-top: 10px;
     color: white;
+}
+
+.card_reaction_title {
+    height: 60px;
+}
+
+.card_reaction_desc {
+    height: 150px;
 }
 
 #ytb_reaction .reaction_card {

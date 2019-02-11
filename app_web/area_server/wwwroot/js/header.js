@@ -20,13 +20,34 @@ function getCookie(cname) {
   $('#header_list').append('<li>' + "<a id=\"logout_button\" class=\"header_text_menu\" href=\"#\">Logout</a>" + '</li>');
 
 $("#logout_button").click(function () {
+  var ok = false;
+  try {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+     })
+    }
+  catch {
+    $.ajax(
+      {
+          url: "internal/logout/",
+          type: "get",
+          async: false,
+          success: function(response){
+            location.reload();
+          }
+      })
+      ok = true
+  }
+  if (ok == false) {
   $.ajax(
     {
-        url: "internal/logout" + username,
+        url: "internal/logout/",
         type: "get",
         async: false,
         success: function(response){
           location.reload();
         }
     })
+  }
 });
