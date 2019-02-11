@@ -22,7 +22,7 @@ function getCookie(cname) {
 $("#logout_button").click(function () {
   $.ajax(
     {
-        url: "internal/logout/" + username,
+        url: "internal/logout" + username,
         type: "get",
         async: false,
         success: function(response){
