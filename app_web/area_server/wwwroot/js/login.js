@@ -48,10 +48,7 @@ $("#login_button").click(function () {
                 if (jsonObject.success == true) {
                     $("#error_login").remove();
                     cpt_login_error = 0;
-<<<<<<< HEAD
                     location.reload();
-=======
->>>>>>> master
                 }
                 else {
                     if (cpt_login_error < 1) {
@@ -69,3 +66,27 @@ $("#login_button").click(function () {
 $("#login_form").submit(function(e) {
     e.preventDefault();
 });
+
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    var id_token = googleUser.getAuthResponse().id_token;
+    var name = profile.getName();
+    var mail = profile.getEmail();
+
+
+    $.ajax({
+        url: "/internal/goauth2 ",
+        method: "POST",
+        data: {
+            user_id_token: id_token,
+            user_name: name,
+            user_email: mail
+        },
+        success: function (response) {
+            let jsonObject = JSON.parse(response);
+            if (jsonObject.success == true) {
+                location.reload();
+            }
+        }
+    });
+}
