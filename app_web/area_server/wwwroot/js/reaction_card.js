@@ -126,9 +126,21 @@ var onedrive_reaction_card = "<div class=\"reaction reaction_none\" id=\"onedriv
 "</div>" +
 "</div>";
 
+var twitch_login = 
+"<div class=\"reaction reaction_none\" id=\"twitch_reaction\">" +
+"<div class=\"login_button_container\">" +
+"<a href=\"https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=bdxjm36z6d15f9barb92e8kiogru3t&redirect_uri=http://charlespd.com:8080/&scope=user_follows_edit\">Login Twitch</a>" +
+"</div>"
+"</div>";
+
+var teste = false;
+
 $('#action-reaction-wrap').append(ytb_reaction_card);
 $('#action-reaction-wrap').append(fb_reaction_card);
-$('#action-reaction-wrap').append(twitch_reaction_card);
+if (teste == true)
+    $('#action-reaction-wrap').append(twitch_reaction_card);
+else
+    $('#action-reaction-wrap').append(twitch_login);
 $('#action-reaction-wrap').append(slack_reaction_card);
 $('#action-reaction-wrap').append(gmail_reaction_card);
 $('#action-reaction-wrap').append(onedrive_reaction_card);
