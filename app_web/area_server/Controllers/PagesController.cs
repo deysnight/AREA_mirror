@@ -14,10 +14,6 @@ namespace area_server.Controllers
         [HttpGet]
         public ActionResult<string> Home()
         {
-            //DBConnect.my_insert("index", "test1, test2", "'lol1', 'lol2'");
-            //Response.Redirect("/login");
-            //Utils.Retrive_file("dashboard.html", "text/html", "html");
-
             if (Utils.user_logged(Request) != true)
                 Response.Redirect("/login");
             else
