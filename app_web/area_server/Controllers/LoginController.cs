@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
+//internal/oauth2/twitch
+
 namespace area_server.Controllers
 {
     public class LoginController : Controller
@@ -41,7 +43,7 @@ namespace area_server.Controllers
             }
             else if (result.Count == 0)
             {
-                DBConnect.my_insert("users", "login, email, isOAuth", "'" + json.user_name + "', '" + json.user_email + "', 1");
+                DBConnect.my_insert("users", "login, email, isOAuth, isValidated", "'" + json.user_name + "', '" + json.user_email + "', 1, 1");
                 return "{\"success\": true, \"reason\": null}";
             }
 
