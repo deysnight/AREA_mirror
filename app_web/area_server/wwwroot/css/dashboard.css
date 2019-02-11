@@ -23,8 +23,8 @@
 }
 
 #action-reaction-wrap {
-    flex: 4;
-    margin-bottom: 4em;
+    flex: 5;
+    margin-bottom: 6em;
 }
 
 .card {
@@ -41,7 +41,7 @@
     padding-right: 3em;
     border-radius: 10px;
     justify-content: space-between;
-    margin-bottom: 3em;
+    margin-bottom: 1em;
     cursor: pointer;
     transition: all ease-in-out 0.15s;
 }
