@@ -221,7 +221,7 @@
     display: none;
 }
 
-.login_button_container {
+.login_button_container_twitch {
     margin-top: 4em;
     background-color: #4B367C;
     padding-left: 2em;
@@ -232,11 +232,31 @@
     cursor: pointer;
 }
 
-.login_button_container:hover {
+.login_button_container_twitch:hover {
     background-color: #7D5BBE;
     transition: ease-in-out 0.1s all;
 }
 
-.login_button_container a {
+.login_button_container_twitch a {
+    color: white;
+}
+
+.login_button_container_fb {
+    margin-top: 4em;
+    background-color: #4267B2;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    transition: ease-in-out 0.1s all;
+    cursor: pointer;
+}
+
+.login_button_container_fb:hover {
+    background-color: #365899;
+    transition: ease-in-out 0.1s all;
+}
+
+.login_button_container_fb a {
     color: white;
 }
