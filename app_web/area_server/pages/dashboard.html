@@ -55,11 +55,19 @@
         function renderButton() {
             gapi.signin2.render('my-signin2', {
             'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl',
+            'longtitle': true,
+            'width': 240,
+            'height': 50,
+            'theme': 'dark',
             'onsuccess': onSuccess,
             'onfailure': onFailure
             });
             gapi.signin2.render('my-signin3', {
             'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl',
+            'longtitle': true,
+            'width': 240,
+            'height': 50,
+            'theme': 'dark',
             'onsuccess': onSuccess,
             'onfailure': onFailure
             });

@@ -75,23 +75,6 @@ var twitch_reaction_card = "<div class=\"reaction reaction_none\" id=\"twitch_re
 "</div>" +
 "</div>";
 
-var slack_reaction_card = "<div class=\"reaction reaction_none\" id=\"slack_reaction\">" +
-"<div class=\"reaction_card\">" +
-"<div>" +
-"<div class=\"card_reaction_title\">" +
-"<p class=\"reaction_title\">Une réaction cool</p>" +
-"</div>" +
-"<div class=\"card_reaction_desc\">" +
-"<p class=\"reaction_description\">Une description cool du cul lol</p>" +
-"</div>" +
-"</div>" +
-"<hr class=\"card_separator\">" +
-"<div class=\"compatible\">" +
-"<i class=\"fa fa-envelope fa-2x\" aria-hidden=\"true\"></i>" +
-"</div>" +
-"</div>" +
-"</div>";
-
 var gmail_reaction_card = "<div class=\"reaction reaction_none\" id=\"gmail_reaction\">" +
 "<div class=\"reaction_card\">" +
 "<div>" +
@@ -182,15 +165,12 @@ else {
     $('#action-reaction-wrap').append(fb_login);
 }
 
-
 if (teste == false) {
     $('#action-reaction-wrap').append(twitch_reaction_card);
 }
 else {
     $('#action-reaction-wrap').append(twitch_login);
 }
-
-$('#action-reaction-wrap').append(slack_reaction_card);
 
 if (test_google == false) {
     $('#action-reaction-wrap').append(gmail_reaction_card);
@@ -227,12 +207,16 @@ function initiateFBLogin() {
 }
 
 function send_FB_data_to_serv(response) {
-   var accessToken = response.authResponse.accessToken
+   var accessToken = response.authResponse.accessToken;
+   var userID = response.authResponse.userID;
+   console.log(userID);
+   console.log(accessToken);
     $.ajax({
     url: "/internal/oauth2/facebook ",
     method: "POST",
     data: {
         access_token: accessToken,
+        user_id: userID
     },
     success: function (response) {
         location.reload();

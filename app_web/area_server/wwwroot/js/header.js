@@ -16,7 +16,7 @@ function getCookie(cname) {
     return "";
   }
 
-  $('#header_list').append("<li><a class=\"header_text_menu pseudal\" href=\"#\">" + username + "</a></li>");
+  $('#header_list').append("<li><a class=\"header_text_menu pseudal\" href=\"/profil\">" + username + "</a></li>");
   $('#header_list').append('<li>' + "<a id=\"logout_button\" class=\"header_text_menu\" href=\"#\">Logout</a>" + '</li>');
 
 $("#logout_button").click(function () {
