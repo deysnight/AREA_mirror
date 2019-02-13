@@ -129,7 +129,7 @@ var onedrive_reaction_card = "<div class=\"reaction reaction_none\" id=\"onedriv
 var twitch_login =
 "<div class=\"reaction reaction_none\" id=\"twitch_reaction\">" +
 "<div class=\"login_button_container\">" +
-"<a class=\"login_button_container_twitch\" href=\"https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=bdxjm36z6d15f9barb92e8kiogru3t&redirect_uri=http://localhost:8080/internal/oauth2/twitch/&scope=user_follows_edit\">Login Twitch</a>" +
+"<a class=\"login_button_container_twitch\" href=\"https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=bdxjm36z6d15f9barb92e8kiogru3t&redirect_uri=http://localhost:8080/internal/oauth2/twitch/&scope=user_follows_edit\">Login Twitch</a>" +
 "</div>" +
 "</div>";
 
