@@ -37,24 +37,15 @@
     </div>
     <script>
         function onSuccess(googleUser) {
-            var profile = googleUser.getBasicProfile();
             var access_token = googleUser.getAuthResponse().access_token;
-            var name = profile.getName();
-            var mail = profile.getEmail();
             $.ajax({
-                url: "/internal/goauth2 ",
+                url: "/internal/oauth2/google ",
                 method: "POST",
                 data: {
-                    user_id_token: access_token,
-                    user_name: name,
-                    user_email: mail
+                    access_token: access_token,
                 },
                 success: function (response) {
-                    console.log(response);
-                    let jsonObject = JSON.parse(response);
-                    if (jsonObject.success == true) {
-                        location.reload();
-                    }
+                    location.reload();
                 }
             });
         }

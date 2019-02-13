@@ -129,7 +129,7 @@ var onedrive_reaction_card = "<div class=\"reaction reaction_none\" id=\"onedriv
 var twitch_login =
 "<div class=\"reaction reaction_none\" id=\"twitch_reaction\">" +
 "<div class=\"login_button_container\">" +
-"<a class=\"login_button_container_twitch\" href=\"https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=bdxjm36z6d15f9barb92e8kiogru3t&redirect_uri=http://charlespd.com:8080/&scope=user_follows_edit\">Login Twitch</a>" +
+"<a class=\"login_button_container_twitch\" href=\"https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=bdxjm36z6d15f9barb92e8kiogru3t&redirect_uri=http://localhost:8080/internal/oauth2/twitch/&scope=user_follows_edit\">Login Twitch</a>" +
 "</div>" +
 "</div>";
 
@@ -143,7 +143,7 @@ var fb_login =
 var onedrive_login =
 "<div class=\"reaction reaction_none\" id=\"onedrive_reaction\">" +
 "<div class=\"login_button_container\">" +
-"<a class=\"login_button_container_onedrive\" href=\"https://login.live.com/oauth20_authorize.srf?client_id=9d1f0555-d6d2-4e41-aaae-8a661a8dd511&scope=onedrive.readwrite&response_type=code&redirect_uri=http://localhost:8080/internal/oauth/onedrive\">Login Onedrive</a>"
+"<a class=\"login_button_container_onedrive\" href=\"https://login.live.com/oauth20_authorize.srf?client_id=9d1f0555-d6d2-4e41-aaae-8a661a8dd511&scope=onedrive.readwrite&response_type=code&redirect_uri=http://localhost:8080/internal/oauth2/onedrive\">Login Onedrive</a>"
 "</div>" +
 "</div>";
 
@@ -220,11 +220,6 @@ function checkLoginState() {
     });
 }
 
-function fetch_user_data() {
-    FB.api('/me/accounts', function(response) {
-        console.log(response.data);
-})};
-
 function initiateFBLogin() {
     FB.login(function(response) {
         send_FB_data_to_serv(response);
@@ -232,12 +227,12 @@ function initiateFBLogin() {
 }
 
 function send_FB_data_to_serv(response) {
-   var id_token = response.authResponse.accessToken
+   var accessToken = response.authResponse.accessToken
     $.ajax({
     url: "/internal/oauth2/facebook ",
     method: "POST",
     data: {
-        user_id_token: id_token,
+        access_token: accessToken,
     },
     success: function (response) {
         location.reload();

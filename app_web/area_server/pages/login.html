@@ -45,6 +45,7 @@
     <script>
         function onSuccess(googleUser) {
             var profile = googleUser.getBasicProfile();
+            var id_token = googleUser.getAuthResponse().id_token;
             var access_token = googleUser.getAuthResponse().access_token;
             var name = profile.getName();
             var mail = profile.getEmail();
@@ -52,18 +53,31 @@
                 url: "/internal/goauth2 ",
                 method: "POST",
                 data: {
-                    user_id_token: access_token,
+                    user_id_token: id_token,
                     user_name: name,
                     user_email: mail
                 },
                 success: function (response) {
                     console.log(response);
                     let jsonObject = JSON.parse(response);
-                    if (jsonObject.success == true) {
-                        location.reload();
+                    if (jsonObject.success == false) {
+                        console.log("error");
+                        return;
                     }
                 }
             });
+            $.ajax({
+                url: "/internal/oauth2/google ",
+                method: "POST",
+                data: {
+                    access_token: access_token,
+                },
+                success: function (response) {
+                    location.reload();
+                    console.log("access_ok");
+                }
+            });
+            
         }
         function onFailure(error) {
             console.log(error);
