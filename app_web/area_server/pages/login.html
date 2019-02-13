@@ -53,7 +53,7 @@
             var name = profile.getName();
             var mail = profile.getEmail();
             $.ajax({
-                url: "/internal/goauth2 ",
+                url: "/internal/goauth2",
                 method: "POST",
                 data: {
                     user_id_token: id_token,
@@ -70,7 +70,7 @@
                 }
             });
             $.ajax({
-                url: "/internal/oauth2/google ",
+                url: "/internal/oauth2/google",
                 method: "POST",
                 data: {
                     access_token: access_token,

@@ -67,5 +67,21 @@ namespace area_server
             }
         }
 
+        public static void my_update(string table, string value, string condition)
+        {
+            using (var connection = new SQLiteConnection("" + new SQLiteConnectionStringBuilder { DataSource = database }))
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    var insertCommand = connection.CreateCommand();
+                    insertCommand.Transaction = transaction;
+                    insertCommand.CommandText = "UPDATE " + table + " SET " + value + " WHERE " + condition; /// QUERY HERE
+                    insertCommand.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+            }
+        }
+
     }
 }

@@ -45,12 +45,6 @@ namespace area_server.Controllers
                 DBConnect.my_insert("users", "login, email, isOAuth, isValidated", "'" + json.user_name + "', '" + json.user_email + "', 1, 1");
                 return "{\"success\": true, \"reason\": null}";
             }
-
-
-            Console.WriteLine(json.user_name);
-            Console.WriteLine(json.user_email);
-
-
             return JsonConvert.SerializeObject(json);
         }
 
@@ -69,9 +63,13 @@ namespace area_server.Controllers
         {
             string decodedString = Encoding.UTF8.GetString(Convert.FromBase64String(Uri.UnescapeDataString(data)));
             string[] tmp = decodedString.Split(':');
-            var result = (Newtonsoft.Json.Linq.JArray)DBConnect.my_select("users WHERE login = '" + tmp[0] + "' AND pwd = '" + Utils.Encrypt(tmp[1]) + "' AND isOAuth = 0", "*");
+            dynamic result = (Newtonsoft.Json.Linq.JArray)DBConnect.my_select("users WHERE login = '" + tmp[0] + "' AND pwd = '" + Utils.Encrypt(tmp[1]) + "' AND isOAuth = 0", "*");
             if (result.Count == 1)
             {
+                if (result[0].isValidated == 0)
+                {
+                    return "{\"success\": false, \"reason\": \"account require email validation\"}";
+                }
                 CookieOptions option = new CookieOptions();
                 option.Expires = DateTime.Now.AddHours(6);
                 Response.Cookies.Append("dot_user", tmp[0], option);
@@ -106,12 +104,8 @@ namespace area_server.Controllers
             if (result_login.Count == 0 && result_email.Count == 0)
             {
                 DBConnect.my_insert("users", "login, email, pwd", "'" + tmp[0] + "', '" + tmp[1] + "', '" + Utils.Encrypt(tmp[2]) + "'");
-
-                CookieOptions option = new CookieOptions();
-                option.Expires = DateTime.Now.AddHours(6);
-                Response.Cookies.Append("dot_user", tmp[0], option);
-                Response.Cookies.Append("logged_in", "true", option);
-                return "{\"success\": true, \"reason\": null}";
+                Utils.send_mail_confirmation(tmp[0], tmp[1]);
+                return "{\"success\": true, \"reason\": \"/login?statut=require_email_validation\"}";
             }
             return "{\"success\": false, \"reason\": \"error something wrong happens\"}";
         }
