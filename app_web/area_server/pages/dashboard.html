@@ -7,14 +7,15 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-    <meta name="google-signin-client_id" content="649893099750-8spgbkgdvp6u9o4h6s2p7a26pdlrul89.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="218486788454-5b1mt4dvm1pn1n065ooge95mmg7hshi6.apps.googleusercontent.com">
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/dashboard.css" />
     <link rel="stylesheet" href="css/active_card.css" />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=411072423035343&autoLogAppEvents=1"></script>
 </head>
-<body>
+<body>    
     <header>
         <div id="header_nav">
             <h2><a class="header_text_title" href="/">AREA</a></h2>
@@ -34,6 +35,37 @@
             </div>
         </div>
     </div>
+    <script>
+        function onSuccess(googleUser) {
+            var access_token = googleUser.getAuthResponse().access_token;
+            $.ajax({
+                url: "/internal/oauth2/google ",
+                method: "POST",
+                data: {
+                    access_token: access_token,
+                },
+                success: function (response) {
+                    location.reload();
+                }
+            });
+        }
+        function onFailure(error) {
+            console.log(error);
+          }
+        function renderButton() {
+            gapi.signin2.render('my-signin2', {
+            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+            });
+            gapi.signin2.render('my-signin3', {
+            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+            });
+      }
+    </script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
     <script src="js/header.js"></script>
     <script src="js/card.js"></script>
     <script src="js/reaction_card.js"></script>

@@ -220,3 +220,108 @@
 .reaction_none {
     display: none;
 }
+
+.login_button_container_twitch {
+    background-color: #4B367C;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    transition: ease-in-out 0.1s all;
+    cursor: pointer;
+}
+
+.login_button_container_twitch:hover {
+    background-color: #7D5BBE;
+    transition: ease-in-out 0.1s all;
+}
+
+.login_button_container_twitch {
+    color: white;
+    font-weight: bold;
+}
+
+.login_button_container_fb {
+    background-color: #4267B2;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    transition: ease-in-out 0.1s all;
+    cursor: pointer;
+}
+
+.login_button_container_fb:hover {
+    background-color: #365899;
+    transition: ease-in-out 0.1s all;
+}
+
+.login_button_container_fb {
+    color: white;
+    font-weight: bold;
+}
+
+.login_button_container_onedrive {
+    background-color: #0948AC;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    transition: ease-in-out 0.1s all;
+    cursor: pointer;
+}
+
+.login_button_container_onedrive:hover {
+    background-color: #365899;
+    transition: ease-in-out 0.1s all;
+}
+
+.login_button_container_onedrive {
+    color: white;
+    font-weight: bold;
+}
+
+.login_button_container_ytb {
+    background-color: #FF0000;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    transition: ease-in-out 0.1s all;
+    cursor: pointer;
+}
+
+.login_button_container_ytb:hover {
+    background-color: #FF0000;
+    transition: ease-in-out 0.1s all;
+}
+
+.login_button_container_ytb {
+    color: white;
+    font-weight: bold;
+}
+
+.login_button_container_gmail {
+    background-color: #D93025;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    transition: ease-in-out 0.1s all;
+    cursor: pointer;
+}
+
+.login_button_container_gmail:hover {
+    background-color: #D93025;
+    transition: ease-in-out 0.1s all;
+}
+
+.login_button_container_gmail {
+    color: white;
+    font-weight: bold;
+}
+
+.login_button_container {
+    margin-top: 4em;
+    color: white;
+}

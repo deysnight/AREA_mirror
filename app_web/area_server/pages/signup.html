@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/registration.css" />
     <link rel="stylesheet" href="css/header.css" />
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="218486788454-sj94rgdng7h0i1dvfug155ndlv7p7i0t.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="218486788454-5b1mt4dvm1pn1n065ooge95mmg7hshi6.apps.googleusercontent.com">
 </head>
 <body>
     <header>
@@ -41,8 +41,9 @@
                         <input id="signup_pass2" type="password" required placeholder="Confirmer votre mot de passe" />
                     </div>
                     <a class="redirect_form" href="/login"><br/>Cliquez-ici si vous possedez déjà un compte.</a>
-                    <button id="signup_button" class="link_button" type="submit"><span>Créer un compte</span></button>
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    <div id="button_container">
+                        <button id="signup_button" class="link_button" type="submit"><span>Créer un compte</span></button>
+                    </div>
                 </form>
             </div>
         </div>
