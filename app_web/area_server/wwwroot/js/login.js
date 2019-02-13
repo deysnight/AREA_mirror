@@ -66,3 +66,12 @@ $("#login_button").click(function () {
 $("#login_form").submit(function(e) {
     e.preventDefault();
 });
+
+const urlParams = new URLSearchParams(window.location.search);
+const myParam = urlParams.get('statut');
+
+var validation_mail =
+"<p style=\"margin-bottom: 60px; font-weight: bold; font-size: 18px;\">Validez votre email pour pouvoir vous connecter</p>";
+
+if (myParam === "require_email_validation")
+    $('#mail').append(validation_mail);

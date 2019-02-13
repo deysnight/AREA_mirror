@@ -109,7 +109,7 @@ $("#signup_button").click(function () {
                 error_signup_login = 0;
                 $("#error_signup_mail").remove();
                 error_signup_mail = 0;
-                location.reload();
+                window.location.replace("/login?statut=require_email_validation");
             }
             else {
                 if (jsonObject.reason == "login already exist") {
@@ -124,7 +124,7 @@ $("#signup_button").click(function () {
                 else {
                     $("#error_signup_login").remove();
                     error_signup_login = 0
-                }    
+                }
                 if (jsonObject.reason == "email already exist") {
                     if (error_signup_mail < 1) {
                         input = $('<p class="error_fade" id="error_signup_mail">Cette adresse email est déjà utilisée.</p>');
@@ -137,7 +137,7 @@ $("#signup_button").click(function () {
                 else {
                     $("#error_signup_mail").remove();
                     error_signup_mail = 0
-                }      
+                }
             }
         }
     })

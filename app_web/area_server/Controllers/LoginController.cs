@@ -31,8 +31,7 @@ namespace area_server.Controllers
             {
                 Console.Write(result);
                 CookieOptions option = new CookieOptions();
-                //option.Expires = DateTime.Now.AddHours(6);
-                option.Expires = DateTime.Now.AddMinutes(1);
+                option.Expires = DateTime.Now.AddHours(6);
                 Response.Cookies.Append("dot_user", tmp, option);
                 Response.Cookies.Append("logged_in", "true", option);
                 return "{\"success\": true, \"reason\": null}";
@@ -74,8 +73,7 @@ namespace area_server.Controllers
             if (result.Count == 1)
             {
                 CookieOptions option = new CookieOptions();
-                //option.Expires = DateTime.Now.AddHours(6);
-                option.Expires = DateTime.Now.AddMinutes(1);
+                option.Expires = DateTime.Now.AddHours(6);
                 Response.Cookies.Append("dot_user", tmp[0], option);
                 Response.Cookies.Append("logged_in", "true", option);
                 return "{\"success\": true, \"reason\": null}";
@@ -110,8 +108,7 @@ namespace area_server.Controllers
                 DBConnect.my_insert("users", "login, email, pwd", "'" + tmp[0] + "', '" + tmp[1] + "', '" + Utils.Encrypt(tmp[2]) + "'");
 
                 CookieOptions option = new CookieOptions();
-                //option.Expires = DateTime.Now.AddHours(6);
-                option.Expires = DateTime.Now.AddMinutes(1);
+                option.Expires = DateTime.Now.AddHours(6);
                 Response.Cookies.Append("dot_user", tmp[0], option);
                 Response.Cookies.Append("logged_in", "true", option);
                 return "{\"success\": true, \"reason\": null}";
