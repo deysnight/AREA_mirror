@@ -75,5 +75,16 @@ namespace area_server.Controllers
                 return Utils.Retrive_file("signup.html", "text/html", "pages");
             return "";
         }
+
+        [Route("profil")]
+        [HttpGet]
+        public ActionResult<string> profil()
+        {
+            if (Utils.user_logged(Request) == true)
+                Response.Redirect("/");
+            else
+                return Utils.Retrive_file("profil.html", "text/html", "pages");
+            return "";
+        }
     }
 }
