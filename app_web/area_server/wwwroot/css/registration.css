@@ -85,6 +85,13 @@ textarea {
     font-weight: 500;
 }
 
+@media (max-width: 930px) {
+    #container-form {
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+}
+
 @media (max-width: 790px) {
     form {
 		margin-top: 2em;
@@ -93,7 +100,11 @@ textarea {
 	}
 	.form-group input {
 		margin-top: 2px;
-	}
+    }
+    #container-form {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
 }
 
 @media (max-width: 700px) {
@@ -108,9 +119,13 @@ textarea {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .link_button {
         font-size: 10px;
+    }
+    #container-form {
+        margin-left: 5%;
+        margin-right: 5%;
     }
 }
 
