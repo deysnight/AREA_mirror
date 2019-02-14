@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native'
 import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
 import ScreenHome from "../Screens/ScreenHome";
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 
 const AppNavigation = createBottomTabNavigator(
@@ -10,21 +11,11 @@ const AppNavigation = createBottomTabNavigator(
     },
     {
         initialRouteName: 'Home',
+        tabBarIcon: ({tintColor}) => <Icon name={"youtube-play"} color={tintColor} size={25}/>,
         tabBarOptions: {
-            activeBackgroundColor: 'red',
-            inactiveBackgroundColor: 'red',
-            style: {
-                backgroundColor: 'red',
-                shadowOpacity: 0.1,
-                shadowRadius: 5,
-                shadowOffset: {
-                    height: -8,
-                    width: 0
-                },
-                elevation: 1
-            }
-        },
+            activeTintColor: 'black',
+            activeBackgroundColor: 'white',
+        }
     }
 );
-
 export default createAppContainer(AppNavigation);
