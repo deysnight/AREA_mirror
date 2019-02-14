@@ -7,13 +7,34 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 const AppNavigation = createBottomTabNavigator(
     {
-        Home: ScreenHome,
+
+        Home: {
+            screen: ScreenHome,
+            navigationOptions: {
+                title: "Home",
+                tabBarIcon: ({tintColor}) => (
+                    <Icon name="home" color={tintColor} size={20} />
+                )
+            }
+        },
+        Profil: {
+            screen: ScreenHome,
+            navigationOptions: {
+                title: "Profil",
+                tabBarIcon: ({tintColor}) => (
+                    <Icon name="users" color={tintColor} size={20} />
+                )
+            }
+        },
     },
     {
+        order: ['Home', "Profil"],
+        navigationOptions: {
+            tabBarVisible: true
+        },
         initialRouteName: 'Home',
-        tabBarIcon: ({tintColor}) => <Icon name={"youtube-play"} color={tintColor} size={25}/>,
         tabBarOptions: {
-            activeTintColor: 'black',
+            activeTintColor: 'tomato',
             activeBackgroundColor: 'white',
         }
     }
