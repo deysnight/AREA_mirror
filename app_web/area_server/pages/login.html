@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" type="text/css" href="css/registration.css" />
     <link rel="stylesheet" href="css/header.css" />
-    <meta name="google-signin-client_id" content="218486788454-5b1mt4dvm1pn1n065ooge95mmg7hshi6.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="218486788454-ib26rj3me8cia6dmft0p6gdhbt0qmelj.apps.googleusercontent.com">
 </head>
 <body>
     <header>
@@ -87,7 +87,7 @@
           }
         function renderButton() {
             gapi.signin2.render('my-signin2', {
-            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl',
+            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets',
             'onsuccess': onSuccess,
             'onfailure': onFailure
             });

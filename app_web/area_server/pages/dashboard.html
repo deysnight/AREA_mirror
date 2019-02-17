@@ -6,8 +6,9 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta name="google-signin-client_id" content="218486788454-5b1mt4dvm1pn1n065ooge95mmg7hshi6.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="218486788454-ib26rj3me8cia6dmft0p6gdhbt0qmelj.apps.googleusercontent.com">
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/dashboard.css" />
@@ -54,7 +55,7 @@
           }
         function renderButton() {
             gapi.signin2.render('my-signin2', {
-            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl',
+            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets',
             'longtitle': true,
             'width': 240,
             'height': 50,
@@ -63,7 +64,25 @@
             'onfailure': onFailure
             });
             gapi.signin2.render('my-signin3', {
-            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl',
+            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets',
+            'longtitle': true,
+            'width': 240,
+            'height': 50,
+            'theme': 'dark',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+            });
+            gapi.signin2.render('my-signin4', {
+            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets',
+            'longtitle': true,
+            'width': 240,
+            'height': 50,
+            'theme': 'dark',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+            });
+            gapi.signin2.render('my-signin5', {
+            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets',
             'longtitle': true,
             'width': 240,
             'height': 50,

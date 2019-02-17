@@ -5,5 +5,139 @@
 #wrap01 h2 {
     margin-top: 2em;
     font-size: 30px;
-    font-family: 'Montserrat SemiBold', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.reaction {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.reaction_card {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 180px;
+    height: 300px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-top: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
+    border-radius: 10px;
+    transition: all ease-in-out 0.15s;
+    cursor: pointer;
+}
+
+.reaction_card:hover {
+    transform: scale(1.05);
+    transition: all ease-in-out 0.15s;
+}
+
+.reaction_card div p {
+    align-self: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: white;
+}
+
+.reaction_title {
+    font-size: 20px;
+    margin: 0;
+}
+
+.reaction_description {
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.compatible {
+    align-self: center;
+}
+
+.compatible i {
+    margin-top: 10px;
+    color: white;
+}
+
+.card_reaction_title {
+    height: 90px;
+}
+
+.card_reaction_title i {
+    color: white;
+}
+
+.card_reaction_title .fa-twitch {
+    margin-top: 8px;
+}
+
+.card_reaction_title .fa-facebook-official {
+    margin-top: 4px;
+}
+
+.card_reaction_title .fa-cloud {
+    margin-top: 2px;
+}
+
+.card_reaction_title .fa-google-drive {
+    margin-top: 2px;
+}
+
+.card_reaction_desc {
+    height: 120px;
+}
+
+.card_separator {
+    margin: 0;
+    margin-top: 2em;
+    width: 100%;
+}
+
+.fa-file-alt {
+    margin-top: 4px;
+}
+
+.yt {
+    background-color: #FF0000;
+}
+
+.fb {
+    background-color: #4267B2;
+}
+
+.twitch {
+    background-color: #4B367C;
+}
+
+.gmail {
+    background-color: #D93025;
+}
+
+.onedrive {
+    background-color: #0948AC;
+}
+
+.gdrive {
+    background-color: #2EB67D;
+}
+
+.gsheet {
+    background-color: #0F9854;
+}
+
+#youtube_first, #youtube_second, #youtube_third,
+#facebook_first, #facebook_second,
+#twitch_first, #twitch_second, #twitch_third,
+#gmail_first,
+#onedrive_first,
+#gdrive_first,
+#gsheet_first {
+    display: none;
 }
