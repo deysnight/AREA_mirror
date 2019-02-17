@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {View, StyleSheet, Text, ScrollView, TouchableOpacity} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon2 from 'react-native-vector-icons/Entypo'
 
 
 class ViewHome extends Component {
@@ -12,7 +13,8 @@ class ViewHome extends Component {
                 </View>
                 <View style={{alignSelf: 'center', flex: 8}}>
                     <ScrollView 
-                    horizontal={true}>
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}>
                         <TouchableOpacity style={homePage.YtbCard}>
                             <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
                                 <Icon name={"youtube-play"}
@@ -59,13 +61,46 @@ class ViewHome extends Component {
                         </TouchableOpacity>
                         <TouchableOpacity style={homePage.OnedCard}>
                             <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
-                                <Icon name={"cloud"}
+                                <Icon2 name={"onedrive"}
                                 size={80}
                                 color={'white'}
                                 />
                             </View>
                             <View style={{flex: 3, justifyContent: 'flex-start'}}>
                                 <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', color:'white'}}>OneDrive</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={homePage.GdriveCard}>
+                            <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
+                                <Icon2 name={"google-drive"}
+                                size={80}
+                                color={'white'}
+                                />
+                            </View>
+                            <View style={{flex: 3, justifyContent: 'flex-start'}}>
+                                <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Drive</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={homePage.GSheetCard}>
+                            <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
+                                <Icon name={"file-text"}
+                                size={80}
+                                color={'white'}
+                                />
+                            </View>
+                            <View style={{flex: 3, justifyContent: 'flex-start'}}>
+                                <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Sheet</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={homePage.TwitterCard}>
+                            <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
+                                <Icon name={"twitter"}
+                                size={80}
+                                color={'white'}
+                                />
+                            </View>
+                            <View style={{flex: 3, justifyContent: 'flex-start'}}>
+                                <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Twitter</Text>
                             </View>
                         </TouchableOpacity>
                     </ScrollView>
@@ -128,6 +163,36 @@ const homePage = StyleSheet.create({
     OnedCard: {
         alignSelf: 'center',
         backgroundColor: '#0948AC',
+        height: 260,
+        width: 180,
+        borderRadius: 8,
+        marginLeft: 5,
+        marginRight: 5,
+        display: 'flex'
+    },
+    GdriveCard: {
+        alignSelf: 'center',
+        backgroundColor: '#1AA15F',
+        height: 260,
+        width: 180,
+        borderRadius: 8,
+        marginLeft: 5,
+        marginRight: 5,
+        display: 'flex'
+    },
+    GSheetCard: {
+        alignSelf: 'center',
+        backgroundColor: '#0A9E58',
+        height: 260,
+        width: 180,
+        borderRadius: 8,
+        marginLeft: 5,
+        marginRight: 5,
+        display: 'flex'
+    },
+    TwitterCard: {
+        alignSelf: 'center',
+        backgroundColor: '#1DA1F2',
         height: 260,
         width: 180,
         borderRadius: 8,

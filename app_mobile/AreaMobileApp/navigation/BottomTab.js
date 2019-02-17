@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native'
 import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
 import ScreenHome from "../Screens/ScreenHome";
+import ScreenProfile from "../Screens/ScreenProfile";
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 
@@ -18,7 +19,7 @@ const AppNavigation = createBottomTabNavigator(
             }
         },
         Profil: {
-            screen: ScreenHome,
+            screen: ScreenProfile,
             navigationOptions: {
                 title: "Profil",
                 tabBarIcon: ({tintColor}) => (
