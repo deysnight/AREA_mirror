@@ -31,8 +31,7 @@ namespace area_server.Controllers
             {
                 Console.Write(result);
                 CookieOptions option = new CookieOptions();
-                //option.Expires = DateTime.Now.AddHours(6);
-                option.Expires = DateTime.Now.AddMinutes(1);
+                option.Expires = DateTime.Now.AddHours(6);
                 Response.Cookies.Append("dot_user", tmp, option);
                 Response.Cookies.Append("logged_in", "true", option);
                 return "{\"success\": true, \"reason\": null}";
@@ -72,8 +71,7 @@ namespace area_server.Controllers
                     return "{\"success\": false, \"reason\": \"account require email validation\"}";
                 }
                 CookieOptions option = new CookieOptions();
-                //option.Expires = DateTime.Now.AddHours(6);
-                option.Expires = DateTime.Now.AddMinutes(1);
+                option.Expires = DateTime.Now.AddHours(6);
                 Response.Cookies.Append("dot_user", tmp[0], option);
                 Response.Cookies.Append("logged_in", "true", option);
                 return "{\"success\": true, \"reason\": null}";

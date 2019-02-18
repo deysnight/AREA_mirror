@@ -80,7 +80,7 @@ namespace area_server.Controllers
         [HttpGet]
         public ActionResult<string> profil()
         {
-            if (Utils.user_logged(Request) == true)
+            if (Utils.user_logged(Request) != true)
                 Response.Redirect("/");
             else
                 return Utils.Retrive_file("profil.html", "text/html", "pages");

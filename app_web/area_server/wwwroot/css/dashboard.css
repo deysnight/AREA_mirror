@@ -5,7 +5,8 @@
 #wrap01 h2 {
     margin-top: 2em;
     font-size: 30px;
-    font-family: 'Montserrat SemiBold', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
 }
 
 #wrap02 {
@@ -56,7 +57,7 @@
     color: white;
     margin: 0;
     margin-top: 15px;
-    font-family: 'Montserrat SemiBold', sans-serif;
+    font-weight: bold;
 }
 
 .card_separator {
@@ -117,8 +118,12 @@
     background-color: #4267B2;
 }
 
-#slack_card {
+#gdrive_card {
     background-color: #2EB67D;
+}
+
+#gsheet_card {
+    background-color: #0F9854;
 }
 
 .card i {
@@ -205,16 +210,20 @@
     background-color: #4B367C;
 }
 
-#slack_reaction .reaction_card {
-    background-color: #2EB67D;
-}
-
 #gmail_reaction .reaction_card {
     background-color: #D93025;
 }
 
 #onedrive_reaction .reaction_card {
     background-color: #0948AC;
+}
+
+#gdrive_reaction .reaction_card {
+    background-color: #1CA261;
+}
+
+#gsheet_reaction .reaction_card {
+    background-color: #0F9854;
 }
 
 .reaction_none {
