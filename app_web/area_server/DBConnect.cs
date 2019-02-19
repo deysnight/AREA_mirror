@@ -76,7 +76,7 @@ namespace area_server
                 {
                     var insertCommand = connection.CreateCommand();
                     insertCommand.Transaction = transaction;
-                    insertCommand.CommandText = "UPDATE " + table + " SET " + value + " WHERE " + condition; /// QUERY HERE
+                    insertCommand.CommandText = "UPDATE " + table + " SET " + value + " WHERE " + condition + ";"; /// QUERY HERE
                     insertCommand.ExecuteNonQuery();
                     transaction.Commit();
                 }

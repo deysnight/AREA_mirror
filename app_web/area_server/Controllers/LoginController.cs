@@ -25,7 +25,7 @@ namespace area_server.Controllers
                 json = JsonConvert.DeserializeObject(JsonConvert.SerializeObject(dict.AllKeys.ToDictionary(k => k, k => dict[k])));
             }
 
-            var result = (Newtonsoft.Json.Linq.JArray)DBConnect.my_select("users WHERE login = '" + json.user_name + "' AND email = '" + json.user_email + "' AND isOAuth = 1", "*");
+            dynamic result = (Newtonsoft.Json.Linq.JArray)DBConnect.my_select("users WHERE login = '" + json.user_name + "' AND email = '" + json.user_email + "' AND isOAuth = 1", "*");
             string tmp = json.user_name;
             if (result.Count == 1)
             {
@@ -34,6 +34,7 @@ namespace area_server.Controllers
                 option.Expires = DateTime.Now.AddHours(6);
                 Response.Cookies.Append("dot_user", tmp, option);
                 Response.Cookies.Append("logged_in", "true", option);
+                Response.Cookies.Append("user_id", Convert.ToString(result[0].id));
                 return "{\"success\": true, \"reason\": null}";
             }
             else if (result.Count > 1)
@@ -43,6 +44,9 @@ namespace area_server.Controllers
             else if (result.Count == 0)
             {
                 DBConnect.my_insert("users", "login, email, isOAuth, isValidated", "'" + json.user_name + "', '" + json.user_email + "', 1, 1");
+
+                dynamic result_back = (Newtonsoft.Json.Linq.JArray)DBConnect.my_select("users WHERE login = '" + json.user_name + "' AND email = '" + json.user_email + "' AND isOAuth = 1", "*");
+                DBConnect.my_insert("user_access_token", "user_id", Convert.ToString(result_back[0].id));
                 return "{\"success\": true, \"reason\": null}";
             }
             return JsonConvert.SerializeObject(json);
@@ -54,6 +58,7 @@ namespace area_server.Controllers
         {
             Response.Cookies.Delete("dot_user");
             Response.Cookies.Delete("logged_in");
+            Response.Cookies.Delete("user_id");
             return "{\"success\": true, \"reason\": null}";
         }
 
@@ -74,6 +79,7 @@ namespace area_server.Controllers
                 option.Expires = DateTime.Now.AddHours(6);
                 Response.Cookies.Append("dot_user", tmp[0], option);
                 Response.Cookies.Append("logged_in", "true", option);
+                Response.Cookies.Append("user_id", Convert.ToString(result[0].id));
                 return "{\"success\": true, \"reason\": null}";
             }
             else if (result.Count > 1)

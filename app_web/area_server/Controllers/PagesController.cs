@@ -26,10 +26,12 @@ namespace area_server.Controllers
             string[] info = decode.Split(":");
             dynamic json = (Newtonsoft.Json.Linq.JArray)DBConnect.my_select("users WHERE id = " + int.Parse(info[0]) + " AND login = '" + info[1] + "' AND email = '" + info[2] + "' AND isOAuth = 0", "*");
             if (json.Count == 0) { Response.Redirect("/login?statut=error user no exist"); return ""; }
-            if (json.Count >= 0) { Response.Redirect("/login?statut=error multiple user"); return ""; }
+            if (json.Count > 0) { Response.Redirect("/login?statut=error multiple user"); return ""; }
             if (json[0].isValidated == 0)
             {
                 DBConnect.my_update("users", "isValidated = 1", "id = " + info[0]);
+                DBConnect.my_insert("user_access_token", "user_id", info[0]);
+
                 Response.Redirect("/login?statut=user_validated");
                 return ("");
             }
