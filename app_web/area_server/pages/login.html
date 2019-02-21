@@ -53,7 +53,7 @@
             var name = profile.getName();
             var mail = profile.getEmail();
             $.ajax({
-                url: "/internal/goauth2",
+                url: "http://localhost:8080/internal/goauth2",
                 method: "POST",
                 data: {
                     user_id_token: id_token,
@@ -63,20 +63,22 @@
                 success: function (response) {
                     console.log(response);
                     let jsonObject = JSON.parse(response);
+                    location.reload();
                     if (jsonObject.success == false) {
                         console.log("error");
                         return;
                     }
                 }
             });
+            /*
             $.ajax({
-                url: "/internal/oauth2/google/?token" + access_token,
+                url: "http://localhost:8080/internal/oauth2/google/?token" + access_token,
                 method: "GET",
                 success: function (response) {
                     location.reload();
                 }
             });
-            
+            */
         }
         function onFailure(error) {
             console.log(error);

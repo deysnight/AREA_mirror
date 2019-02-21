@@ -40,7 +40,7 @@ $("#login_button").click(function () {
     var data = btoa(username + ':' + EncryptPass(pass1));
     $.ajax(
         {
-            url: "internal/login/" + data,
+            url: "http://localhost:8080/internal/login/" + data,
             type: "get",
             async: false,
             success: function(response){

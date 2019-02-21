@@ -96,7 +96,7 @@ $("#signup_button").click(function () {
 
    $.ajax(
     {
-        url: "/internal/signup/" + data,
+        url: "http://localhost:8080/internal/signup/" + data,
         type: "get",
         async: false,
         success: function(response){

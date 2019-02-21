@@ -8,12 +8,12 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-
 .reaction {
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 2em;
 }
 
 .reaction_card {
@@ -132,12 +132,6 @@
     background-color: #0F9854;
 }
 
-#youtube_first, #youtube_second, #youtube_third,
-#facebook_first, #facebook_second,
-#twitch_first, #twitch_second, #twitch_third,
-#gmail_first,
-#onedrive_first,
-#gdrive_first,
-#gsheet_first {
+.reaction_card {
     display: none;
 }

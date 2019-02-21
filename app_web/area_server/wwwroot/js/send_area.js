@@ -1,4 +1,4 @@
-var final_url = "/internal/area";
+var final_url = "http://localhost:8080/internal/area";
 
 var data_json =
 {

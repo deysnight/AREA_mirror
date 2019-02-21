@@ -22,7 +22,7 @@ function getCookie(cname) {
 $("#logout_button").click(function () {
   var ok = false;
   try {
-      var auth2 = gapi.auth2.getAuthInstance();
+    var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log('User signed out.');
      })
@@ -30,7 +30,7 @@ $("#logout_button").click(function () {
   catch {
     $.ajax(
       {
-          url: "internal/logout/",
+          url: "http://localhost:8080/internal/logout/",
           type: "get",
           async: false,
           success: function(response){
@@ -42,7 +42,7 @@ $("#logout_button").click(function () {
   if (ok == false) {
   $.ajax(
     {
-        url: "internal/logout/",
+        url: "http://localhost:8080/internal/logout/",
         type: "get",
         async: false,
         success: function(response){

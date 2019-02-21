@@ -83,7 +83,7 @@ function initiateFBLogin() {
 function send_FB_data_to_serv(response) {
    var accessToken = response.authResponse.accessToken;
     $.ajax({
-    url: "/internal/oauth2/facebook/?token=" + accessToken,
+    url: "http://localhost:8080/internal/oauth2/facebook/?token=" + accessToken,
     method: "GET",
     success: function (response) {
         window.location.href = "/";
@@ -98,7 +98,7 @@ if (window.location.href.indexOf("state=twitch") > -1) {
     var token = slug.split('=').pop();
     console.log(slug);
     $.ajax({
-        url: "/internal/oauth2/twitch/?token=" + token,
+        url: "http://localhost:8080/internal/oauth2/twitch/?token=" + token,
         method: "GET",
         success: function (response) {
             window.location.href = "/";
@@ -113,7 +113,7 @@ if (window.location.href.indexOf("state=onedrive") > -1) {
     var token = slug.split('=').pop();
     console.log(token);
     $.ajax({
-        url: "/internal/oauth2/onedrive/?token=" + token,
+        url: "http://localhost:8080/internal/oauth2/onedrive/?token=" + token,
         method: "GET",
         success: function (response) {
             window.location.href = "/";
