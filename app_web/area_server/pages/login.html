@@ -70,14 +70,10 @@
                 }
             });
             $.ajax({
-                url: "/internal/oauth2/google",
-                method: "POST",
-                data: {
-                    access_token: access_token,
-                },
+                url: "/internal/oauth2/google/?token" + access_token,
+                method: "GET",
                 success: function (response) {
                     location.reload();
-                    console.log("access_ok");
                 }
             });
             

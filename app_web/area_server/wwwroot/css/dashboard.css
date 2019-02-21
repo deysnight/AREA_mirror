@@ -1,19 +1,35 @@
 #glob {
     margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
 }
 
-#wrap01 h2 {
-    margin-top: 2em;
-    font-size: 30px;
-    font-family: 'Montserrat', sans-serif;
+.login_button_container_twitch {
+    background-color: #4B367C;
+    padding: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: white;
     font-weight: bold;
 }
 
-#wrap02 {
-    display: flex;
-    flex-direction: column;
-    margin-left: 2%;
-    margin-right: 2%;
+.login_button_container_fb {
+    background-color: #4267B2;
+    padding: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: white;
+    font-weight: bold;
+}
+
+.login_button_container_onedrive {
+    background-color: #0948AC;
+    padding: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: white;
+    font-weight: bold;
 }
 
 #card-wrap {
@@ -28,125 +44,242 @@
     margin-bottom: 6em;
 }
 
-.card {
-    width: 140px;
+#service_wrap {
     display: flex;
+    flex: 3;
     flex-direction: column;
+    border-right: 1px solid rgba(0, 0, 0, 0.30);
+}
+
+#action {
+    display: flex;
+    flex: 3;
+    justify-content: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.30);
+}
+
+#reaction {
+    display: flex;
+    flex: 3;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-right: 1px solid rgba(0, 0, 0, 0.30);
+}
+
+#reaction_1 {
+    display: none;
+    flex-direction: column;
+}
+
+.reaction_ball {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 50%;
     margin-top: 3em;
-    margin-left: 22px;
-    margin-right: 22px;
-    text-align: center;
-    padding-top: 2em;
-    padding-bottom: 4px;
-    padding-left: 3em;
-    padding-right: 3em;
-    border-radius: 10px;
-    justify-content: space-between;
-    margin-bottom: 1em;
+    align-self: center;
+    margin-bottom: 3em;
+    display: flex;
     cursor: pointer;
-    transition: all ease-in-out 0.15s;
+}
+
+.reaction_ball i {
+    margin: auto;
+    font-size: 36px;
+}
+
+#validate {
+    display: flex;
+    flex: 4;
+    justify-content: center;
+    align-self: flex-start;
+    margin-top: 2em;
+}
+
+.card {
+    margin: 1em;
+    display: flex;
+    cursor: pointer;
+    transition: all ease-in-out 0.1s;
 }
 
 .card:hover {
-    transform: scale(1.05);
-    transition: all ease-in-out 0.15s;
+    transform: scale(1.01);
+    transition: all ease-in-out 0.1s;
 }
 
-.card_title {
+.card #data {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.card #data #title p {
     font-size: 30px;
-    color: white;
-    margin: 0;
-    margin-top: 15px;
     font-weight: bold;
 }
 
-.card_separator {
-    margin: 0;
-    margin-top: 2em;
-    width: 100%;
-}
-
-.data_arrow {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    font-size: 13px;
-}
-
-.data_arrow img {
-    width: 20px;
-    height: 20px;
-    align-items: center;
+.card #data #title {
+    color: white;
     align-self: center;
 }
 
-.arrow_none {
-    display: none;
-}
-
-.arrow_ok {
-    display: block;
-}
-
-.connect_button {
-    margin: 0;
-    font-size: 14px;
-    margin-top: 2em;
-    margin-bottom: 2em;
+.card #data #icon {
     color: white;
-    font-family: 'Montserrat', sans-serif;    
-    font-weight: bold;
+    align-self: center;
 }
 
-#ytb_card {
-    background-color: #FF0000
+#youtube_card {
+    height: 130px;
+    background-color: #FF0000;
+    display: flex;
+}
+
+#facebook_card {
+    height: 130px;
+    background-color: #4267B2;
+    display: flex;
 }
 
 #twitch_card {
+    height: 130px;
     background-color: #4B367C;
+    display: flex;
 }
 
 #onedrive_card {
+    height: 130px;
     background-color: #0948AC;
-}
-
-#gmail_card {
-    background-color: #D93025
-}
-
-#fb_card {
-    background-color: #4267B2;
-}
-
-#gdrive_card {
-    background-color: #2EB67D;
-}
-
-#gsheet_card {
-    background-color: #0F9854;
-}
-
-.card i {
-    margin: 0;
-    margin-top: 12px;
-    color: white;
-    font-size: 80px;
-}
-
-.reaction {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
+}
+
+#drive_card {
+    height: 130px;
+    background-color: #1CA261;
+    display: flex;
+}
+
+#sheet_card {
+    height: 130px;
+    background-color: #0F9854;
+    display: flex;
+}
+
+.active {
+    box-shadow: 0px 0px 20px 0px #000000;
+    transform: scale(1.01);
+}
+
+.reaction_card {
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#youtube_reaction {
+    display: none;
+    flex-direction: column;
+    margin-top: 1em;
+    justify-content: flex-start;
+}
+
+#youtube_reaction .reaction_card {
+    height: 240px;
+    background-color: #FF0000;
+    width: 230px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+#facebook_reaction {
+    display: none;
+    flex-direction: column;
+    margin-top: 1em;
+    justify-content: flex-start;
+}
+
+#facebook_reaction .reaction_card {
+    height: 240px;
+    background-color: #4267B2;
+    width: 230px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+#twitch_reaction {
+    display: none;
+    flex-direction: column;
+    margin-top: 1em;
+    justify-content: flex-start;
+}
+
+#twitch_reaction .reaction_card {
+    height: 240px;
+    background-color: #4B367C;
+    width: 230px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+#onedrive_reaction {
+    display: none;
+    flex-direction: column;
+    margin-top: 1em;
+    justify-content: flex-start;
+}
+
+#onedrive_reaction .reaction_card {
+    height: 240px;
+    background-color: #0948AC;
+    width: 230px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+#onedrive_reaction {
+    display: none;
+    flex-direction: column;
+    margin-top: 1em;
+    justify-content: flex-start;
+}
+
+#drive_reaction .reaction_card {
+    height: 240px;
+    background-color: #1CA261;
+    width: 230px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+#drive_reaction {
+    display: none;
+    flex-direction: column;
+    margin-top: 1em;
+    justify-content: flex-start;
+}
+
+#sheet_reaction .reaction_card {
+    height: 240px;
+    background-color: #0F9854;
+    width: 230px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+#sheet_reaction {
+    display: none;
+    flex-direction: column;
+    margin-top: 1em;
+    justify-content: flex-start;
 }
 
 .reaction_card {
     display: flex;
     text-align: center;
     flex-direction: column;
-    justify-content: space-between;
-    width: 180px;
-    height: 300px;
+    width: 160px;
+    height: 240px;
     padding-top: 1em;
     padding-bottom: 1em;
     padding-left: 2em;
@@ -160,7 +293,7 @@
 }
 
 .reaction_card:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
     transition: all ease-in-out 0.15s;
 }
 
@@ -172,7 +305,7 @@
 }
 
 .reaction_title {
-    font-size: 24px;
+    font-size: 20px;
     margin: 0;
 }
 
@@ -182,7 +315,14 @@
 }
 
 .compatible {
+    width: 80%;
     align-self: center;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .compatible i {
@@ -191,146 +331,130 @@
 }
 
 .card_reaction_title {
-    height: 60px;
+    height: 85px;
+}
+
+.card_reaction_title i {
+    color: white;
+}
+
+.card_reaction_title .fa-twitch {
+    margin-top: 8px;
+}
+
+.card_reaction_title .fa-facebook-official {
+    margin-top: 4px;
+}
+
+.card_reaction_title .fa-cloud {
+    margin-top: 2px;
+}
+
+.card_reaction_title .fa-google-drive {
+    margin-top: 2px;
 }
 
 .card_reaction_desc {
-    height: 150px;
+    height: 65px;
 }
 
-#ytb_reaction .reaction_card {
-    background-color: #FF0000;
+.card_separator {
+    margin: 0;
+    margin-top: 2em;
+    width: 100%;
 }
 
-#fb_reaction .reaction_card {
-    background-color: #4267B2;
+.fa-file-alt {
+    margin-top: 4px;
 }
 
-#twitch_reaction .reaction_card {
-    background-color: #4B367C;
+.validate_button {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border: 2px solid #EA3D3D;
+    background-color: #EA3D3D;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 18px;
+    margin-top: 2em;
+    transition: all ease-in-out 0.2s
 }
 
-#gmail_reaction .reaction_card {
-    background-color: #D93025;
+.validate_button:hover {
+    border-color: #292A2C;
+    background-color: #292A2C;
+    transition: all ease-in-out 0.2s
 }
 
-#onedrive_reaction .reaction_card {
-    background-color: #0948AC;
-}
-
-#gdrive_reaction .reaction_card {
-    background-color: #1CA261;
-}
-
-#gsheet_reaction .reaction_card {
-    background-color: #0F9854;
-}
-
-.reaction_none {
+.form_validate {
     display: none;
+    align-items: center;
+    flex-direction: column;
 }
 
-.login_button_container_twitch {
-    background-color: #4B367C;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    transition: ease-in-out 0.1s all;
-    cursor: pointer;
-}
-
-.login_button_container_twitch:hover {
-    background-color: #7D5BBE;
-    transition: ease-in-out 0.1s all;
-}
-
-.login_button_container_twitch {
-    color: white;
+.validate_title {
+    font-size: 30px;
     font-weight: bold;
+    text-align: center;
 }
 
-.login_button_container_fb {
-    background-color: #4267B2;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    transition: ease-in-out 0.1s all;
-    cursor: pointer;
+.validate_icon {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
 }
 
-.login_button_container_fb:hover {
-    background-color: #365899;
-    transition: ease-in-out 0.1s all;
+.validate_icon .fa-youtube-play {
+    color: red;
 }
 
-.login_button_container_fb {
-    color: white;
-    font-weight: bold;
+.validate_icon .fa-envelope {
+    color: #C03B2B;
 }
 
-.login_button_container_onedrive {
-    background-color: #0948AC;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    transition: ease-in-out 0.1s all;
-    cursor: pointer;
+.validate_icon .fa-file-alt {
+    color: #0F9854;
 }
 
-.login_button_container_onedrive:hover {
-    background-color: #365899;
-    transition: ease-in-out 0.1s all;
+.validate_icon .fa-facebook-official {
+    color: #4267B2;
 }
 
-.login_button_container_onedrive {
-    color: white;
-    font-weight: bold;
+.validate_icon .fa-twitch {
+    color: #4B367C;
 }
 
-.login_button_container_ytb {
-    background-color: #FF0000;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    transition: ease-in-out 0.1s all;
-    cursor: pointer;
+.validate_icon .fa-cloud {
+    color: #0948AC;
 }
 
-.login_button_container_ytb:hover {
-    background-color: #FF0000;
-    transition: ease-in-out 0.1s all;
+.validate_icon .fa-google-drive {
+    color: #1CA261;
 }
 
-.login_button_container_ytb {
-    color: white;
-    font-weight: bold;
+.input_div {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
 }
 
-.login_button_container_gmail {
-    background-color: #D93025;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    transition: ease-in-out 0.1s all;
-    cursor: pointer;
+.input_div input {
+    border: 1px solid grey;
+    border-radius: 4px;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
-.login_button_container_gmail:hover {
-    background-color: #D93025;
-    transition: ease-in-out 0.1s all;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
-.login_button_container_gmail {
-    color: white;
-    font-weight: bold;
-}
-
-.login_button_container {
-    margin-top: 4em;
-    color: white;
+input[type=number] {
+    -moz-appearance: textfield;
 }
