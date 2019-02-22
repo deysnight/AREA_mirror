@@ -32,7 +32,6 @@
     margin-right: 1em;
     border-radius: 10px;
     transition: all ease-in-out 0.15s;
-    cursor: pointer;
 }
 
 .reaction_card:hover {
@@ -67,7 +66,7 @@
 }
 
 .card_reaction_title {
-    height: 90px;
+    height: 80px;
 }
 
 .card_reaction_title i {
@@ -91,7 +90,7 @@
 }
 
 .card_reaction_desc {
-    height: 120px;
+    height: 80px;
 }
 
 .card_separator {
@@ -134,4 +133,27 @@
 
 .reaction_card {
     display: none;
+}
+
+.delete_button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+    width: 80%;
+    text-align: center;
+    margin-top: 20px;
+    margin: auto;
+    margin-top: 18px;
+    background-color: #EA3D3D;
+    transition: all ease-in-out 0.2s;
+    cursor: pointer;
+}
+
+.delete_button:hover {
+    background-color: #292A2C;
+    transition: all ease-in-out 0.2s
+}
+
+.delete_button p {
+    margin: 0;
 }

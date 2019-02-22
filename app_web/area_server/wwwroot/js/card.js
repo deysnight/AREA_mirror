@@ -612,7 +612,7 @@ var user_config = {
     "service": {
         "google": true,
         "facebook": true,
-        "twitch": true,
+        "twitch": false,
         "onedrive": true,
     },
     "ytb01": [
@@ -1144,7 +1144,7 @@ if (window.location.href.indexOf("state=twitch") > -1) {
         url: "http://localhost:8080/internal/oauth2/twitch/?token=" + token,
         method: "GET",
         success: function (response) {
-            window.location.href = "/";
+         //   window.location.href = "/";
         }
     });
 }
@@ -1159,7 +1159,7 @@ if (window.location.href.indexOf("state=onedrive") > -1) {
         url: "http://localhost:8080/internal/oauth2/onedrive/?token=" + token,
         method: "GET",
         success: function (response) {
-            window.location.href = "/";
+            //window.location.href = "/";
         }
     });
 }
