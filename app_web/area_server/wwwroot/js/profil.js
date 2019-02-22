@@ -1,4 +1,12 @@
 var user_config = {
+    "service": {
+        "youtube": true,
+        "facebook": true,
+        "twitch": true,
+        "onedrive": true,
+        "gdrive": true,
+        "gsheet": true
+    },
     "ytb01": [
         {"mail": true},
         {"sheet": true},

@@ -180,8 +180,7 @@
 #youtube_reaction {
     display: none;
     flex-direction: column;
-    margin-top: 1em;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 #youtube_reaction .reaction_card {
@@ -195,8 +194,7 @@
 #facebook_reaction {
     display: none;
     flex-direction: column;
-    margin-top: 1em;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 #facebook_reaction .reaction_card {
@@ -210,8 +208,7 @@
 #twitch_reaction {
     display: none;
     flex-direction: column;
-    margin-top: 1em;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 #twitch_reaction .reaction_card {
@@ -225,8 +222,7 @@
 #onedrive_reaction {
     display: none;
     flex-direction: column;
-    margin-top: 1em;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 #onedrive_reaction .reaction_card {
@@ -240,8 +236,7 @@
 #onedrive_reaction {
     display: none;
     flex-direction: column;
-    margin-top: 1em;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 #drive_reaction .reaction_card {
@@ -255,8 +250,7 @@
 #drive_reaction {
     display: none;
     flex-direction: column;
-    margin-top: 1em;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 #sheet_reaction .reaction_card {
@@ -270,8 +264,7 @@
 #sheet_reaction {
     display: none;
     flex-direction: column;
-    margin-top: 1em;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .reaction_card {
