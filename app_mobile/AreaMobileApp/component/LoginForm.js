@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, AsyncStorage, View, TextInput, TouchableOpacity, Text } from 'react-native';
 import {AuthSession} from 'expo'
+import AppNavigator from '../navigation/navigation'
 
 
 export default class LoginForm extends Component {
@@ -27,6 +28,10 @@ export default class LoginForm extends Component {
             }
         }
 
+    getLogged() {
+        console.log("ok");
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -46,6 +51,9 @@ export default class LoginForm extends Component {
                 style={styles.input}
                 ref={(input) => this.passwordInput = input}
                 />
+            <TouchableOpacity style={styles.buttonContainer} onPress={this.getLogged}
+                
+                >
             <TouchableOpacity style={styles.buttonContainer}>
                 <Text style={styles.buttonText}>Se connecter</Text>
             </TouchableOpacity>

@@ -3,7 +3,6 @@ import {View, StyleSheet, Text, ScrollView, TouchableOpacity} from "react-native
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon2 from 'react-native-vector-icons/Entypo'
 
-
 class ViewHome extends Component {
     render() {
         return (

@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { Text, ActivityIndicator, KeyboardAvoidingView, AsyncStorage, Button, StatusBar, StyleSheet, View, Image } from 'react-native';
 import AppNavigation from "./navigation/BottomTab";
-import LoginScreen from "./ViewLogin"
+import LoginScreen from "./ViewLogin";
+import AppNavigator from './navigation/navigation'
+import SyncStorage from 'sync-storage';
+
 
 export default class App extends Component {
-
-  logged() {
-      return true;
+  constructor(props) {
+      super(props);
   }
-
   _displayLogin() {
-      if (this.logged()) {
-          return <AppNavigation/>
+      const result = SyncStorage.get('logged');
+      if (result == true) {
+          return <AppNavigator/>
       } else {
           return <LoginScreen/>
       }
@@ -22,6 +24,7 @@ export default class App extends Component {
   }
 
   render() {
+      SyncStorage.set('logged', true);
       return this.AREA();
   }
 }
