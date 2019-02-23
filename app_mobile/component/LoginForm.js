@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, AsyncStorage, View, TextInput, TouchableOpacity, Text, Alert } from 'react-native';
-import {AuthSession} from 'expo'
+import { StyleSheet, AsyncStorage, View, TextInput, TouchableOpacity, Text, Alert, Linking } from 'react-native';
+import {AuthSession, WebBrowser} from 'expo'
 import AppNavigator from '../navigation/navigation'
 
 
@@ -37,11 +37,56 @@ async function FacebookSignIn() {
     }
   }
   
+const opts = {
+    authorization_endpoint: 'https://api.twitch.tv/kraken/oauth2/authorize',
+    response_type: 'token',
+    client_id: '4eiqmev2qb0pzztqiv626547o78m17'
+};
+
+const opts_drive = {
+    authorization_endpoint: 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
+    response_type: 'token',
+    client_id: '9d1f0555-d6d2-4e41-aaae-8a661a8dd511'
+}
+
 
 export default class LoginForm extends Component {
 
         state = {
             result: null,
+        };
+
+        
+        HandleTwitchURL = async ({url}) => {
+            const token = url.split('expo-auth-session#access_token=')[1];
+            console.log(token);
+        };
+    
+        TwitchSignIn = async () => {
+            Linking.addEventListener('url', this.HandleTwitchURL);
+
+            const redirectUrl = AuthSession.getRedirectUrl();
+            const url = `${opts.authorization_endpoint}?response_type=${encodeURIComponent(
+                opts.response_type
+            )}&client_id=${encodeURIComponent(opts.client_id)}&redirect_uri=${encodeURIComponent(redirectUrl)}&scope=${encodeURIComponent('user_follows_edit user_read')}`;
+            const result = await AuthSession.startAsync({authUrl: url});
+            var token =  result.params.access_token
+        };
+
+        HandleOneDriveURL = async ({url}) => {
+            const token = url.split('expo-auth-session#access_token=')[1];
+            console.log(token);
+        };
+    
+        OneDriveSignIn = async () => {
+            Linking.addEventListener('url', this.HandleOneDriveURL);
+
+            const redirectUrl = AuthSession.getRedirectUrl();
+            //href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=9d1f0555-d6d2-4e41-aaae-8a661a8dd511&scope=Files.ReadWrite.All&response_type=token&redirect_uri=http://localhost:8080/&state=onedrive";
+            const url = `${opts_drive.authorization_endpoint}?client_id=${encodeURIComponent(opts_drive.client_id)}&scope=${encodeURIComponent('Files.ReadWrite.All')}&response_type=${encodeURIComponent(opts_drive.response_type)}&redirect_uri=${encodeURIComponent(redirectUrl)}`;
+            const result = await AuthSession.startAsync({authUrl: url});
+            var token =  result.params.access_token
+            console.log("OneDrive Token: " + token);
         };
 
         GoogleSignIn = async () => {
@@ -97,6 +142,12 @@ export default class LoginForm extends Component {
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonContainer} onPress={FacebookSignIn}>
                 <Text style={styles.buttonText}>Se connecter via Facebook</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer} onPress={this.TwitchSignIn}>
+                <Text style={styles.buttonText}>Se connecter via Twitch</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer} onPress={this.OneDriveSignIn}>
+                <Text style={styles.buttonText}>Se connecter via OneDrive</Text>
             </TouchableOpacity>
             {this.state.result ? (
 		    <Text> {this.access_token} </Text>
