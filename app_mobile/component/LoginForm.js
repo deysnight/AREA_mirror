@@ -16,7 +16,6 @@ async function FacebookSignIn() {
         permissions: ['public_profile', 'email'],
       });
       if (type === 'success') {
-        // Get the user's name using Facebook's Graph API
         const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
         const response2 = await fetch(`https://graph.facebook.com/me/accounts?access_token=${token}`);
         const url = "https://graph.facebook.com/me/feed?access_token=" + token;
@@ -59,7 +58,6 @@ export default class LoginForm extends Component {
         
         HandleTwitchURL = async ({url}) => {
             const token = url.split('expo-auth-session#access_token=')[1];
-            console.log(token);
         };
     
         TwitchSignIn = async () => {
@@ -75,18 +73,15 @@ export default class LoginForm extends Component {
 
         HandleOneDriveURL = async ({url}) => {
             const token = url.split('expo-auth-session#access_token=')[1];
-            console.log(token);
         };
     
         OneDriveSignIn = async () => {
             Linking.addEventListener('url', this.HandleOneDriveURL);
 
             const redirectUrl = AuthSession.getRedirectUrl();
-            //href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=9d1f0555-d6d2-4e41-aaae-8a661a8dd511&scope=Files.ReadWrite.All&response_type=token&redirect_uri=http://localhost:8080/&state=onedrive";
             const url = `${opts_drive.authorization_endpoint}?client_id=${encodeURIComponent(opts_drive.client_id)}&scope=${encodeURIComponent('Files.ReadWrite.All')}&response_type=${encodeURIComponent(opts_drive.response_type)}&redirect_uri=${encodeURIComponent(redirectUrl)}`;
             const result = await AuthSession.startAsync({authUrl: url});
             var token =  result.params.access_token
-            console.log("OneDrive Token: " + token);
         };
 
         GoogleSignIn = async () => {
