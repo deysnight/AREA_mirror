@@ -14,6 +14,9 @@ function remove_form_on_card_click() {
     $("#validate_facebook2-1").css("display", "none");
     $("#validate_facebook2-2").css("display", "none");
     $("#validate_facebook2-3").css("display", "none");
+    $("#validate_facebook3-1").css("display", "none");
+    $("#validate_facebook3-2").css("display", "none");
+    $("#validate_facebook3-3").css("display", "none");
     $("#validate_twitch1-1").css("display", "none");
     $("#validate_twitch1-2").css("display", "none");
     $("#validate_twitch1-3").css("display", "none");
@@ -194,6 +197,7 @@ $("#youtube_third").click(function() {
 $("#facebook_first").click(function() {
     $(this).addClass("active");
     $("#facebook_second").removeClass("active");
+    $("#facebook_third").removeClass("active");
 
     $("#reaction_1").css("display", "flex");
 
@@ -209,6 +213,24 @@ $("#facebook_first").click(function() {
 
 $("#facebook_second").click(function() {
     $("#facebook_first").removeClass("active");
+    $(this).addClass("active");
+    $("#facebook_third").removeClass("active");
+
+    $("#reaction_1").css("display", "flex");
+
+    $("#reaction_1 #sheet_react").css("border", "1px black solid");    
+    $("#reaction_1 #sheet_react i").css("color", "black");
+    $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+
+    $("#mail_react").removeClass("active");
+    $("#sheet_react").removeClass("active");
+    $("#facebook_react").removeClass("active");
+    remove_form_on_card_click();
+})
+
+$("#facebook_third").click(function() {
+    $("#facebook_first").removeClass("active");
+    $("#facebook_second").removeClass("active");
     $(this).addClass("active");
 
     $("#reaction_1").css("display", "flex");
@@ -325,6 +347,7 @@ function remove_focus_youtube() {
     $("#youtube_third").removeClass("active");
     $("#facebook_first").removeClass("active");
     $("#facebook_second").removeClass("active");
+    $("#facebook_third").removeClass("active");
     $("#twitch_first").removeClass("active");
     $("#twitch_second").removeClass("active");
     $("#twitch_third").removeClass("active");
@@ -341,6 +364,7 @@ function remove_focus_facebook() {
     $("#youtube_third").removeClass("active");
     $("#facebook_first").removeClass("active");
     $("#facebook_second").removeClass("active");
+    $("#facebook_third").removeClass("active");
     $("#twitch_first").removeClass("active");
     $("#twitch_second").removeClass("active");
     $("#twitch_third").removeClass("active");
@@ -357,6 +381,7 @@ function remove_focus_twitch() {
     $("#youtube_third").removeClass("active");
     $("#facebook_first").removeClass("active");
     $("#facebook_second").removeClass("active");
+    $("#facebook_third").removeClass("active");
     $("#twitch_first").removeClass("active");
     $("#twitch_second").removeClass("active");
     $("#twitch_third").removeClass("active");
@@ -373,6 +398,7 @@ function remove_focus_onedrive() {
     $("#youtube_third").removeClass("active");
     $("#facebook_first").removeClass("active");
     $("#facebook_second").removeClass("active");
+    $("#facebook_third").removeClass("active");
     $("#twitch_first").removeClass("active");
     $("#twitch_second").removeClass("active");
     $("#twitch_third").removeClass("active");
@@ -389,6 +415,7 @@ function remove_focus_gdrive() {
     $("#youtube_third").removeClass("active");
     $("#facebook_first").removeClass("active");
     $("#facebook_second").removeClass("active");
+    $("#facebook_third").removeClass("active");
     $("#twitch_first").removeClass("active");
     $("#twitch_second").removeClass("active");
     $("#twitch_third").removeClass("active");
@@ -405,6 +432,7 @@ function remove_focus_gsheet() {
     $("#youtube_third").removeClass("active");
     $("#facebook_first").removeClass("active");
     $("#facebook_second").removeClass("active");
+    $("#facebook_third").removeClass("active");
     $("#twitch_first").removeClass("active");
     $("#twitch_second").removeClass("active");
     $("#twitch_third").removeClass("active");
@@ -445,6 +473,11 @@ $("#mail_react").click(function() {
         $("#validate_facebook2-1").css("display", "flex");
         $("#validate_facebook2-2").css("display", "none");
         $("#validate_facebook2-3").css("display", "none");
+    }
+    if ($("#facebook_third").hasClass("active")) {
+        $("#validate_facebook3-1").css("display", "flex");
+        $("#validate_facebook3-2").css("display", "none");
+        $("#validate_facebook3-3").css("display", "none");
     }
 
     if ($("#twitch_first").hasClass("active")) {
@@ -511,6 +544,11 @@ $("#sheet_react").click(function() {
         $("#validate_facebook2-2").css("display", "flex");
         $("#validate_facebook2-3").css("display", "none");
     }
+    if ($("#facebook_third").hasClass("active")) {
+        $("#validate_facebook3-1").css("display", "none");
+        $("#validate_facebook3-2").css("display", "flex");
+        $("#validate_facebook3-3").css("display", "none");
+    }
 
     if ($("#twitch_first").hasClass("active")) {
         $("#validate_twitch1-1").css("display", "none");
@@ -574,6 +612,11 @@ $("#facebook_react").click(function() {
         $("#validate_facebook2-1").css("display", "none");
         $("#validate_facebook2-2").css("display", "none");
         $("#validate_facebook2-3").css("display", "flex");
+    }
+    if ($("#facebook_third").hasClass("active")) {
+        $("#validate_facebook3-1").css("display", "none");
+        $("#validate_facebook3-2").css("display", "none");
+        $("#validate_facebook3-3").css("display", "flex");
     }
 
     if ($("#twitch_first").hasClass("active")) {
@@ -639,6 +682,11 @@ var user_config = {
         {"sheet": false},
         {"facebook": false, "facebook_page_id": null}
     ],
+    "fb03": [
+        {"mail": false},
+        {"sheet": false},
+        {"facebook": false, "facebook_page_id": null}
+    ],
     "twitch01": [
         {"mail": false},
         {"sheet": false},
@@ -691,6 +739,11 @@ if (user_config.fb01[0].mail === true && user_config.fb01[1].sheet === true && u
 if (user_config.fb02[0].mail === true && user_config.fb02[1].sheet === true && user_config.fb02[2].facebook === true ) {
     $("#facebook_second").css("pointer-events", "none");
     $("#facebook_second").css("background-color", "grey");
+}
+
+if (user_config.fb03[0].mail === true && user_config.fb03[1].sheet === true && user_config.fb03[2].facebook === true ) {
+    $("#facebook_third").css("pointer-events", "none");
+    $("#facebook_third").css("background-color", "grey");
 }
 
 if (user_config.twitch01[0].mail === true && user_config.twitch01[1].sheet === true && user_config.twitch01[2].facebook === true) {
@@ -846,7 +899,7 @@ $("#facebook_first").click(function() {
 });
 
 $("#facebook_second").click(function() {
-    if (user_config.fb01[0].mail === true) {
+    if (user_config.fb02[0].mail === true) {
         $("#mail_react").css("pointer-events", "none");
         $("#mail_react").css("border-color", "grey");
         $("#mail_react i").css("color", "grey");
@@ -856,7 +909,7 @@ $("#facebook_second").click(function() {
         $("#mail_react").css("border-color", "black");
         $("#mail_react i").css("color", "black");
     }
-    if (user_config.fb01[1].sheet === true || user_config.service.google === false) {
+    if (user_config.fb02[1].sheet === true || user_config.service.google === false) {
         $("#sheet_react").css("pointer-events", "none");
         $("#sheet_react").css("border-color", "grey");
         $("#sheet_react i").css("color", "grey");
@@ -866,7 +919,40 @@ $("#facebook_second").click(function() {
         $("#sheet_react").css("border-color", "black");
         $("#sheet_react i").css("color", "black");
     }
-    if (user_config.fb01[2].facebook === true || user_config.service.facebook === false) {
+    if (user_config.fb02[2].facebook === true || user_config.service.facebook === false) {
+        $("#facebook_react").css("pointer-events", "none");
+        $("#facebook_react").css("border-color", "grey");
+        $("#facebook_react i").css("color", "grey");
+    }
+    else {
+        $("#facebook_react").css("pointer-events", "auto");
+        $("#facebook_react").css("border-color", "black");
+        $("#facebook_react i").css("color", "black");
+    }
+});
+
+$("#facebook_third").click(function() {
+    if (user_config.fb03[0].mail === true) {
+        $("#mail_react").css("pointer-events", "none");
+        $("#mail_react").css("border-color", "grey");
+        $("#mail_react i").css("color", "grey");
+    }
+    else {
+        $("#mail_react").css("pointer-events", "auto");
+        $("#mail_react").css("border-color", "black");
+        $("#mail_react i").css("color", "black");
+    }
+    if (user_config.fb03[1].sheet === true || user_config.service.google === false) {
+        $("#sheet_react").css("pointer-events", "none");
+        $("#sheet_react").css("border-color", "grey");
+        $("#sheet_react i").css("color", "grey");
+    }
+    else {
+        $("#sheet_react").css("pointer-events", "auto");
+        $("#sheet_react").css("border-color", "black");
+        $("#sheet_react i").css("color", "black");
+    }
+    if (user_config.fb03[2].facebook === true || user_config.service.facebook === false) {
         $("#facebook_react").css("pointer-events", "none");
         $("#facebook_react").css("border-color", "grey");
         $("#facebook_react i").css("color", "grey");
@@ -1129,7 +1215,7 @@ function send_FB_data_to_serv(response) {
     url: "http://localhost:8080/internal/oauth2/facebook/?token=" + accessToken,
     method: "GET",
     success: function (response) {
-        window.location.href = "/";
+        location.reload();
     }
 });
 }
@@ -1144,7 +1230,7 @@ if (window.location.href.indexOf("state=twitch") > -1) {
         url: "http://localhost:8080/internal/oauth2/twitch/?token=" + token,
         method: "GET",
         success: function (response) {
-         //   window.location.href = "/";
+            location.reload();
         }
     });
 }
@@ -1159,7 +1245,7 @@ if (window.location.href.indexOf("state=onedrive") > -1) {
         url: "http://localhost:8080/internal/oauth2/onedrive/?token=" + token,
         method: "GET",
         success: function (response) {
-            //window.location.href = "/";
+            location.reload();
         }
     });
 }

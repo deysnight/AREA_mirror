@@ -3,14 +3,13 @@ var type = "DELETE";
 
 function send_delete_ytb_1_1() {
     $("#youtube_first_mail").css("display", "none");
-    console.log(result);
     $.ajax({
-        url: final_url + "",
+        url: final_url + "ytb_1_1",
         method: type,
         async: false,
         success: function (response) {
             $("#youtube_first_mail").css("display", "none");
-            window.location.href = "/";
+            location.reload();
         }
     })
 };

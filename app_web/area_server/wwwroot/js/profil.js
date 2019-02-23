@@ -31,6 +31,11 @@ var user_config = {
         {"sheet": true},
         {"facebook": true, "facebook_page_id": null}
     ],
+    "fb03": [
+        {"mail": true},
+        {"sheet": true},
+        {"facebook": true, "facebook_page_id": null}
+    ],
     "twitch01": [
         {"mail": true},
         {"sheet": true},
@@ -78,10 +83,10 @@ if (user_config.ytb02[1].sheet === true) {
 if (user_config.ytb02[2].facebook === true) {
     $("#youtube_second_facebook").css("display", "flex");
 }
-if (user_config.ytb01[0].mail === true) {
+if (user_config.ytb03[0].mail === true) {
     $("#youtube_third_mail").css("display", "flex");
 }
-if (user_config.ytb01[1].facebook === true) {
+if (user_config.ytb03[1].facebook === true) {
     $("#youtube_third_facebook").css("display", "flex");
 }
 
@@ -102,6 +107,16 @@ if (user_config.fb02[1].sheet === true) {
 }
 if (user_config.fb02[2].facebook === true) {
     $("#facebook_second_facebook").css("display", "flex");
+}
+
+if (user_config.fb03[0].mail === true) {
+    $("#facebook_third_mail").css("display", "flex");
+}
+if (user_config.fb03[1].sheet === true) {
+    $("#facebook_third_sheet").css("display", "flex");
+}
+if (user_config.fb03[2].facebook === true) {
+    $("#facebook_third_facebook").css("display", "flex");
 }
 
 if (user_config.twitch01[0].mail === true) {

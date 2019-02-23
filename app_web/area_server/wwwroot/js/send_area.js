@@ -26,7 +26,7 @@ function send_ytb_1_1() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -44,7 +44,7 @@ function send_ytb_1_2() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -65,7 +65,7 @@ function send_ytb_1_3() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -86,7 +86,7 @@ function send_ytb_2_1() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -107,7 +107,7 @@ function send_ytb_2_2() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -131,7 +131,7 @@ function send_ytb_2_3() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -152,7 +152,7 @@ function send_ytb_3_1() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -176,7 +176,7 @@ function send_ytb_3_3() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -197,7 +197,7 @@ function send_fb_1_1() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -218,7 +218,7 @@ function send_fb_1_2() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -242,28 +242,7 @@ function send_fb_1_3() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
-        }
-    })
-};
-
-function send_fb_1_2() {
-    if (document.getElementById("page_facebook_1-2").value === "")
-        return;
-    data_json.id_action = "fb01";
-    data_json.id_reaction = "sheet";
-    data_json.data.page_id_for_action = parseInt(document.getElementById("page_facebook_1-2").value, 10);
-    var result = JSON.stringify(data_json);
-    console.log(result);
-    $.ajax({
-        url: final_url,
-        method: "POST",
-        async: false,
-        data: result,
-        contentType: 'application/json; charset=utf-8',
-        dataType : "json",
-        success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -281,7 +260,7 @@ function send_fb_2_1() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -299,7 +278,7 @@ function send_fb_2_2() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -320,7 +299,64 @@ function send_fb_2_3() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
+        }
+    })
+};
+
+function send_fb_3_1() {
+    data_json.id_action = "fb03";
+    data_json.id_reaction = "mail";
+    var result = JSON.stringify(data_json);
+    console.log(result);
+    $.ajax({
+        url: final_url,
+        method: "POST",
+        async: false,
+        data: result,
+        contentType: 'application/json; charset=utf-8',
+        dataType : "json",
+        success: function (response) {
+            location.reload();
+        }
+    })
+};
+
+function send_fb_3_2() {
+    data_json.id_action = "fb03";
+    data_json.id_reaction = "sheet";
+    var result = JSON.stringify(data_json);
+    console.log(result);
+    $.ajax({
+        url: final_url,
+        method: "POST",
+        async: false,
+        data: result,
+        contentType: 'application/json; charset=utf-8',
+        dataType : "json",
+        success: function (response) {
+            location.reload();
+        }
+    })
+};
+
+function send_fb_3_3() {
+    if (document.getElementById("facebook_page_facebook_3-3").value === "")
+        return;
+    data_json.id_action = "fb03";
+    data_json.id_reaction = "facebook";
+    data_json.data.facebook_page_id = parseInt(document.getElementById("facebook_page_facebook_3-3").value, 10);
+    var result = JSON.stringify(data_json);
+    console.log(result);
+    $.ajax({
+        url: final_url,
+        method: "POST",
+        async: false,
+        data: result,
+        contentType: 'application/json; charset=utf-8',
+        dataType : "json",
+        success: function (response) {
+            location.reload();
         }
     })
 };
@@ -338,7 +374,7 @@ function send_twitch_1_1() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -356,7 +392,7 @@ function send_twitch_1_2() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -377,7 +413,7 @@ function send_twitch_1_3() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -395,7 +431,7 @@ function send_twitch_2_1() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -413,7 +449,7 @@ function send_twitch_2_2() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -434,7 +470,7 @@ function send_twitch_2_3() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -455,7 +491,7 @@ function send_twitch_3_1() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -479,7 +515,7 @@ function send_twitch_3_3() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -497,7 +533,7 @@ function send_onedrive_1_1() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -515,7 +551,7 @@ function send_onedrive_1_2() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -536,7 +572,7 @@ function send_onedrive_1_3() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -554,7 +590,7 @@ function send_gdrive_1_1() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -575,7 +611,7 @@ function send_gdrive_1_3() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -593,7 +629,7 @@ function send_gsheet_1_1() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
@@ -614,7 +650,7 @@ function send_gsheet_1_3() {
         contentType: 'application/json; charset=utf-8',
         dataType : "json",
         success: function (response) {
-            window.location.href = "/";
+            location.reload();
         }
     })
 };
