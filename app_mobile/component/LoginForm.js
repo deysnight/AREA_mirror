@@ -1,8 +1,42 @@
 import React, { Component } from 'react';
-import { StyleSheet, AsyncStorage, View, TextInput, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, AsyncStorage, View, TextInput, TouchableOpacity, Text, Alert } from 'react-native';
 import {AuthSession} from 'expo'
 import AppNavigator from '../navigation/navigation'
 
+
+async function FacebookSignIn() {
+    try {
+      const {
+        type,
+        token,
+        expires,
+        permissions,
+        declinedPermissions,
+      } = await Expo.Facebook.logInWithReadPermissionsAsync('411072423035343', {
+        permissions: ['public_profile', 'email'],
+      });
+      if (type === 'success') {
+        // Get the user's name using Facebook's Graph API
+        const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+        const response2 = await fetch(`https://graph.facebook.com/me/accounts?access_token=${token}`);
+        const url = "https://graph.facebook.com/me/feed?access_token=" + token;
+        const response3 = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+            }
+        })
+        .then(response3 => response3.json())
+        .then(response3 => {console.log(response3)})
+        }
+     else {
+        // type === 'cancel'
+      }
+    } catch ({ message }) {
+      alert(`Facebook Login Error: ${message}`);
+    }
+  }
+  
 
 export default class LoginForm extends Component {
 
@@ -10,7 +44,7 @@ export default class LoginForm extends Component {
             result: null,
         };
 
-        _signIn = async () => {
+        GoogleSignIn = async () => {
 
             let redirectUrl = AuthSession.getRedirectUrl();
             const result = await Expo.Google.logInAsync({
@@ -27,7 +61,7 @@ export default class LoginForm extends Component {
                 console.log("cancelled")   
             }
         }
-
+        
     getLogged() {
         console.log("ok");
     }
@@ -57,8 +91,12 @@ export default class LoginForm extends Component {
             <TouchableOpacity style={styles.buttonContainer}>
                 <Text style={styles.buttonText}>Se connecter</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer} onPress={this._signIn}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer} onPress={this.GoogleSignIn}>
                 <Text style={styles.buttonText}>Se connecter via Google</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer} onPress={FacebookSignIn}>
+                <Text style={styles.buttonText}>Se connecter via Facebook</Text>
             </TouchableOpacity>
             {this.state.result ? (
 		    <Text> {this.access_token} </Text>

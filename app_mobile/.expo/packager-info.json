@@ -1,3 +1,9 @@
 {
-  "devToolsPort": 19002
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://a7-rnz.orphiucus.area-mobile.exp.direct",
+  "packagerNgrokUrl": "https://packager.a7-rnz.orphiucus.area-mobile.exp.direct",
+  "ngrokPid": 13640,
+  "devToolsPort": 19002,
+  "packagerPort": 19001,
+  "packagerPid": 17636
 }

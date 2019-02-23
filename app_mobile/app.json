@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AreaMobileApp",
-    "slug": "AreaMobileApp",
+    "name": "Area",
+    "slug": "Area_Mobile",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -25,15 +25,8 @@
     "ios": {
       "supportsTablet": true
     },
-    "isDetached": true,
-    "detach": {
-      "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v2.10.7-sdk32.0.0-3ff7f3bf-8e53-4d61-b963-1d7d92a77d79.tar.gz"
-    },
-    "scheme": "expc5e48f7237464f32ae483e9d66fe9938",
     "android": {
-      "package": "area.react",
-      "publishBundlePath": "android\\app\\src\\main\\assets\\shell-app.bundle",
-      "publishManifestPath": "android\\app\\src\\main\\assets\\shell-app-manifest.json"
+      "package": "com.area.area"
     }
   }
 }

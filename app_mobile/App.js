@@ -12,7 +12,7 @@ export default class App extends Component {
   }
   _displayLogin() {
       const result = SyncStorage.get('logged');
-      if (result == true) {
+      if (result == false) {
           return <AppNavigator/>
       } else {
           return <LoginScreen/>
