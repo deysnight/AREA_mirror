@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
 import { Text, ActivityIndicator, KeyboardAvoidingView, AsyncStorage, Button, StatusBar, StyleSheet, View, Image } from 'react-native';
-import AppNavigation from "./navigation/BottomTab";
-import LoginScreen from "./ViewLogin";
-import AppNavigator from './navigation/navigation'
 import SyncStorage from 'sync-storage';
-
+import AppNavigation from "./navigation/BottomTabApp"
+import AuthNavigation from "./navigation/BottomTabAuth"
+import {
+    createStackNavigator,
+    createAppContainer,
+    createSwitchNavigator
+  } from 'react-navigation';
 
 export default class App extends Component {
-  constructor(props) {
-      super(props);
-  }
-  _displayLogin() {
-      const result = SyncStorage.get('logged');
-      if (result == false) {
-          return <AppNavigator/>
-      } else {
-          return <LoginScreen/>
-      }
-  }
-
   AREA() {
-    return this._displayLogin();
+    return <AppContainer/>
   }
 
   render() {
@@ -28,3 +19,28 @@ export default class App extends Component {
       return this.AREA();
   }
 }
+
+const LoginStack = createStackNavigator(
+    {
+        AuthStack: { screen: AuthNavigation }
+    },
+    {
+        headerMode: 'none',
+    }
+)
+
+const BottomTabNavigation = createStackNavigator(
+    {
+        HomeStack: { screen: AppNavigation }
+    },
+)
+
+const AppNavigator = createSwitchNavigator({
+    Login: LoginStack,
+    App: BottomTabNavigation,
+},
+{
+    initialRouteName: 'Login',
+})
+
+const AppContainer = createAppContainer(AppNavigator)

@@ -1,9 +1,9 @@
 {
-  "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://a7-rnz.orphiucus.app-mobile.exp.direct",
+  "packagerNgrokUrl": "https://packager.a7-rnz.orphiucus.app-mobile.exp.direct",
+  "ngrokPid": 14320,
+  "expoServerPort": 19000,
   "devToolsPort": 19002,
-  "packagerPort": null,
-  "packagerPid": null
+  "packagerPort": 19001,
+  "packagerPid": 18336
 }

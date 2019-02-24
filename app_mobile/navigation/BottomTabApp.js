@@ -1,14 +1,14 @@
 import React from 'react';
-import {StyleSheet} from 'react-native'
-import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
+import {Alert} from 'react-native'
+import {createBottomTabNavigator} from 'react-navigation';
 import ScreenHome from "../Screens/ScreenHome";
 import ScreenProfile from "../Screens/ScreenProfile";
 import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
 const AppNavigation = createBottomTabNavigator(
     {
-
         Home: {
             screen: ScreenHome,
             navigationOptions: {
@@ -27,9 +27,28 @@ const AppNavigation = createBottomTabNavigator(
                 )
             }
         },
+        Logout: {
+            screen: ScreenProfile,
+            navigationOptions: ({navigation}) => ({
+                title: "Logout",
+                tabBarIcon: ({tintColor}) => (
+                    <Icon2 name="logout" color={tintColor} size={20} />
+                ),
+                tabBarOnPress: (scene, jumpToIndex) => {
+                      return Alert.alert(
+                          'Êtes vous sûrs ?'
+                          ,'Voulez vous vraiment vous déconnecter ?'
+                          ,[
+                            {text: 'Annuler'},
+                            {text: 'Confirmer', onPress: () => navigation.navigate('Login')}
+                           ]
+                      );
+                  },
+              })
+            }
     },
     {
-        order: ['Home', "Profil"],
+        order: ['Home', "Profil", "Logout"],
         navigationOptions: {
             tabBarVisible: true
         },
@@ -40,4 +59,4 @@ const AppNavigation = createBottomTabNavigator(
         }
     }
 );
-export default createAppContainer(AppNavigation);
+export default AppNavigation;

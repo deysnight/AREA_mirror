@@ -47,17 +47,6 @@ class ViewHome extends Component {
                                 <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Twitch</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={homePage.GmailCard}>
-                            <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
-                                <Icon name={"envelope"}
-                                size={80}
-                                color={'white'}
-                                />
-                            </View>
-                            <View style={{flex: 3, justifyContent: 'flex-start'}}>
-                                <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Gmail</Text>
-                            </View>
-                        </TouchableOpacity>
                         <TouchableOpacity style={homePage.OnedCard}>
                             <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
                                 <Icon2 name={"onedrive"}
@@ -89,17 +78,6 @@ class ViewHome extends Component {
                             </View>
                             <View style={{flex: 3, justifyContent: 'flex-start'}}>
                                 <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Sheet</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={homePage.TwitterCard}>
-                            <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
-                                <Icon name={"twitter"}
-                                size={80}
-                                color={'white'}
-                                />
-                            </View>
-                            <View style={{flex: 3, justifyContent: 'flex-start'}}>
-                                <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Twitter</Text>
                             </View>
                         </TouchableOpacity>
                     </ScrollView>
@@ -140,17 +118,6 @@ const homePage = StyleSheet.create({
     TwCard: {
         alignSelf: 'center',
         backgroundColor: '#4B367C',
-        height: 260,
-        width: 180,
-        borderRadius: 8,
-        marginLeft: 5,
-        marginRight: 5,
-        display: 'flex'
-    },
-
-    GmailCard: {
-        alignSelf: 'center',
-        backgroundColor: '#D93025',
         height: 260,
         width: 180,
         borderRadius: 8,
