@@ -1,169 +1,155 @@
-var user_config = {
-    "service": {
-        "youtube": true,
-        "facebook": true,
-        "twitch": true,
-        "onedrive": true,
-        "gdrive": true,
-        "gsheet": true
-    },
-    "ytb01": [
-        {"mail": true},
-        {"sheet": true},
-        {"facebook": true, "facebook_page_id": null}
-    ],
-    "ytb02": [
-        {"mail": true, "video_id": null},
-        {"sheet": true, "video_id": null},
-        {"facebook": true, "video_id": null, "facebook_page_id": null}
-    ],
-    "ytb03": [
-        {"mail": true},
-        {"facebook": true, "facebook_page_id": null}
-    ],
-    "fb01": [
-        {"mail": true, "page_id_for_action": null},
-        {"sheet": true, "page_id_for_action": null},
-        {"facebook": true, "page_id_for_action": null, "facebook_page_id": null}
-    ],
-    "fb02": [
-        {"mail": true},
-        {"sheet": true},
-        {"facebook": true, "facebook_page_id": null}
-    ],
-    "fb03": [
-        {"mail": true},
-        {"sheet": true},
-        {"facebook": true, "facebook_page_id": null}
-    ],
-    "twitch01": [
-        {"mail": true},
-        {"sheet": true},
-        {"facebook": true, "facebook_page_id": null}
-    ],
-    "twitch02": [
-        {"mail": true},
-        {"sheet": true},
-        {"facebook": true, "facebook_page_id": null}
-    ],
-    "twitch03": [
-        {"mail": true, "streamer_live": null},
-        {"facebook": true, "streamer_live": null, "facebook_page_id": null}
-    ],
-    "onedrive01": [
-        {"mail": true},
-        {"sheet": true},
-        {"facebook": true, "facebook_page_id": null}
-    ],
-    "gdrive01": [
-        {"mail": true},
-        {"facebook": true, "facebook_page_id": null}
-    ],
-    "gsheet01": [
-        {"mail": true},
-        {"facebook": true, "facebook_page_id": null}
-    ],
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+var USER_ID = parseInt(getCookie("user_id"), 10);
+var user_config = null;
+var full_url = "http://localhost:8080/internal/area/" + USER_ID;
+
+$.ajax(
+    {
+        url: full_url,
+        type: "get",
+        async: false,
+        success: function (response) {
+            user_config = JSON.parse(response);
+            console.log(user_config);
+        }
+    });
+
+function get_card_type(i) {
+    if (user_config.data[i].action_id === 1 || user_config.data[i].action_id === 2 || user_config.data[i].action_id === 3)
+        return ("<div class=\"reaction_card yt\">")
+    if (user_config.data[i].action_id === 4 || user_config.data[i].action_id === 5 || user_config.data[i].action_id === 6)
+        return ("<div class=\"reaction_card fb\">")
+    if (user_config.data[i].action_id === 7 || user_config.data[i].action_id === 8 || user_config.data[i].action_id === 9)
+        return ("<div class=\"reaction_card twitch\">")
+    if (user_config.data[i].action_id === 10)
+        return ("<div class=\"reaction_card onedrive\">")
+    if (user_config.data[i].action_id === 11)
+        return ("<div class=\"reaction_card gdrive\">")
+    if (user_config.data[i].action_id === 12)
+        return ("<div class=\"reaction_card gsheet\">")
 }
 
-if (user_config.ytb01[0].mail === true) {
-    $("#youtube_first_mail").css("display", "flex");
-}
-if (user_config.ytb01[1].sheet === true) {
-    $("#youtube_first_sheet").css("display", "flex");
-}
-if (user_config.ytb01[2].facebook === true) {
-    $("#youtube_first_facebook").css("display", "flex");
-}
-if (user_config.ytb02[0].mail === true) {
-    $("#youtube_second_mail").css("display", "flex");
-}
-if (user_config.ytb02[1].sheet === true) {
-    $("#youtube_second_sheet").css("display", "flex");
-}
-if (user_config.ytb02[2].facebook === true) {
-    $("#youtube_second_facebook").css("display", "flex");
-}
-if (user_config.ytb03[0].mail === true) {
-    $("#youtube_third_mail").css("display", "flex");
-}
-if (user_config.ytb03[1].facebook === true) {
-    $("#youtube_third_facebook").css("display", "flex");
-}
-
-if (user_config.fb01[0].mail === true) {
-    $("#facebook_first_mail").css("display", "flex");
-}
-if (user_config.fb01[1].sheet === true) {
-    $("#facebook_first_sheet").css("display", "flex");
-}
-if (user_config.fb01[2].facebook === true) {
-    $("#facebook_first_facebook").css("display", "flex");
-}
-if (user_config.fb02[0].mail === true) {
-    $("#facebook_second_mail").css("display", "flex");
-}
-if (user_config.fb02[1].sheet === true) {
-    $("#facebook_second_sheet").css("display", "flex");
-}
-if (user_config.fb02[2].facebook === true) {
-    $("#facebook_second_facebook").css("display", "flex");
+function get_card_title(i) {
+    if (user_config.data[i].action_id === 1)
+        return ("<p class=\"reaction_title\">Abonnement</p>");
+    if (user_config.data[i].action_id === 2)
+        return ("<p class=\"reaction_title\">Like Vidéo</p>");
+    if (user_config.data[i].action_id === 3)
+        return ("<p class=\"reaction_title\">Youtuber actif</p>");
+    if (user_config.data[i].action_id === 4)
+        return ("<p class=\"reaction_title\">Like page</p>");
+    if (user_config.data[i].action_id === 5)
+        return ("<p class=\"reaction_title\">Nouvelle page</p>");
+    if (user_config.data[i].action_id === 6)
+        return ("<p class=\"reaction_title\">Nouveau post</p>");   
+    if (user_config.data[i].action_id === 7)
+        return ("<p class=\"reaction_title\">Follow streamer</p>");
+    if (user_config.data[i].action_id === 8)
+        return("<p class=\"reaction_title\">Nouveau follow</p>");
+    if (user_config.data[i].action_id === 9)
+        return ("<p class=\"reaction_title\">streamer live</p>");
+    if (user_config.data[i].action_id === 10)
+        return ("<p class=\"reaction_title\">Partage fichier</p>");
+    if (user_config.data[i].action_id === 11)
+        return ("<p class=\"reaction_title\">Upload fichier</p>");
+    if (user_config.data[i].action_id === 12)
+        return ("<p class=\"reaction_title\">Upload fichier</p>");
 }
 
-if (user_config.fb03[0].mail === true) {
-    $("#facebook_third_mail").css("display", "flex");
-}
-if (user_config.fb03[1].sheet === true) {
-    $("#facebook_third_sheet").css("display", "flex");
-}
-if (user_config.fb03[2].facebook === true) {
-    $("#facebook_third_facebook").css("display", "flex");
-}
-
-if (user_config.twitch01[0].mail === true) {
-    $("#twitch_first_mail").css("display", "flex");
-}
-if (user_config.twitch01[1].sheet === true) {
-    $("#twitch_first_sheet").css("display", "flex");
-}
-if (user_config.twitch01[2].facebook === true) {
-    $("#twitch_first_facebook").css("display", "flex");
-}
-if (user_config.twitch02[0].mail === true) {
-    $("#twitch_second_mail").css("display", "flex");
-}
-if (user_config.twitch02[1].sheet === true) {
-    $("#twitch_second_sheet").css("display", "flex");
-}
-if (user_config.twitch02[2].facebook === true) {
-    $("#twitch_second_facebook").css("display", "flex");
-}
-if (user_config.twitch03[0].mail === true) {
-    $("#twitch_third_mail").css("display", "flex");
-}
-if (user_config.twitch03[1].facebook === true) {
-    $("#twitch_third_facebook").css("display", "flex");
+function get_main_icon(i) {
+    if (user_config.data[i].action_id === 1 || user_config.data[i].action_id === 2 || user_config.data[i].action_id === 3)
+        return ("<i class=\"fa fa-youtube-play fa-3x\" aria-hidden=\"true\"></i>");
+    if (user_config.data[i].action_id === 4 || user_config.data[i].action_id === 5 || user_config.data[i].action_id === 6)
+        return ("<i class=\"fa fa-facebook-official fa-3x\" aria-hidden=\"true\"></i>")
+    if (user_config.data[i].action_id === 7 || user_config.data[i].action_id === 8 || user_config.data[i].action_id === 9)
+        return ("<i class=\"fa fa-twitch fa-3x\" aria-hidden=\"true\"></i>")
+    if (user_config.data[i].action_id === 10)
+        return ("<i class=\"fa fa-cloud fa-3x\" aria-hidden=\"true\"></i>")
+    if (user_config.data[i].action_id === 11)
+        return ("<i class=\"fab fa-google-drive fa-3x\" aria-hidden=\"true\"></i>")
+    if (user_config.data[i].action_id === 12)
+        return ("<i class=\"fas fa-file-alt fa-3x\" aria-hidden=\"true\"></i>")
 }
 
-if (user_config.onedrive01[0].mail === true) {
-    $("#onedrive_first_mail").css("display", "flex");
-}
-if (user_config.onedrive01[1].sheet === true) {
-    $("#onedrive_first_sheet").css("display", "flex");
-}
-if (user_config.onedrive01[2].facebook === true) {
-    $("#onedrive_first_facebook").css("display", "flex");
+function get_card_desc(i) {
+    if (user_config.data[i].action_id === 1)
+        return ("<p class=\"reaction_description\">Augmentation du nombre d'abonnés sur Youtube</p>");
+    if (user_config.data[i].action_id === 2)
+        return ("<p class=\"reaction_description\">Like ou Dislike d'une vidéo Youtube</p>");
+    if (user_config.data[i].action_id === 3)
+        return ("<p class=\"reaction_description\">Nouvelle vidéo de votre youtuber favoris</p>");
+    if (user_config.data[i].action_id === 4)
+        return ("<p class=\"reaction_description\">Gain de fan sur votre page Facebook</p>");
+    if (user_config.data[i].action_id === 5)
+        return ("<p class=\"reaction_description\">Création d'une nouvelle page Facebook</p>");
+    if (user_config.data[i].action_id === 6)
+        return ("<p class=\"reaction_description\">Nouveau post sur votre mur Facebook</p>");   
+    if (user_config.data[i].action_id === 7)
+        return ("<p class=\"reaction_description\">Nouvelle chaîne follow sur Twitch</p>");
+    if (user_config.data[i].action_id === 8)
+        return ("<p class=\"reaction_description\">Gain de follower sur Twitch</p>");
+    if (user_config.data[i].action_id === 9)
+        return ("<p class=\"reaction_description\">Passage live de votre streamer favoris</p>");
+    if (user_config.data[i].action_id === 10)
+        return ("<p class=\"reaction_description\">Soyez notifié par lorsque quelqu'un partage un fichier avec vous sur OneDrive</p>");
+    if (user_config.data[i].action_id === 11)
+        return ("<p class=\"reaction_description\">Soyez notifié lorsque quelqu'un upload un fichier sur votre Google Drive</p>");
+    if (user_config.data[i].action_id === 12)
+        return ("<p class=\"reaction_description\">Soyez notifié lorsque quelqu'un upload un fichier sur votre Drive Google Sheet</p>");
 }
 
-if (user_config.gdrive01[0].mail === true) {
-    $("#gdrive_first_mail").css("display", "flex");
-}
-if (user_config.gdrive01[1].facebook === true) {
-    $("#gdrive_first_facebook").css("display", "flex");
+function get_card_compatible_icon(i) {
+    if (user_config.data[i].reaction_id === 1)
+        return ("<i class=\"fa fa-envelope fa-2x\" aria-hidden=\"true\"></i>");
+    if (user_config.data[i].reaction_id === 2)
+        return ("<i class=\"fas fa-file-alt fa-2x\" aria-hidden=\"true\"></i>")
+    if (user_config.data[i].reaction_id === 3)
+        return ("<i class=\"fa fa-facebook-official fa-2x\" aria-hidden=\"true\"></i>");
 }
 
-if (user_config.gsheet01[0].mail === true) {
-    $("#gsheet_first_mail").css("display", "flex");
-}
-if (user_config.gsheet01[1].facebook === true) {
-    $("#gsheet_first_facebook").css("display", "flex");
+if (user_config) {
+    for (var i = 0; i < user_config.data.length; i++) {
+        var card_type = get_card_type(i);
+        var card_title = get_card_title(i);
+        var main_icon = get_main_icon(i);
+        var card_desc = get_card_desc(i);
+        var compatible_icon = get_card_compatible_icon(i);
+
+        var result = 
+        card_type +
+        "<div>" +
+        "<div class=\"card_reaction_title\">" + 
+        card_title +
+        main_icon +
+        "</div>"+
+        "<div class=\"card_reaction_desc\">" +
+        card_desc +
+        "</div>" +
+        "</div>" +
+        "<div onclick=\"send_delete(" + user_config.data[i].id + ");\" class=\"delete_button\">" +
+        "<p>Supprimer</p>" +
+        "</div>" +
+        "<hr class=\"card_separator\">" +
+        "<div class=\"compatible\">" +
+        compatible_icon +
+        "</div>" +
+        "</div>";
+
+        $(".reaction").append(result);
+    }
 }

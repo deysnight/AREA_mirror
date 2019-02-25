@@ -1,3 +1,44 @@
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+var USER_ID = parseInt(getCookie("user_id"), 10);
+
+
+//internal/oauth2/token/user_id
+/*$.ajax(
+    {
+    url: "http://localhost:8080/internal/oauth2/token/" + USER_ID,
+    type: "get",
+    async: false,
+    success: function(response){
+        let user_token_json = JSON.parse(response);
+        console.log(user_token_json);
+        }
+});*/
+
+var user_token_json = [
+    {
+        "user_id": 3,
+        "facebook": null,
+        "twitch": 1,
+        "google": "lul",
+        "onedrive": 1
+    }
+]
+
 function remove_form_on_card_click() {
     $("#validate_youtube1-1").css("display", "none");
     $("#validate_youtube1-2").css("display", "none");
@@ -651,487 +692,6 @@ $("#facebook_react").click(function() {
     }
 })
 
-var user_config = {
-    "service": {
-        "google": true,
-        "facebook": true,
-        "twitch": false,
-        "onedrive": true,
-    },
-    "ytb01": [
-        {"mail": false},
-        {"sheet": false},
-        {"facebook": false, "facebook_page_id": null}
-    ],
-    "ytb02": [
-        {"mail": false, "video_id": null},
-        {"sheet": false, "video_id": null},
-        {"facebook": false, "video_id": null, "facebook_page_id": null}
-    ],
-    "ytb03": [
-        {"mail": false},
-        {"facebook": false, "facebook_page_id": null}
-    ],
-    "fb01": [
-        {"mail": false, "page_id_for_action": null},
-        {"sheet": false, "page_id_for_action": null},
-        {"facebook": false, "page_id_for_action": null, "facebook_page_id": null}
-    ],
-    "fb02": [
-        {"mail": false},
-        {"sheet": false},
-        {"facebook": false, "facebook_page_id": null}
-    ],
-    "fb03": [
-        {"mail": false},
-        {"sheet": false},
-        {"facebook": false, "facebook_page_id": null}
-    ],
-    "twitch01": [
-        {"mail": false},
-        {"sheet": false},
-        {"facebook": false, "facebook_page_id": null}
-    ],
-    "twitch02": [
-        {"mail": false},
-        {"sheet": false},
-        {"facebook": false, "facebook_page_id": null}
-    ],
-    "twitch03": [
-        {"mail": false, "streamer_live": null},
-        {"facebook": false, "streamer_live": null, "facebook_page_id": null}
-    ],
-    "onedrive01": [
-        {"mail": false},
-        {"sheet": false},
-        {"facebook": false, "facebook_page_id": null}
-    ],
-    "gdrive01": [
-        {"mail": false},
-        {"facebook": false, "facebook_page_id": null}
-    ],
-    "gsheet01": [
-        {"mail": false},
-        {"facebook": false, "facebook_page_id": null}
-    ],
-}
-
-if (user_config.ytb01[0].mail === true && user_config.ytb01[1].sheet === true && user_config.ytb01[2].facebook === true) {
-    $("#youtube_first").css("pointer-events", "none");
-    $("#youtube_first").css("background-color", "grey");
-}
-
-if (user_config.ytb02[0].mail === true && user_config.ytb02[1].sheet === true && user_config.ytb02[2].facebook === true) {
-    $("#youtube_second").css("pointer-events", "none");
-    $("#youtube_second").css("background-color", "grey");
-}
-
-if (user_config.ytb03[0].mail === true && user_config.ytb03[1].facebook === true) {
-    $("#youtube_third").css("pointer-events", "none");
-    $("#youtube_third").css("background-color", "grey");
-}
-
-if (user_config.fb01[0].mail === true && user_config.fb01[1].sheet === true && user_config.fb01[2].facebook === true) {
-    $("#facebook_first").css("pointer-events", "none");
-    $("#facebook_first").css("background-color", "grey");
-}
-
-if (user_config.fb02[0].mail === true && user_config.fb02[1].sheet === true && user_config.fb02[2].facebook === true ) {
-    $("#facebook_second").css("pointer-events", "none");
-    $("#facebook_second").css("background-color", "grey");
-}
-
-if (user_config.fb03[0].mail === true && user_config.fb03[1].sheet === true && user_config.fb03[2].facebook === true ) {
-    $("#facebook_third").css("pointer-events", "none");
-    $("#facebook_third").css("background-color", "grey");
-}
-
-if (user_config.twitch01[0].mail === true && user_config.twitch01[1].sheet === true && user_config.twitch01[2].facebook === true) {
-    $("#twitch_first").css("pointer-events", "none");
-    $("#twitch_first").css("background-color", "grey");
-}
-
-if (user_config.twitch02[0].mail === true && user_config.twitch02[1].sheet === true && user_config.twitch02[2].facebook === true) {
-    $("#twitch_second").css("pointer-events", "none");
-    $("#twitch_second").css("background-color", "grey");
-}
-
-if (user_config.twitch03[0].mail === true && user_config.twitch03[1].facebook === true) {
-    $("#twitch_third").css("pointer-events", "none");
-    $("#twitch_third").css("background-color", "grey");
-}
-
-if (user_config.onedrive01[0].mail === true && user_config.onedrive01[1].sheet === true && user_config.onedrive01[2].facebook === true) {
-    $("#onedrive_first").css("pointer-events", "none");
-    $("#onedrive_first").css("background-color", "grey");
-}
-
-if (user_config.gdrive01[0].mail === true && user_config.gdrive01[1].facebook === true) {
-    $("#gdrive_first").css("pointer-events", "none");
-    $("#gdrive_first").css("background-color", "grey");
-}
-
-if (user_config.gsheet01[0].mail === true && user_config.gsheet01[1].facebook === true) {
-    $("#gsheet_first").css("pointer-events", "none");
-    $("#gsheet_first").css("background-color", "grey");
-}
-
-$("#youtube_first").click(function() {
-    if (user_config.ytb01[0].mail === true) {
-        $("#mail_react").css("pointer-events", "none");
-        $("#mail_react").css("border-color", "grey");
-        $("#mail_react i").css("color", "grey");
-    }
-    else {
-        $("#mail_react").css("pointer-events", "auto");
-        $("#mail_react").css("border-color", "black");
-        $("#mail_react i").css("color", "black");
-    }
-    if (user_config.ytb01[1].sheet === true || user_config.service.google === false) {
-        $("#sheet_react").css("pointer-events", "none");
-        $("#sheet_react").css("border-color", "grey");
-        $("#sheet_react i").css("color", "grey");
-    }
-    else {
-        $("#sheet_react").css("pointer-events", "auto");
-        $("#sheet_react").css("border-color", "black");
-        $("#sheet_react i").css("color", "black");
-    }
-    if (user_config.ytb01[2].facebook === true || user_config.service.facebook === false) {
-        $("#facebook_react").css("pointer-events", "none");
-        $("#facebook_react").css("border-color", "grey");
-        $("#facebook_react i").css("color", "grey");
-    }
-    else {
-        $("#facebook_react").css("pointer-events", "auto");
-        $("#facebook_react").css("border-color", "black");
-        $("#facebook_react i").css("color", "black");
-    }
-});
-
-$("#youtube_second").click(function() {
-    if (user_config.ytb02[0].mail === true) {
-        $("#mail_react").css("pointer-events", "none");
-        $("#mail_react").css("border-color", "grey");
-        $("#mail_react i").css("color", "grey");
-    }
-    else {
-        $("#mail_react").css("pointer-events", "auto");
-        $("#mail_react").css("border-color", "black");
-        $("#mail_react i").css("color", "black");
-    }
-    if (user_config.ytb02[1].sheet === true || user_config.service.google === false) {
-        $("#sheet_react").css("pointer-events", "none");
-        $("#sheet_react").css("border-color", "grey");
-        $("#sheet_react i").css("color", "grey");
-    }
-    else {
-        $("#sheet_react").css("pointer-events", "auto");
-        $("#sheet_react").css("border-color", "black");
-        $("#sheet_react i").css("color", "black");
-    }
-    if (user_config.ytb02[2].facebook === true || user_config.service.facebook === false) {
-        $("#facebook_react").css("pointer-events", "none");
-        $("#facebook_react").css("border-color", "grey");
-        $("#facebook_react i").css("color", "grey");
-    }
-    else {
-        $("#facebook_react").css("pointer-events", "auto");
-        $("#facebook_react").css("border-color", "black");
-        $("#facebook_react i").css("color", "black");
-    }
-});
-
-$("#youtube_third").click(function() {
-    if (user_config.ytb03[0].mail === true) {
-        $("#mail_react").css("pointer-events", "none");
-        $("#mail_react").css("border-color", "grey");
-        $("#mail_react i").css("color", "grey");
-    }
-    else {
-        $("#mail_react").css("pointer-events", "auto");
-        $("#mail_react").css("border-color", "black");
-        $("#mail_react i").css("color", "black");
-    }
-    if (user_config.ytb03[1].facebook === true || user_config.service.facebook === false) {
-        $("#facebook_react").css("pointer-events", "none");
-        $("#facebook_react").css("border-color", "grey");
-        $("#facebook_react i").css("color", "grey");
-    }
-    else {
-        $("#facebook_react").css("pointer-events", "auto");
-        $("#facebook_react").css("border-color", "black");
-        $("#facebook_react i").css("color", "black");
-    }
-});
-
-$("#facebook_first").click(function() {
-    if (user_config.fb01[0].mail === true) {
-        $("#mail_react").css("pointer-events", "none");
-        $("#mail_react").css("border-color", "grey");
-        $("#mail_react i").css("color", "grey");
-    }
-    else {
-        $("#mail_react").css("pointer-events", "auto");
-        $("#mail_react").css("border-color", "black");
-        $("#mail_react i").css("color", "black");
-    }
-    if (user_config.fb01[1].sheet === true || user_config.service.google === false) {
-        $("#sheet_react").css("pointer-events", "none");
-        $("#sheet_react").css("border-color", "grey");
-        $("#sheet_react i").css("color", "grey");
-    }
-    else {
-        $("#sheet_react").css("pointer-events", "auto");
-        $("#sheet_react").css("border-color", "black");
-        $("#sheet_react i").css("color", "black");
-    }
-    if (user_config.fb01[2].facebook === true || user_config.service.facebook === false) {
-        $("#facebook_react").css("pointer-events", "none");
-        $("#facebook_react").css("border-color", "grey");
-        $("#facebook_react i").css("color", "grey");
-    }
-    else {
-        $("#facebook_react").css("pointer-events", "auto");
-        $("#facebook_react").css("border-color", "black");
-        $("#facebook_react i").css("color", "black");
-    }
-});
-
-$("#facebook_second").click(function() {
-    if (user_config.fb02[0].mail === true) {
-        $("#mail_react").css("pointer-events", "none");
-        $("#mail_react").css("border-color", "grey");
-        $("#mail_react i").css("color", "grey");
-    }
-    else {
-        $("#mail_react").css("pointer-events", "auto");
-        $("#mail_react").css("border-color", "black");
-        $("#mail_react i").css("color", "black");
-    }
-    if (user_config.fb02[1].sheet === true || user_config.service.google === false) {
-        $("#sheet_react").css("pointer-events", "none");
-        $("#sheet_react").css("border-color", "grey");
-        $("#sheet_react i").css("color", "grey");
-    }
-    else {
-        $("#sheet_react").css("pointer-events", "auto");
-        $("#sheet_react").css("border-color", "black");
-        $("#sheet_react i").css("color", "black");
-    }
-    if (user_config.fb02[2].facebook === true || user_config.service.facebook === false) {
-        $("#facebook_react").css("pointer-events", "none");
-        $("#facebook_react").css("border-color", "grey");
-        $("#facebook_react i").css("color", "grey");
-    }
-    else {
-        $("#facebook_react").css("pointer-events", "auto");
-        $("#facebook_react").css("border-color", "black");
-        $("#facebook_react i").css("color", "black");
-    }
-});
-
-$("#facebook_third").click(function() {
-    if (user_config.fb03[0].mail === true) {
-        $("#mail_react").css("pointer-events", "none");
-        $("#mail_react").css("border-color", "grey");
-        $("#mail_react i").css("color", "grey");
-    }
-    else {
-        $("#mail_react").css("pointer-events", "auto");
-        $("#mail_react").css("border-color", "black");
-        $("#mail_react i").css("color", "black");
-    }
-    if (user_config.fb03[1].sheet === true || user_config.service.google === false) {
-        $("#sheet_react").css("pointer-events", "none");
-        $("#sheet_react").css("border-color", "grey");
-        $("#sheet_react i").css("color", "grey");
-    }
-    else {
-        $("#sheet_react").css("pointer-events", "auto");
-        $("#sheet_react").css("border-color", "black");
-        $("#sheet_react i").css("color", "black");
-    }
-    if (user_config.fb03[2].facebook === true || user_config.service.facebook === false) {
-        $("#facebook_react").css("pointer-events", "none");
-        $("#facebook_react").css("border-color", "grey");
-        $("#facebook_react i").css("color", "grey");
-    }
-    else {
-        $("#facebook_react").css("pointer-events", "auto");
-        $("#facebook_react").css("border-color", "black");
-        $("#facebook_react i").css("color", "black");
-    }
-});
-
-$("#twitch_first").click(function() {
-    if (user_config.twitch01[0].mail === true) {
-        $("#mail_react").css("pointer-events", "none");
-        $("#mail_react").css("border-color", "grey");
-        $("#mail_react i").css("color", "grey");
-    }
-    else {
-        $("#mail_react").css("pointer-events", "auto");
-        $("#mail_react").css("border-color", "black");
-        $("#mail_react i").css("color", "black");
-    }
-    if (user_config.twitch01[1].sheet === true || user_config.service.google === false) {
-        $("#sheet_react").css("pointer-events", "none");
-        $("#sheet_react").css("border-color", "grey");
-        $("#sheet_react i").css("color", "grey");
-    }
-    else {
-        $("#sheet_react").css("pointer-events", "auto");
-        $("#sheet_react").css("border-color", "black");
-        $("#sheet_react i").css("color", "black");
-    }
-    if (user_config.twitch01[2].facebook === true || user_config.service.facebook === false) {
-        $("#facebook_react").css("pointer-events", "none");
-        $("#facebook_react").css("border-color", "grey");
-        $("#facebook_react i").css("color", "grey");
-    }
-    else {
-        $("#facebook_react").css("pointer-events", "auto");
-        $("#facebook_react").css("border-color", "black");
-        $("#facebook_react i").css("color", "black");
-    }
-});
-
-$("#twitch_second").click(function() {
-    if (user_config.twitch02[0].mail === true) {
-        $("#mail_react").css("pointer-events", "none");
-        $("#mail_react").css("border-color", "grey");
-        $("#mail_react i").css("color", "grey");
-    }
-    else {
-        $("#mail_react").css("pointer-events", "auto");
-        $("#mail_react").css("border-color", "black");
-        $("#mail_react i").css("color", "black");
-    }
-    if (user_config.twitch02[1].sheet === true || user_config.service.google === false) {
-        $("#sheet_react").css("pointer-events", "none");
-        $("#sheet_react").css("border-color", "grey");
-        $("#sheet_react i").css("color", "grey");
-    }
-    else {
-        $("#sheet_react").css("pointer-events", "auto");
-        $("#sheet_react").css("border-color", "black");
-        $("#sheet_react i").css("color", "black");
-    }
-    if (user_config.twitch02[2].facebook === true || user_config.service.facebook === false) {
-        $("#facebook_react").css("pointer-events", "none");
-        $("#facebook_react").css("border-color", "grey");
-        $("#facebook_react i").css("color", "grey");
-    }
-    else {
-        $("#facebook_react").css("pointer-events", "auto");
-        $("#facebook_react").css("border-color", "black");
-        $("#facebook_react i").css("color", "black");
-    }
-});
-
-$("#twitch_third").click(function() {
-    if (user_config.twitch03[0].mail === true) {
-        $("#mail_react").css("pointer-events", "none");
-        $("#mail_react").css("border-color", "grey");
-        $("#mail_react i").css("color", "grey");
-    }
-    else {
-        $("#mail_react").css("pointer-events", "auto");
-        $("#mail_react").css("border-color", "black");
-        $("#mail_react i").css("color", "black");
-    }
-    if (user_config.twitch03[1].facebook === true || user_config.service.facebook === false) {
-        $("#facebook_react").css("pointer-events", "none");
-        $("#facebook_react").css("border-color", "grey");
-        $("#facebook_react i").css("color", "grey");
-    }
-    else {
-        $("#facebook_react").css("pointer-events", "auto");
-        $("#facebook_react").css("border-color", "black");
-        $("#facebook_react i").css("color", "black");
-    }
-});
-
-$("#onedrive_first").click(function() {
-    if (user_config.onedrive01[0].mail === true) {
-        $("#mail_react").css("pointer-events", "none");
-        $("#mail_react").css("border-color", "grey");
-        $("#mail_react i").css("color", "grey");
-    }
-    else {
-        $("#mail_react").css("pointer-events", "auto");
-        $("#mail_react").css("border-color", "black");
-        $("#mail_react i").css("color", "black");
-    }
-    if (user_config.onedrive01[1].sheet === true || user_config.service.google === false) {
-        $("#sheet_react").css("pointer-events", "none");
-        $("#sheet_react").css("border-color", "grey");
-        $("#sheet_react i").css("color", "grey");
-    }
-    else {
-        $("#sheet_react").css("pointer-events", "auto");
-        $("#sheet_react").css("border-color", "black");
-        $("#sheet_react i").css("color", "black");
-    }
-    if (user_config.onedrive01[2].facebook === true || user_config.service.facebook === false) {
-        $("#facebook_react").css("pointer-events", "none");
-        $("#facebook_react").css("border-color", "grey");
-        $("#facebook_react i").css("color", "grey");
-    }
-    else {
-        $("#facebook_react").css("pointer-events", "auto");
-        $("#facebook_react").css("border-color", "black");
-        $("#facebook_react i").css("color", "black");
-    }
-});
-
-$("#gdrive_first").click(function() {
-    if (user_config.gdrive01[0].mail === true) {
-        $("#mail_react").css("pointer-events", "none");
-        $("#mail_react").css("border-color", "grey");
-        $("#mail_react i").css("color", "grey");
-    }
-    else {
-        $("#mail_react").css("pointer-events", "auto");
-        $("#mail_react").css("border-color", "black");
-        $("#mail_react i").css("color", "black");
-    }
-    if (user_config.gdrive01[1].facebook === true || user_config.service.facebook === false) {
-        $("#facebook_react").css("pointer-events", "none");
-        $("#facebook_react").css("border-color", "grey");
-        $("#facebook_react i").css("color", "grey");
-    }
-    else {
-        $("#facebook_react").css("pointer-events", "auto");
-        $("#facebook_react").css("border-color", "black");
-        $("#facebook_react i").css("color", "black");
-    }
-});
-
-$("#gsheet_first").click(function() {
-    if (user_config.gsheet01[0].mail === true) {
-        $("#mail_react").css("pointer-events", "none");
-        $("#mail_react").css("border-color", "grey");
-        $("#mail_react i").css("color", "grey");
-    }
-    else {
-        $("#mail_react").css("pointer-events", "auto");
-        $("#mail_react").css("border-color", "black");
-        $("#mail_react i").css("color", "black");
-    }
-    if (user_config.gsheet01[1].facebook === true || user_config.service.facebook === false) {
-        $("#facebook_react").css("pointer-events", "none");
-        $("#facebook_react").css("border-color", "grey");
-        $("#facebook_react i").css("color", "grey");
-    }
-    else {
-        $("#facebook_react").css("pointer-events", "auto");
-        $("#facebook_react").css("border-color", "black");
-        $("#facebook_react i").css("color", "black");
-    }
-});
-
 var twitch_login =
 "<div class=\"login_button_container\">" +
 "<a href=\"https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=bdxjm36z6d15f9barb92e8kiogru3t&redirect_uri=http://localhost:8080/&scope=user_follows_edit user_read&state=twitch\" class=\"login_button_container_twitch\" >Login Twitch</a>" +
@@ -1163,27 +723,30 @@ var gsheet_login =
 "</div>";
 
 
-if (user_config.service.google == false) {
+if (user_token_json[0].google === null) {
     $('#youtube_reaction').append(ytb_login);
     $(".yt").css("display", "none");
 }
-if (user_config.service.facebook == false) {
+if (user_token_json[0].facebook === null) {
     $('#facebook_reaction').append(fb_login);
     $(".fb").css("display", "none");
+    $("#facebook_react").css("border-color", "grey");
+    $("#facebook_react i").css("color", "grey");
+    $("#facebook_react").css("pointer-events", "none");
 }
-if (user_config.service.twitch == false) {
+if (user_token_json[0].twitch === null) {
     $('#twitch_reaction').append(twitch_login);
     $(".twitch").css("display", "none");
 }
-if (user_config.service.onedrive == false) {
+if (user_token_json[0].onedrive === null) {
     $('#onedrive_reaction').append(onedrive_login);
     $(".onedrive").css("display", "none");
 }
-if (user_config.service.google == false) {
+if (user_token_json[0].google === null) {
     $('#drive_reaction').append(gdrive_login);
     $(".gdrive").css("display", "none");
 }
-if (user_config.service.google == false) {
+if (user_token_json[0].google === null) {
     $('#sheet_reaction').append(gsheet_login);
     $(".gsheet").css("display", "none");
 }
