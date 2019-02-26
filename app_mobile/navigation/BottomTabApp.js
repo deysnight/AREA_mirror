@@ -5,7 +5,14 @@ import ScreenHome from "../Screens/ScreenHome";
 import ScreenProfile from "../Screens/ScreenProfile";
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon3 from 'react-native-vector-icons/AntDesign'
+import SyncStorage from 'sync-storage';
 
+Logout = async (navigation) => {
+    SyncStorage.remove('USERNAME');
+    //SyncStorage.remove('USER_ID');
+    navigation.navigate('Login');
+}
 
 const AppNavigation = createBottomTabNavigator(
     {
@@ -15,6 +22,15 @@ const AppNavigation = createBottomTabNavigator(
                 title: "Home",
                 tabBarIcon: ({tintColor}) => (
                     <Icon name="home" color={tintColor} size={20} />
+                )
+            }
+        },
+        Area: {
+            screen: ScreenHome,
+            navigationOptions: {
+                title: "Area",
+                tabBarIcon: ({tintColor}) => (
+                    <Icon3 name="API" color={tintColor} size={20} />
                 )
             }
         },
@@ -40,7 +56,7 @@ const AppNavigation = createBottomTabNavigator(
                           ,'Voulez vous vraiment vous déconnecter ?'
                           ,[
                             {text: 'Annuler'},
-                            {text: 'Confirmer', onPress: () => navigation.navigate('Login')}
+                            {text: 'Confirmer', onPress: async () => this.Logout(navigation)}
                            ]
                       );
                   },
@@ -48,7 +64,7 @@ const AppNavigation = createBottomTabNavigator(
             }
     },
     {
-        order: ['Home', "Profil", "Logout"],
+        order: ['Home', "Profil", "Area", "Logout"],
         navigationOptions: {
             tabBarVisible: true
         },

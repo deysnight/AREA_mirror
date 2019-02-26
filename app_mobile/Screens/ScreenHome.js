@@ -4,6 +4,35 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon2 from 'react-native-vector-icons/Entypo'
 
 class ViewHome extends Component {
+
+    getLoggedGoogle = () => {
+        //if (le_token_google_existe)
+          //  this.props.navigation.navigate('Area');
+        //else
+        this.props.navigation.navigate('GoogleLogin')
+    }
+
+    getLoggedFacebook = () => {
+        //if (le_token_fb_existe)
+          //  this.props.navigation.navigate('Area');
+        //else
+        this.props.navigation.navigate('FacebookLogin')
+    }
+
+    getLoggedTwitch = () => {
+        //if (le_token_twitch_existe)
+          //  this.props.navigation.navigate('Area');
+        //else
+        this.props.navigation.navigate('TwitchLogin')
+    }
+
+    getLoggedOneDrive = () => {
+        //if (le_token_onedrive_existe)
+          //  this.props.navigation.navigate('Area');
+        //else
+        this.props.navigation.navigate('OneDriveLogin')
+    }
+
     render() {
         return (
             <View style={homePage.Container}>
@@ -14,7 +43,7 @@ class ViewHome extends Component {
                     <ScrollView 
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}>
-                        <TouchableOpacity style={homePage.YtbCard}>
+                        <TouchableOpacity onPress={this.getLoggedGoogle} style={homePage.YtbCard}>
                             <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
                                 <Icon name={"youtube-play"}
                                 size={80}
@@ -25,7 +54,7 @@ class ViewHome extends Component {
                                 <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Youtube</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={homePage.FbCard}>
+                        <TouchableOpacity onPress={this.getLoggedFacebook} style={homePage.FbCard}>
                             <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
                                 <Icon name={"facebook-square"}
                                 size={80}
@@ -36,7 +65,7 @@ class ViewHome extends Component {
                                 <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Facebook</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={homePage.TwCard}>
+                        <TouchableOpacity onPress={this.getLoggedTwitch} style={homePage.TwCard}>
                             <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
                                 <Icon name={"twitch"}
                                 size={80}
@@ -47,7 +76,7 @@ class ViewHome extends Component {
                                 <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Twitch</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={homePage.OnedCard}>
+                        <TouchableOpacity onPress={this.getLoggedOneDrive} style={homePage.OnedCard}>
                             <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
                                 <Icon2 name={"onedrive"}
                                 size={80}
@@ -58,7 +87,7 @@ class ViewHome extends Component {
                                 <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', color:'white'}}>OneDrive</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={homePage.GdriveCard}>
+                        <TouchableOpacity onPress={this.getLoggedGoogle} style={homePage.GdriveCard}>
                             <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
                                 <Icon2 name={"google-drive"}
                                 size={80}
@@ -69,7 +98,7 @@ class ViewHome extends Component {
                                 <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Drive</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={homePage.GSheetCard}>
+                        <TouchableOpacity onPress={this.getLoggedGoogle} style={homePage.GSheetCard}>
                             <View style={{flex: 5, justifyContent: 'center', alignSelf: 'center'}}>
                                 <Icon name={"file-text"}
                                 size={80}
@@ -91,6 +120,7 @@ const homePage = StyleSheet.create({
     Container: {
         flex: 1,
         flexDirection: 'column',
+        backgroundColor: '#F6F6F6'
     },
 
     YtbCard: {

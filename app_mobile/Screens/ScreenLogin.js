@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Text, KeyboardAvoidingView, AsyncStorage, Button, StatusBar, StyleSheet, View, Image, Linking, TextInput, TouchableOpacity, Alert } from 'react-native';
+import SyncStorage from 'sync-storage';
+import {AuthSession} from 'expo'
 
 async function FacebookSignIn() {
     try {
@@ -83,10 +85,10 @@ class LoginScreen extends React.Component {
             <TouchableOpacity style={styles.buttonContainer} onPress={this.getLogged}>
                 <Text style={styles.buttonText}>Se connecter</Text>
             </TouchableOpacity>
-            {/*<TouchableOpacity style={styles.buttonContainer} onPress={this.GoogleSignIn}>
+            <TouchableOpacity style={styles.googleContainer} onPress={this.GoogleSignIn}>
                 <Text style={styles.buttonText}>Se connecter via Google</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer} onPress={FacebookSignIn}>
+            {/* <TouchableOpacity style={styles.buttonContainer} onPress={FacebookSignIn}>
                 <Text style={styles.buttonText}>Se connecter via Facebook</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonContainer} onPress={this.TwitchSignIn}>
@@ -116,8 +118,26 @@ class LoginScreen extends React.Component {
     this.passwordInput.clear();
     this.state.username = null;
     this.state.password = null;
+    SyncStorage.set('USERNAME', username);
     this.props.navigation.navigate('App');
 }
+  GoogleSignIn = async () => {
+    let redirectUrl = AuthSession.getRedirectUrl();
+    const result = await Expo.Google.logInAsync({
+        androidClientId: "218486788454-is3b9o2utppp7mfjonuhnd9v2kp74ve9.apps.googleusercontent.com",
+        iosClientId: "218486788454-is3b9o2utppp7mfjonuhnd9v2kp74ve9.apps.googleusercontent.com",
+        behavior: 'web',
+        scopes: ["profile", "email", "https://mail.google.com/", "https://www.googleapis.com/auth/youtube.force-ssl", "https://www.googleapis.com/auth/drive", "https://www.googleapis.com/auth/spreadsheets"]
+      })
+      if (result.type === "success") {
+        var google_token = result.accessToken;
+        var username = result.user.name
+        SyncStorage.set('USERNAME', username);
+        this.props.navigation.navigate('App');
+      } 
+      else
+        console.log("cancelled")   
+    }
 
         HandleTwitchURL = async ({url}) => {
             const token = url.split('expo-auth-session#access_token=')[1];
@@ -150,23 +170,6 @@ class LoginScreen extends React.Component {
                 var token =  result.params.access_token
                 //access_token_to_serv
         };
-
-        GoogleSignIn = async () => {
-            let redirectUrl = AuthSession.getRedirectUrl();
-            const result = await Expo.Google.logInAsync({
-            androidClientId: "218486788454-is3b9o2utppp7mfjonuhnd9v2kp74ve9.apps.googleusercontent.com",
-            iosClientId: "218486788454-is3b9o2utppp7mfjonuhnd9v2kp74ve9.apps.googleusercontent.com",
-            behavior: 'web',
-            scopes: ["profile", "email", "https://mail.google.com/", "https://www.googleapis.com/auth/youtube.force-ssl", "https://www.googleapis.com/auth/drive", "https://www.googleapis.com/auth/spreadsheets"]
-            })
-            if (result.type === "success") {
-                console.log(result.accessToken);
-                var google_token = result.accessToken;
-                //Redirect to app;
-            } else {
-                console.log("cancelled")   
-            }
-        }
 
   }
   const loginStyles = StyleSheet.create({
@@ -205,17 +208,24 @@ class LoginScreen extends React.Component {
     },
     buttonContainer: {
       backgroundColor: '#D50000',
-      paddingVertical: 15,
       padding: 12,
       paddingLeft: 30,
       paddingRight: 30,
       borderRadius: 30
     },
-      buttonText: {
+    buttonText: {
       textAlign: 'center',
       color: '#FFFFFF',
       fontWeight: '700',
       fontSize: 16
+    },
+    googleContainer: {
+      backgroundColor: '#CD4436',
+      marginTop: 20,
+      padding: 12,
+      paddingRight: 30,
+      paddingLeft: 30,
+      borderRadius: 30
     }
 });
 

@@ -112,6 +112,13 @@ class SignupScreen extends React.Component {
         this.state.email = null;
         this.state.password1 = null;
         this.state.password2 = null;
+        Alert.alert(
+          'Compte créé'
+          ,'Votre compte à été crée avec succès'
+          ,[
+            {text: 'Continuer'},
+           ]
+        );
         this.props.navigation.navigate('Login');
   }
 
@@ -152,7 +159,6 @@ class SignupScreen extends React.Component {
     },
     buttonContainer: {
       backgroundColor: '#D50000',
-      paddingVertical: 15,
       padding: 12,
       paddingLeft: 30,
       paddingRight: 30,

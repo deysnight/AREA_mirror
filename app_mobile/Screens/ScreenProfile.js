@@ -1,26 +1,7 @@
 import React, {Component} from 'react'
-import {View, StyleSheet, Text, ScrollView, TouchableOpacity, RefreshControl} from "react-native";
+import {View, StyleSheet, Text, ScrollView, TouchableHighlight, RefreshControl} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { FlatList } from 'react-native-gesture-handler';
-import { Col, Row, Grid } from "react-native-easy-grid";
-import Icon2 from 'react-native-vector-icons/Entypo'
-
-
-var user_config = {
-    "cards": [
-        {"is_active" : false}, // yt1_gdrive ok 0
-        {"is_active" : false, "url_video" : null}, // yt2_mail ok 1
-        {"is_active" : false, "id_chaine" : null}, // yt3_mail ok 2
-        {"is_active" : false, "id_page" : null}, // fb1_gdrive ok 3
-        {"is_active" : false}, // fb2_mail ok 4
-        {"is_active" : false}, // twitch1_mail ok 5
-        {"is_active" : false}, // twitch2_mail ok 6
-        {"is_active" : false, "streamer" : null}, // twitch3_mail ok 7
-        {"is_active" : false}, // gmail1 ok 8
-        {"is_active" : false}, // onedrive1_mail ok 9
-        {"is_active" : false}, // gdrive1_mail ok 10
-    ]
-}
+import GridView from 'react-native-super-grid';
 
 class ViewProfile extends Component {
     
@@ -29,12 +10,254 @@ class ViewProfile extends Component {
     
         this.state = {
           loading: false,
-          data: [],
+          data: {
+            "success": true,
+            "reason": null,
+            "data": [
+                {
+                    "id": 2,
+                    "user_id": 3,
+                    "action_id": 1,
+                    "reaction_id": 1,
+                    "timer_area": null,
+                    "p_video_id": null,
+                    "p_page_id": null,
+                    "p_fbpage_id": null,
+                    "p_ytb_name": null,
+                    "p_streamer": null
+                },
+                {
+                    "id": 6,
+                    "user_id": 3,
+                    "action_id": 2,
+                    "reaction_id": 2,
+                    "timer_area": null,
+                    "p_video_id": null,
+                    "p_page_id": null,
+                    "p_fbpage_id": null,
+                    "p_ytb_name": null,
+                    "p_streamer": null
+                },
+                {
+                    "id": 2,
+                    "user_id": 3,
+                    "action_id": 3,
+                    "reaction_id": 3,
+                    "timer_area": null,
+                    "p_video_id": null,
+                    "p_page_id": null,
+                    "p_fbpage_id": null,
+                    "p_ytb_name": null,
+                    "p_streamer": null
+                },
+                {
+                    "id": 6,
+                    "user_id": 3,
+                    "action_id": 4,
+                    "reaction_id": 1,
+                    "timer_area": null,
+                    "p_video_id": null,
+                    "p_page_id": null,
+                    "p_fbpage_id": null,
+                    "p_ytb_name": null,
+                    "p_streamer": null
+                },
+                {
+                    "id": 2,
+                    "user_id": 3,
+                    "action_id": 5,
+                    "reaction_id": 1,
+                    "timer_area": null,
+                    "p_video_id": null,
+                    "p_page_id": null,
+                    "p_fbpage_id": null,
+                    "p_ytb_name": null,
+                    "p_streamer": null
+                },
+                {
+                    "id": 6,
+                    "user_id": 3,
+                    "action_id": 6,
+                    "reaction_id": 1,
+                    "timer_area": null,
+                    "p_video_id": null,
+                    "p_page_id": null,
+                    "p_fbpage_id": null,
+                    "p_ytb_name": null,
+                    "p_streamer": null
+                },
+                {
+                    "id": 2,
+                    "user_id": 3,
+                    "action_id": 7,
+                    "reaction_id": 1,
+                    "timer_area": null,
+                    "p_video_id": null,
+                    "p_page_id": null,
+                    "p_fbpage_id": null,
+                    "p_ytb_name": null,
+                    "p_streamer": null
+                },
+                {
+                    "id": 6,
+                    "user_id": 3,
+                    "action_id": 8,
+                    "reaction_id": 1,
+                    "timer_area": null,
+                    "p_video_id": null,
+                    "p_page_id": null,
+                    "p_fbpage_id": null,
+                    "p_ytb_name": null,
+                    "p_streamer": null
+                },
+                {
+                    "id": 2,
+                    "user_id": 3,
+                    "action_id": 9,
+                    "reaction_id": 1,
+                    "timer_area": null,
+                    "p_video_id": null,
+                    "p_page_id": null,
+                    "p_fbpage_id": null,
+                    "p_ytb_name": null,
+                    "p_streamer": null
+                },
+                {
+                    "id": 1008,
+                    "user_id": 3,
+                    "action_id": 10,
+                    "reaction_id": 1,
+                    "timer_area": null,
+                    "p_video_id": null,
+                    "p_page_id": null,
+                    "p_fbpage_id": null,
+                    "p_ytb_name": null,
+                    "p_streamer": null
+                },
+                {
+                    "id": 1009,
+                    "user_id": 3,
+                    "action_id": 11,
+                    "reaction_id": 1,
+                    "timer_area": null,
+                    "p_video_id": null,
+                    "p_page_id": null,
+                    "p_fbpage_id": null,
+                    "p_ytb_name": null,
+                    "p_streamer": null
+                },
+                {
+                    "id": 1010,
+                    "user_id": 3,
+                    "action_id": 12,
+                    "reaction_id": 1,
+                    "timer_area": null,
+                    "p_video_id": null,
+                    "p_page_id": null,
+                    "p_fbpage_id": null,
+                    "p_ytb_name": null,
+                    "p_streamer": null
+                },
+            ]
+        },
           error: null,
           refreshing: false,
         };
       }
     
+      delete_area = (id) => {
+          // send request to delete a card with id in param
+      }
+    
+    create_card = (i) => {
+        var lulz = this.state.data.data[i];
+        var card_type = null;
+        var icon_main = null;
+        var icon_second = null;
+        if (lulz.action_id === 1 || lulz.action_id === 2 || lulz.action_id === 3) {
+            card_type = "YtbCard";
+            icon_main = "youtube-play";
+        }
+        if (lulz.action_id === 4 || lulz.action_id === 5 || lulz.action_id === 6) {
+            card_type = "FbCard";
+            icon_main = "facebook-square";
+        }
+        if (lulz.action_id === 7 || lulz.action_id === 8 || lulz.action_id === 9) {
+            card_type = "TwCard";
+            icon_main = "twitch";
+        }
+        if (lulz.action_id === 10) {
+            card_type = "OnedCard";
+            icon_main = "cloud";
+        }
+        if (lulz.action_id === 11) {
+            card_type = "GdriveCard";
+            icon_main = "hdd-o";
+        }
+        if (lulz.action_id === 12) {
+            card_type = "GSheetCard";
+            icon_main = "file-text";
+        }
+
+        if (lulz.action_id === 1)
+            var desc = "Augmentation du nombre d'abonnés sur Youtube"
+        if (lulz.action_id === 2)
+            var desc = "Like ou Dislike d'une vidéo Youtube"
+        if (lulz.action_id === 3)
+            var desc = "Nouvelle vidéo de votre youtuber favoris"
+        if (lulz.action_id === 4)
+            var desc = "Gain de fan sur votre page Facebook"
+        if (lulz.action_id === 5)
+            var desc = "Création d'une nouvelle page Facebook"
+        if (lulz.action_id === 6)
+            var desc = "Nouveau post sur votre mur Facebook"
+        if (lulz.action_id === 7)
+            var desc = "Nouvelle chaîne follow sur Twitch"
+        if (lulz.action_id === 8)
+            var desc = "Gain de follower sur Twitch"
+        if (lulz.action_id === 9)
+            var desc = "Passage live de votre streamer favoris"
+        if (lulz.action_id === 10)
+            var desc = "Nouveau partage de fichier avec vous"
+        if (lulz.action_id === 11)
+            var desc = "Nouvel upload de fichier sur votre Google Drive"
+        if (lulz.action_id === 12)
+            var desc = "Nouvel upload de fichier sur votre Drive Google Sheet"
+
+        if (lulz.reaction_id === 1)
+            icon_second = "envelope";
+        if (lulz.reaction_id === 2)
+            icon_second = "file-text";
+        if (lulz.reaction_id === 3)
+            icon_second = "facebook-square";
+        return (
+            <TouchableHighlight style={homePage[card_type]}>
+                <View style={{flex: 1, justifyContent: 'center', alignSelf: 'center', marginTop: 12}}>
+                    <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
+                        <Icon name={[icon_main]}
+                            size={40}
+                            color={'white'}
+                            />
+                    </View>
+                    <View style={{flex: 4, justifyContent: 'space-between', alignSelf: 'center'}}>
+                        <Text style={{color: "white", textAlign: "center", fontSize: 13}}>{desc}</Text>
+                        <TouchableHighlight 
+                        onPress={() => this.delete_area(lulz.id)}
+                        style={{borderRadius: 30, backgroundColor: "#D50000", fontSize: 13, paddingLeft: 10, paddingRight: 10, paddingTop: 6, paddingBottom: 6}}>
+                            <Text style={{color: "white", textAlign: "center"}}>Supprimer</Text>
+                        </TouchableHighlight>
+                    </View>
+                    <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
+                        <Icon name={[icon_second]}
+                            size={25}
+                            color={'white'}
+                            />
+                    </View>
+                </View>
+            </TouchableHighlight>
+        )
+    }    
+
       _onRefresh = () => {
         this.setState({refreshing: true});
         //make request for getting user_config
@@ -42,412 +265,112 @@ class ViewProfile extends Component {
     }
 
       componentDidMount() {
+
         //make request for getting user_config
       }
-
     render() {
+        const items = this.state.data.data;
         return (
-            <View style={homePage.Container}>
-            <View style={{display: 'flex', justifyContent: 'center', alignSelf: 'center', flex: 2}}>
-                    <Text style={{fontSize: 30, fontWeight: 'bold'}}>Votre profil</Text>
+          <View style={{display: 'flex', flex: 1, flexDirection: 'column'}}>
+            <View style={{display: 'flex', justifyContent: 'center', alignSelf: 'center', paddingTop: 60, paddingBottom: 20}}>
+                <Text style={{fontSize: 30, fontWeight: 'bold'}}>Mon profil</Text>
             </View>
-            <View style={{flex: 8}}>
-                <ScrollView style={{flex: 1}}
-                refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh}/>}
-                showsVerticalScrollIndicator={false}>
-                <Grid>
-                    <Col style={{marginRight: 5}}>
-                        {user_config.cards[0].is_active == true ? 
-                            <TouchableOpacity style={homePage.YtbCard}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"youtube-play"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Youtube</Text>
-                                </View>
-                            </TouchableOpacity>
-                            : 
-                            <View style={homePage.DisabledOne}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"youtube-play"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Youtube</Text>
-                                </View>
-                            </View>
-                             }
-                            
-                            {user_config.cards[2].is_active == true ? 
-                            <TouchableOpacity style={homePage.YtbCard}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"youtube-play"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Youtube</Text>
-                                </View>
-                            </TouchableOpacity>
-                            : 
-                            <View style={homePage.DisabledOne}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"youtube-play"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Youtube 1</Text>
-                                </View>
-                            </View>
-                             }
-
-                            {user_config.cards[4].is_active == true ?
-                            <TouchableOpacity style={homePage.FbCard}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"facebook-square"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Facebook</Text>
-                                </View>
-                            </TouchableOpacity>
-                            : 
-                            <View style={homePage.DisabledOne}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"facebook-square"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Facebook</Text>
-                                </View>
-                            </View>
-                            }
-
-
-                            {user_config.cards[6].is_active == true ?
-                            <TouchableOpacity style={homePage.TwCard}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"twitch"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Twitch</Text>
-                                </View>
-                            </TouchableOpacity>
-                            : 
-                            <View style={homePage.DisabledOne}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"twitch"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Twitch</Text>
-                                </View>
-                            </View>
-                             }
-
-                            {user_config.cards[8].is_active == true ?
-                            <TouchableOpacity style={homePage.GmailCard}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"envelope"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Gmail</Text>
-                                </View>
-                            </TouchableOpacity>
-                            : 
-                            <View style={homePage.DisabledOne}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"envelope"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Gmail</Text>
-                                </View>
-                            </View>
-                            }
-
-                            {user_config.cards[10].is_active == true ?
-                            <TouchableOpacity style={homePage.GdriveCard}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon2 name={"google-drive"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Drive</Text>
-                                </View>
-                            </TouchableOpacity>
-                            : 
-                            <View style={homePage.DisabledOne}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon2 name={"google-drive"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Drive</Text>
-                                </View>
-                            </View>
-                            }
-                    </Col>
-
-
-                    <Col style={{marginLeft: 5}}>
-                        {user_config.cards[1].is_active == true ? 
-                            <TouchableOpacity style={homePage.YtbCard}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"youtube-play"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Youtube</Text>
-                                </View>
-                            </TouchableOpacity>
-                            : 
-                            <View style={homePage.DisabledOne}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"youtube-play"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Youtube</Text>
-                                </View>
-                            </View>
-                             }
-
-                        {user_config.cards[3].is_active == true ? 
-                        <TouchableOpacity style={homePage.FbCard}>
-                            <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                <Icon name={"facebook-square"}
-                                size={50}
-                                color={'white'}
-                                />
-                            </View>
-                            <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Facebook</Text>
-                            </View>
-                        </TouchableOpacity>
-                        : 
-                         <View style={homePage.DisabledOne}>
-                            <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                <Icon name={"facebook-square"}
-                                size={50}
-                                color={'white'}
-                                />
-                            </View>
-                            <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Facebook</Text>
-                            </View>
-                        </View>
-                        }
-
-
-                        {user_config.cards[5].is_active == true ? 
-                        <TouchableOpacity style={homePage.TwCard}>
-                            <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                <Icon name={"twitch"}
-                                size={50}
-                                color={'white'}
-                                />
-                            </View>
-                            <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Twitch</Text>
-                            </View>
-                        </TouchableOpacity>
-                        : 
-                        <View style={homePage.DisabledOne}>
-                            <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                <Icon name={"twitch"}
-                                size={50}
-                                color={'white'}
-                                />
-                            </View>
-                            <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Twitch</Text>
-                            </View>
-                        </View>
-                        }
-
-                        {user_config.cards[7].is_active == true ?
-                        <TouchableOpacity style={homePage.TwCard}>
-                            <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                <Icon name={"twitch"}
-                                size={50}
-                                color={'white'}
-                                />
-                            </View>
-                            <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Twitch</Text>
-                            </View>
-                        </TouchableOpacity>
-                        : 
-                        <View style={homePage.DisabledOne}>
-                            <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                <Icon name={"twitch"}
-                                size={50}
-                                color={'white'}
-                                />
-                            </View>
-                            <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>Twitch</Text>
-                            </View>
-                        </View>
-                        }
-                        
-                        {user_config.cards[9].is_active == true ?
-                            <TouchableOpacity style={homePage.OnedCard}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"cloud"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>OneDrive</Text>
-                                </View>
-                            </TouchableOpacity>
-                            : 
-                            <View style={homePage.DisabledOne}>
-                                <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
-                                    <Icon name={"cloud"}
-                                    size={50}
-                                    color={'white'}
-                                    />
-                                </View>
-                                <View style={{flex: 5, justifyContent: 'flex-start'}}>
-                                    <Text style={{fontSize: 13, fontWeight: 'bold', textAlign: 'center', color:'white'}}>OneDrive</Text>
-                                </View>
-                            </View>
-                        }
-                    </Col>
-                </Grid>
-                </ScrollView>
+            <GridView
+                itemDimension={130}
+                items={items}
+                style={homePage.gridView}
+                renderItem={({ item, index }) => (
+                    <View style={{alignSelf: 'center', height: 240, width: 160, borderRadius: 8, marginTop: 5, marginBottom: 5, display: 'flex'}}>
+                        {this.create_card(index)}
+                    </View>
+                )}
+                />
             </View>
-        </View>
         );
+      }
     }
-}
-
 const homePage = StyleSheet.create({
     Container: {
         display: 'flex',
         flex: 1,
         flexDirection: 'column',
+        backgroundColor: '#F6F6F6'
     },
-
+    gridView: { 
+        alignSelf: 'flex-start',
+        flex: 8,
+    },
     YtbCard: {
+        paddingLeft: 15,
+        paddingRight: 15,
         alignSelf: 'center',
         backgroundColor: '#FF0000',
-        height: 200,
+        height: 240,
         width: 160,
         borderRadius: 8,
-        marginTop: 5,
         marginBottom: 5,
         display: 'flex'
     },
 
     FbCard: {
+        paddingLeft: 15,
+        paddingRight: 15,
         alignSelf: 'center',
         backgroundColor: '#4267B2',
-        height: 200,
+        height: 240,
         width: 160,
         borderRadius: 8,
-        marginTop: 5,
         marginBottom: 5,
         display: 'flex'
     },
 
     TwCard: {
+        paddingLeft: 15,
+        paddingRight: 15,
         alignSelf: 'center',
         backgroundColor: '#4B367C',
-        height: 200,
+        height: 240,
         width: 160,
         borderRadius: 8,
-        marginTop: 5,
-        marginBottom: 5,
-        display: 'flex'
-    },
-
-    GmailCard: {
-        alignSelf: 'center',
-        backgroundColor: '#D93025',
-        height: 200,
-        width: 160,
-        borderRadius: 8,
-        marginTop: 5,
         marginBottom: 5,
         display: 'flex'
     },
 
     OnedCard: {
+        paddingLeft: 15,
+        paddingRight: 15,
         alignSelf: 'center',
         backgroundColor: '#0948AC',
-        height: 200,
+        height: 240,
         width: 160,
         borderRadius: 8,
-        marginTop: 5,
         marginBottom: 5,
         display: 'flex'
     }, 
 
     GdriveCard: {
+        paddingLeft: 15,
+        paddingRight: 15,
         alignSelf: 'center',
         backgroundColor: '#1AA15F',
-        height: 200,
+        height: 240,
         width: 160,
         borderRadius: 8,
-        marginTop: 5,
         marginBottom: 5,
         display: 'flex'
     },
 
     GSheetCard: {
+        paddingLeft: 15,
+        paddingRight: 15,
         alignSelf: 'center',
         backgroundColor: '#0A9E58',
-        height: 200,
+        height: 240,
         width: 160,
         borderRadius: 8,
-        marginTop: 5,
         marginBottom: 5,
         display: 'flex'
-    },
-    DisabledOne: {
-        alignSelf: 'center',
-        backgroundColor: 'grey',
-        height: 200,
-        width: 160,
-        borderRadius: 8,
-        marginTop: 5,
-        marginBottom: 5,
-        display: 'flex'    }
+    }
 })
 
 export default ViewProfile
