@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, StyleSheet, Text, ScrollView, TouchableOpacity, RefreshControl} from "react-native";
+import {View, StyleSheet, Text, TouchableOpacity, RefreshControl} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import GridView from 'react-native-super-grid';
 

@@ -3,6 +3,7 @@ import {Alert} from 'react-native'
 import {createBottomTabNavigator} from 'react-navigation';
 import ScreenHome from "../Screens/ScreenHome";
 import ScreenProfile from "../Screens/ScreenProfile";
+import ScreenArea from "../Screens/ScreenArea"
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons'
 import Icon3 from 'react-native-vector-icons/AntDesign'
@@ -26,7 +27,7 @@ const AppNavigation = createBottomTabNavigator(
             }
         },
         Area: {
-            screen: ScreenHome,
+            screen: ScreenArea,
             navigationOptions: {
                 title: "Area",
                 tabBarIcon: ({tintColor}) => (

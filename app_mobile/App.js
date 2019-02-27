@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Text, ActivityIndicator, KeyboardAvoidingView, AsyncStorage, Button, StatusBar, StyleSheet, View, Image } from 'react-native';
-import SyncStorage from 'sync-storage';
 import AppNavigation from "./navigation/BottomTabApp"
 import AuthNavigation from "./navigation/BottomTabAuth"
 import ScreenOauth from "./Screens/ScreenOauth"
+import ScreenReaction from "./Screens/ScreenReaction"
+import ScreenFormulaire from "./Screens/ScreenFormulaire"
 import {
     createStackNavigator,
     createAppContainer,
@@ -42,6 +42,8 @@ const AppNavigator = createSwitchNavigator({
     Login: LoginStack,
     App: BottomTabNavigation,
     Oauth2 : ScreenOauth,
+    Reaction : ScreenReaction,
+    Formulaire : ScreenFormulaire
 },
 {
     initialRouteName: 'Login',
