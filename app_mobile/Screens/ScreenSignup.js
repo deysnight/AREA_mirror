@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, KeyboardAvoidingView, AsyncStorage, Button, StatusBar, StyleSheet, View, Image, Linking, TextInput, TouchableOpacity, Alert } from 'react-native';
-
+import Icon3 from 'react-native-vector-icons/AntDesign'
 
 class SignupScreen extends React.Component {
     state = {
@@ -14,9 +14,7 @@ class SignupScreen extends React.Component {
         return (
         <KeyboardAvoidingView behavior="padding" style={loginStyles.container}>
             <View style={loginStyles.logoContainer}>
-                <Image style={loginStyles.logo}
-                    source={require('../assets/nazi.jpeg')}
-                    />
+              <Icon3 name="API" color={'black'} size={120} />
                 <Text style={loginStyles.title}>AREA</Text>
                 <TextInput 
                 placeholder="Pseudo"
@@ -30,6 +28,8 @@ class SignupScreen extends React.Component {
                 />
                 <TextInput
                 placeholder="Email"
+                keyboardType="email-address"
+                textContentType="emailAddress"
                 placeholderTextColor="rgba(0, 0, 0, 0.7)"
                 style={styles.input}
                 returnKeyType="next"
@@ -66,6 +66,7 @@ class SignupScreen extends React.Component {
   }
 
   CreateAccount = () => {
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
         username = this.state.username;
         email = this.state.email;
         password1 = this.state.password1;
@@ -74,6 +75,14 @@ class SignupScreen extends React.Component {
             return Alert.alert(
                           'Erreur'
                           ,'Vous devez remplir tout les champs'
+                          ,[
+                            {text: 'Continuer'},
+                           ]
+                      );
+        if (!reg.test(email))
+          return Alert.alert(
+                          'Erreur'
+                          ,'Votre adresse email est incorrecte'
                           ,[
                             {text: 'Continuer'},
                            ]
@@ -150,7 +159,7 @@ class SignupScreen extends React.Component {
 
   const styles = StyleSheet.create({
     input: {
-      height: 35,
+      height: 40,
       width: 220,
       backgroundColor: '#EEEEEE',
       marginBottom: 20,

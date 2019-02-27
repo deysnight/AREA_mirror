@@ -5,32 +5,39 @@ import Icon2 from 'react-native-vector-icons/Entypo'
 
 class ViewHome extends Component {
 
+    state = {
+        google: null,
+        facebook: null,
+        twitch: null,
+        onedrive: null
+    };
+
     getLoggedGoogle = () => {
-        //if (le_token_google_existe)
-          //  this.props.navigation.navigate('Area');
-        //else
-        this.props.navigation.navigate('GoogleLogin')
+        if (this.state.google)
+            this.props.navigation.navigate('Area');
+        else
+            this.props.navigation.navigate('Oauth2', {type: "Google"})
     }
 
     getLoggedFacebook = () => {
-        //if (le_token_fb_existe)
-          //  this.props.navigation.navigate('Area');
-        //else
-        this.props.navigation.navigate('FacebookLogin')
+        if (this.state.facebook)
+            this.props.navigation.navigate('Area');
+        else
+            this.props.navigation.navigate('Oauth2', {type: "Facebook"})
     }
 
     getLoggedTwitch = () => {
-        //if (le_token_twitch_existe)
-          //  this.props.navigation.navigate('Area');
-        //else
-        this.props.navigation.navigate('TwitchLogin')
+        if (this.state.twitch)
+            this.props.navigation.navigate('Area');
+        else
+            this.props.navigation.navigate('Oauth2', {type: "Twitch"})
     }
 
     getLoggedOneDrive = () => {
-        //if (le_token_onedrive_existe)
-          //  this.props.navigation.navigate('Area');
-        //else
-        this.props.navigation.navigate('OneDriveLogin')
+        if (this.state.onedrive)
+            this.props.navigation.navigate('Area');
+        else
+            this.props.navigation.navigate('Oauth2', {type: "OneDrive"})
     }
 
     render() {

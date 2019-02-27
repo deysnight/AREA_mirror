@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, StyleSheet, Text, ScrollView, TouchableHighlight, RefreshControl} from "react-native";
+import {View, StyleSheet, Text, ScrollView, TouchableOpacity, RefreshControl} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import GridView from 'react-native-super-grid';
 
@@ -231,7 +231,7 @@ class ViewProfile extends Component {
         if (lulz.reaction_id === 3)
             icon_second = "facebook-square";
         return (
-            <TouchableHighlight style={homePage[card_type]}>
+            <TouchableOpacity style={homePage[card_type]}>
                 <View style={{flex: 1, justifyContent: 'center', alignSelf: 'center', marginTop: 12}}>
                     <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
                         <Icon name={[icon_main]}
@@ -241,11 +241,11 @@ class ViewProfile extends Component {
                     </View>
                     <View style={{flex: 4, justifyContent: 'space-between', alignSelf: 'center'}}>
                         <Text style={{color: "white", textAlign: "center", fontSize: 13}}>{desc}</Text>
-                        <TouchableHighlight 
+                        <TouchableOpacity 
                         onPress={() => this.delete_area(lulz.id)}
                         style={{borderRadius: 30, backgroundColor: "#D50000", fontSize: 13, paddingLeft: 10, paddingRight: 10, paddingTop: 6, paddingBottom: 6}}>
                             <Text style={{color: "white", textAlign: "center"}}>Supprimer</Text>
-                        </TouchableHighlight>
+                        </TouchableOpacity>
                     </View>
                     <View style={{flex: 3, justifyContent: 'center', alignSelf: 'center'}}>
                         <Icon name={[icon_second]}
@@ -254,7 +254,7 @@ class ViewProfile extends Component {
                             />
                     </View>
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
         )
     }    
 
