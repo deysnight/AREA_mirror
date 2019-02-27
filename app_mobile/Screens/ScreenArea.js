@@ -4,11 +4,41 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/Entypo'
 
 class ScreenArea extends React.Component {
-    state = {
-        google: "null",
-        facebook: "null",
-        twitch: "null",
-        onedrive: "null"
+    
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+            google: "null",
+            facebook: "null",
+            twitch: "null",
+            onedrive: "null"
+        };
+      }
+
+    componentDidMount() {
+        //this.makeRemoteRequest();
+    }
+
+    makeRemoteRequest = () => {
+        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/oauth2/token/" + SyncStorage.get("USER_ID");
+        this.setState({ loading: true });
+        fetch(url, {
+             method: 'GET',
+          })
+            .then(res => res.json())
+            .then(res => {
+                this.setState({refreshing: false});
+                this.setState({
+                    google: res.google,
+                    facebook : res.facebook,
+                    twitch : res.twitch,
+                    onedrive : res.onedrive,
+                });
+            })
+        .catch(error => {
+            this.setState({ error, loading: false });
+        });
     };
 
     render() {

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {View, StyleSheet, Text, TouchableOpacity, RefreshControl} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import GridView from 'react-native-super-grid';
+import SyncStorage from 'sync-storage';
 
 class ViewProfile extends Component {
     
@@ -10,164 +11,45 @@ class ViewProfile extends Component {
     
         this.state = {
           loading: false,
-          data: {
-            "success": true,
-            "reason": null,
-            "data": [
-                {
-                    "id": 2,
-                    "user_id": 3,
-                    "action_id": 1,
-                    "reaction_id": 1,
-                    "timer_area": null,
-                    "p_video_id": null,
-                    "p_page_id": null,
-                    "p_fbpage_id": null,
-                    "p_ytb_name": null,
-                    "p_streamer": null
-                },
-                {
-                    "id": 6,
-                    "user_id": 3,
-                    "action_id": 2,
-                    "reaction_id": 2,
-                    "timer_area": null,
-                    "p_video_id": null,
-                    "p_page_id": null,
-                    "p_fbpage_id": null,
-                    "p_ytb_name": null,
-                    "p_streamer": null
-                },
-                {
-                    "id": 2,
-                    "user_id": 3,
-                    "action_id": 3,
-                    "reaction_id": 3,
-                    "timer_area": null,
-                    "p_video_id": null,
-                    "p_page_id": null,
-                    "p_fbpage_id": null,
-                    "p_ytb_name": null,
-                    "p_streamer": null
-                },
-                {
-                    "id": 6,
-                    "user_id": 3,
-                    "action_id": 4,
-                    "reaction_id": 1,
-                    "timer_area": null,
-                    "p_video_id": null,
-                    "p_page_id": null,
-                    "p_fbpage_id": null,
-                    "p_ytb_name": null,
-                    "p_streamer": null
-                },
-                {
-                    "id": 2,
-                    "user_id": 3,
-                    "action_id": 5,
-                    "reaction_id": 1,
-                    "timer_area": null,
-                    "p_video_id": null,
-                    "p_page_id": null,
-                    "p_fbpage_id": null,
-                    "p_ytb_name": null,
-                    "p_streamer": null
-                },
-                {
-                    "id": 6,
-                    "user_id": 3,
-                    "action_id": 6,
-                    "reaction_id": 1,
-                    "timer_area": null,
-                    "p_video_id": null,
-                    "p_page_id": null,
-                    "p_fbpage_id": null,
-                    "p_ytb_name": null,
-                    "p_streamer": null
-                },
-                {
-                    "id": 2,
-                    "user_id": 3,
-                    "action_id": 7,
-                    "reaction_id": 1,
-                    "timer_area": null,
-                    "p_video_id": null,
-                    "p_page_id": null,
-                    "p_fbpage_id": null,
-                    "p_ytb_name": null,
-                    "p_streamer": null
-                },
-                {
-                    "id": 6,
-                    "user_id": 3,
-                    "action_id": 8,
-                    "reaction_id": 1,
-                    "timer_area": null,
-                    "p_video_id": null,
-                    "p_page_id": null,
-                    "p_fbpage_id": null,
-                    "p_ytb_name": null,
-                    "p_streamer": null
-                },
-                {
-                    "id": 2,
-                    "user_id": 3,
-                    "action_id": 9,
-                    "reaction_id": 1,
-                    "timer_area": null,
-                    "p_video_id": null,
-                    "p_page_id": null,
-                    "p_fbpage_id": null,
-                    "p_ytb_name": null,
-                    "p_streamer": null
-                },
-                {
-                    "id": 1008,
-                    "user_id": 3,
-                    "action_id": 10,
-                    "reaction_id": 1,
-                    "timer_area": null,
-                    "p_video_id": null,
-                    "p_page_id": null,
-                    "p_fbpage_id": null,
-                    "p_ytb_name": null,
-                    "p_streamer": null
-                },
-                {
-                    "id": 1009,
-                    "user_id": 3,
-                    "action_id": 11,
-                    "reaction_id": 1,
-                    "timer_area": null,
-                    "p_video_id": null,
-                    "p_page_id": null,
-                    "p_fbpage_id": null,
-                    "p_ytb_name": null,
-                    "p_streamer": null
-                },
-                {
-                    "id": 1010,
-                    "user_id": 3,
-                    "action_id": 12,
-                    "reaction_id": 1,
-                    "timer_area": null,
-                    "p_video_id": null,
-                    "p_page_id": null,
-                    "p_fbpage_id": null,
-                    "p_ytb_name": null,
-                    "p_streamer": null
-                },
-            ]
-        },
+          data: [],
           error: null,
           refreshing: false,
         };
       }
+
+    componentDidMount() {
+        this.makeRemoteRequest();
+    }
+
+    makeRemoteRequest = () => {
+        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/area/" + SyncStorage.get("USER_ID");
+        this.setState({ loading: true });
+        fetch(url, {
+             method: 'GET',
+          })
+            .then(res => res.json())
+            .then(res => {
+                this.setState({refreshing: false});
+                this.setState({
+                    data: res.data,
+                    error: res.error || null,
+                    loading: false,
+                    refreshing: false
+                });
+            })
+        .catch(error => {
+            this.setState({ error, loading: false });
+        });
+    };
+
+    _onRefresh = () => {
+        this.setState({refreshing: true});
+        this.makeRemoteRequest()
+    }
     
-      delete_area = (id) => {
-          // send request to delete a card with id in param
-      }
+    delete_area = (id) => {
+        // send request to delete a card with id in param
+    }
     
     create_card = (i) => {
         var lulz = this.state.data.data[i];
@@ -275,7 +157,7 @@ class ViewProfile extends Component {
             <View style={{display: 'flex', justifyContent: 'center', alignSelf: 'center', paddingTop: 60, paddingBottom: 20}}>
                 <Text style={{fontSize: 30, fontWeight: 'bold'}}>Mon profil</Text>
             </View>
-            <GridView
+            <GridView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh}/>}
                 itemDimension={130}
                 items={items}
                 style={homePage.gridView}

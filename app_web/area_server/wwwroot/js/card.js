@@ -16,8 +16,6 @@ function getCookie(cname) {
 
 var USER_ID = parseInt(getCookie("user_id"), 10);
 
-
-//internal/oauth2/token/user_id
 /*$.ajax(
     {
     url: "http://localhost:8080/internal/oauth2/token/" + USER_ID,

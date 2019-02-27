@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, KeyboardAvoidingView, AsyncStorage, Button, StatusBar, StyleSheet, View, Image, Linking, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { Text, KeyboardAvoidingView, StyleSheet, View, Keyboard, TouchableWithoutFeedback, TextInput, TouchableOpacity, Alert } from 'react-native';
 import Icon3 from 'react-native-vector-icons/AntDesign'
-import {decode as atob, encode as btoa} from 'base-64'
+import {encode as btoa} from 'base-64'
+import SyncStorage from 'sync-storage';
 
 class SignupScreen extends React.Component {
 
@@ -38,6 +39,7 @@ class SignupScreen extends React.Component {
     render() {
         return (
         <KeyboardAvoidingView behavior="padding" style={loginStyles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View style={loginStyles.logoContainer}>
               <Icon3 name="API" color={'black'} size={120} />
                 <Text style={loginStyles.title}>AREA</Text>
@@ -86,6 +88,7 @@ class SignupScreen extends React.Component {
                 <Text style={styles.buttonText}>Créer un compte</Text>
             </TouchableOpacity>
             </View>
+        </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
     );
   }
@@ -138,15 +141,13 @@ class SignupScreen extends React.Component {
                       );
         //send request to serv
     var data = btoa(username + ':' + email + ':' + this.EncryptPass(password1));
-    console.log(data);
-    const url = "http://10.18.207.159:8080/internal/signup/" + data;
+    const url = "http://" + SyncStorage.get("IP") + ":8080/internal/signup/" + data;
     this.setState({ loading: true });
     fetch(url, {
          method: 'GET',
       })
       .then(res => res.json())
       .then(res => {
-        console.log(res);
         this.setState({refreshing: false});
         this.setState({
           data: res.data,

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Text, KeyboardAvoidingView, AsyncStorage, Button, StatusBar, StyleSheet, View, Image, Linking, TextInput, TouchableOpacity, Alert } from 'react-native';
-import SyncStorage from 'sync-storage';
+import { Text, KeyboardAvoidingView, StyleSheet, View, Keyboard, TextInput, TouchableOpacity, Alert, TouchableWithoutFeedback } from 'react-native';
 import {AuthSession} from 'expo'
 import Icon3 from 'react-native-vector-icons/AntDesign'
-import {decode as atob, encode as btoa} from 'base-64'
-import syncStorage from 'sync-storage';
+import {encode as btoa} from 'base-64'
+import SyncStorage from 'sync-storage';
 
 class LoginScreen extends React.Component {
   constructor(props) {
@@ -27,6 +26,7 @@ class LoginScreen extends React.Component {
     render() {
         return (
         <KeyboardAvoidingView behavior="padding" style={loginStyles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View style={loginStyles.logoContainer}>
               <Icon3 name="API" color={'black'} size={120} />
                 <Text style={loginStyles.title}>AREA</Text>
@@ -57,6 +57,7 @@ class LoginScreen extends React.Component {
                   <Text style={styles.buttonText}>Se connecter via Google</Text>
               </TouchableOpacity>
             </View>
+          </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
     );
   }
@@ -83,7 +84,7 @@ EncryptPass = (pass1) => {
                       );
     var data = btoa(username + ':' + this.EncryptPass(password));
     console.log(data);
-    const url = "http://10.18.207.159:8080/internal/login/" + data;
+    const url = "http://" + SyncStorage.get("IP") + ":8080/internal/login/" + data;
     this.setState({ loading: true });
     fetch(url, {
          method: 'GET',
@@ -121,7 +122,7 @@ EncryptPass = (pass1) => {
           this.state.username = null;
           this.state.password = null;
           SyncStorage.set('USERNAME', username);
-          //SyncStorage.set('ID', ID);
+          //SyncStorage.set('USER_ID', ID);
           this.props.navigation.navigate('App');
         }
       })
@@ -148,7 +149,7 @@ EncryptPass = (pass1) => {
         console.log(id_token);
         console.log(username);
         console.log(email);
-        const url = "http://10.18.207.159:8080/internal/goauth2"
+        const url = "http://" + SyncStorage.get("IP") + ":8080/internal/goauth2"
         this.setState({ loading: true });
         await fetch(url, {
             method: 'POST',
@@ -166,17 +167,19 @@ EncryptPass = (pass1) => {
               loading: false,
               refreshing: false
             });
+            SyncStorage.set('USERNAME', username);
+            //SyncStorage.set('USER_ID', ID_RECU_PENDANT_LE_LOGIN);
           })
           .catch(error => {
             this.setState({ error, loading: false });
           });
-        const url2 = "http://10.18.207.159:8080/internal/oauth2/google/?token=" + google_token;
+        const url2 = "http://" + SyncStorage.get("IP") + ":8080/internal/oauth2/google/?token=" + google_token;
         this.setState({ loading: true });
         fetch(url2, {
             method: 'GET',
             credentials: "same-origin",
             headers: {
-              Cookie: "user_id=" + 20
+              Cookie: "user_id=" + 7
           },
          })
          .then(res => res.json())
@@ -194,8 +197,6 @@ EncryptPass = (pass1) => {
              this.passwordInput.clear();
              this.state.username = null;
              this.state.password = null;
-             SyncStorage.set('USERNAME', username);
-             //SyncStorage.set('USER_ID', ID_RECU_PENDANT_LE_LOGIN);
              this.props.navigation.navigate('App');
            }
          })

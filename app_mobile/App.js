@@ -4,6 +4,7 @@ import AuthNavigation from "./navigation/BottomTabAuth"
 import ScreenOauth from "./Screens/ScreenOauth"
 import ScreenReaction from "./Screens/ScreenReaction"
 import ScreenFormulaire from "./Screens/ScreenFormulaire"
+import IpScreen from "./Screens/IpScreen"
 import {
     createStackNavigator,
     createAppContainer,
@@ -11,13 +12,12 @@ import {
   } from 'react-navigation';
 
 export default class App extends Component {
-  AREA() {
-    return <AppContainer/>
-  }
-
-  render() {
-      return this.AREA();
-  }
+    AREA() {
+        return <AppContainer/>
+    }
+    render() {
+        return this.AREA();
+    }
 }
 
 const LoginStack = createStackNavigator(
@@ -39,6 +39,7 @@ const BottomTabNavigation = createStackNavigator(
 )
 
 const AppNavigator = createSwitchNavigator({
+    IP: IpScreen,
     Login: LoginStack,
     App: BottomTabNavigation,
     Oauth2 : ScreenOauth,
@@ -46,7 +47,7 @@ const AppNavigator = createSwitchNavigator({
     Formulaire : ScreenFormulaire
 },
 {
-    initialRouteName: 'Login',
+    initialRouteName: 'IP',
 })
 
 const AppContainer = createAppContainer(AppNavigator)

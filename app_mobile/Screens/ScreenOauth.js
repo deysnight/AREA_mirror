@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import { Text, Button, StatusBar, StyleSheet, View, Image, Linking, TextInput, TouchableOpacity, Alert } from 'react-native';
 import {AuthSession} from 'expo'
+import SyncStorage from 'sync-storage';
 
 class ScreenOauth extends React.Component {
+    constructor(props) {
+        super(props);
+    
+        this.request = {
+          loading: false,
+          data: [],
+          error: null,
+          refreshing: false,
+    
+        };
+      }
+
     opts = {
         authorization_endpoint: 'https://api.twitch.tv/kraken/oauth2/authorize',
         response_type: 'token',
@@ -20,29 +33,36 @@ class ScreenOauth extends React.Component {
         const {
             type,
             token,
-            expires,
-            permissions,
-            declinedPermissions,
             } = await Expo.Facebook.logInWithReadPermissionsAsync('411072423035343', {
                 permissions: ['public_profile', 'email'],
                 });
-                if (type === 'success') {
-                    const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-                    const response2 = await fetch(`https://graph.facebook.com/me/accounts?access_token=${token}`);
-                    const url = "https://graph.facebook.com/me/feed?access_token=" + token;
-                    const response3 = await fetch(url, {
+                var url = "http://" + SyncStorage.get("IP") + ":8080/internal/oauth2/facebook/?token=" + token;
+                this.setState({ loading: true });
+                fetch(url, {
                     method: 'GET',
+                    credentials: "same-origin",
                     headers: {
-                     'Accept': 'application/json',
-                    }
-                })
-                    .then(response3 => response3.json())
-                    .then(response3 => {console.log(response3)})
-                    this.props.navigation.navigate('Area');
-                }
-                else {
-           // type === 'cancel'
-            }
+                      Cookie: "user_id=" + 7
+                  },
+                 })
+                 .then(res => res.json())
+                 .then(res => {
+                   console.log(res);
+                   this.setState({refreshing: false});
+                   this.setState({
+                     data: res.data,
+                     error: res.error || null,
+                     loading: false,
+                     refreshing: false
+                   });
+                   if (res.success === true) {
+                     this.props.navigation.navigate('Area');
+                   }
+                 })
+                 .catch(error => {
+                   this.setState({ error, loading: false });
+                 });    
+            
         } catch ({ message }) {
         alert(`Facebook Login Error: ${message}`);
         }
@@ -58,8 +78,32 @@ class ScreenOauth extends React.Component {
           })
           if (result.type === "success") {
             var google_token = result.accessToken;
-            var username = result.user.name;
-            this.props.navigation.navigate('Area');
+            var url = "http://" + SyncStorage.get("IP") + ":8080/internal/oauth2/google/?token=" + google_token;
+            this.setState({ loading: true });
+            fetch(url, {
+                method: 'GET',
+                credentials: "same-origin",
+                headers: {
+                  Cookie: "user_id=" + 7
+              },
+             })
+             .then(res => res.json())
+             .then(res => {
+               console.log(res);
+               this.setState({refreshing: false});
+               this.setState({
+                 data: res.data,
+                 error: res.error || null,
+                 loading: false,
+                 refreshing: false
+               });
+               if (res.success === true) {
+                 this.props.navigation.navigate('Area');
+               }
+             })
+             .catch(error => {
+               this.setState({ error, loading: false });
+             });
           } 
           else
             console.log("cancelled")   
@@ -77,9 +121,32 @@ class ScreenOauth extends React.Component {
         const result = await AuthSession.startAsync({authUrl: url});
         if (result.type === "success")
             var token =  result.params.access_token;
-            console.log(token);
-            //access_token_to_serv
-            this.props.navigation.navigate('Area');
+            var url2 = "http://" + SyncStorage.get("IP") + ":8080/internal/oauth2/twitch/?token=" + token;
+            this.setState({ loading: true });
+            fetch(url2, {
+                method: 'GET',
+                credentials: "same-origin",
+                headers: {
+                  Cookie: "user_id=" + 7
+              },
+             })
+             .then(res => res.json())
+             .then(res => {
+               console.log(res);
+               this.setState({refreshing: false});
+               this.setState({
+                 data: res.data,
+                 error: res.error || null,
+                 loading: false,
+                 refreshing: false
+               });
+               if (res.success === true) {
+                 this.props.navigation.navigate('Area');
+               }
+             })
+             .catch(error => {
+               this.setState({ error, loading: false });
+             });
     };
 
     HandleOneDriveURL = async ({url}) => {
@@ -94,8 +161,32 @@ class ScreenOauth extends React.Component {
         const result = await AuthSession.startAsync({authUrl: url});
         if (result.type === "success")
             var token =  result.params.access_token;
-            //access_token_to_serv
-            this.props.navigation.navigate('Area');
+            var url2 = "http://" + SyncStorage.get("IP") + ":8080/internal/oauth2/onedrive/?token=" + token;
+            this.setState({ loading: true });
+            fetch(url2, {
+                method: 'GET',
+                credentials: "same-origin",
+                headers: {
+                  Cookie: "user_id=" + 6
+              },
+             })
+             .then(res => res.json())
+             .then(res => {
+               console.log(res);
+               this.setState({refreshing: false});
+               this.setState({
+                 data: res.data,
+                 error: res.error || null,
+                 loading: false,
+                 refreshing: false
+               });
+               if (res.success === true) {
+                 this.props.navigation.navigate('Area');
+               }
+             })
+             .catch(error => {
+               this.setState({ error, loading: false });
+             });
     };
 
     render() {
