@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
 import { Text, KeyboardAvoidingView, AsyncStorage, Button, StatusBar, StyleSheet, View, Image, Linking, TextInput, TouchableOpacity, Alert } from 'react-native';
 import Icon3 from 'react-native-vector-icons/AntDesign'
+import {decode as atob, encode as btoa} from 'base-64'
 
 class SignupScreen extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.request = {
+      loading: false,
+      data: [],
+      error: null,
+      refreshing: false,
+
+    };
+  }
+
     state = {
         username: null,
         email: null,
@@ -10,6 +24,17 @@ class SignupScreen extends React.Component {
         password2: null,
         result: null
     };
+
+    EncryptPass = (pass1) => {
+      var hash = 0, i, chr;
+        for (i = 0; i < pass1.length; i++) {
+            chr = pass1.charCodeAt(i);
+            hash = ((hash << 5) - hash) + chr;
+            hash |= 0;
+        }
+        return hash;
+    }
+
     render() {
         return (
         <KeyboardAvoidingView behavior="padding" style={loginStyles.container}>
@@ -112,25 +137,74 @@ class SignupScreen extends React.Component {
                            ]
                       );
         //send request to serv
-        
-        this.Pseudo.clear();
-        this.Email.clear();
-        this.Password1.clear();
-        this.Password2.clear();
-        this.state.username = null;
-        this.state.email = null;
-        this.state.password1 = null;
-        this.state.password2 = null;
-        Alert.alert(
-          'Compte créé'
-          ,'Votre compte à été crée avec succès'
-          ,[
-            {text: 'Continuer'},
-           ]
-        );
-        this.props.navigation.navigate('Login');
-  }
-
+    var data = btoa(username + ':' + email + ':' + this.EncryptPass(password1));
+    console.log(data);
+    const url = "http://10.18.207.159:8080/internal/signup/" + data;
+    this.setState({ loading: true });
+    fetch(url, {
+         method: 'GET',
+      })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        this.setState({refreshing: false});
+        this.setState({
+          data: res.data,
+          error: res.error || null,
+          loading: false,
+          refreshing: false
+        });
+        if (res.reason === "login or user incorrect")
+          return Alert.alert(
+                          'Erreur'
+                          ,'Vos données de connexion sont incorrectes'
+                          ,[
+                            {text: 'Continuer'},
+                           ]
+                      );
+        else if (res.reason === "account require email validation")
+          return Alert.alert(
+                          'Erreur'
+                          ,'Vous devez valider votre email'
+                          ,[
+                            {text: 'Continuer'},
+                           ]
+                      );
+        if (res.reason === "login already exist")
+          return Alert.alert(
+                          'Erreur'
+                          ,'Pseudo déjà utilisé'
+                          ,[
+                            {text: 'Continuer'},
+                           ]
+                      );
+        if (res.reason === "email already exist")
+          return Alert.alert(
+                          'Erreur'
+                          ,'Email déjà utilisé'
+                          ,[
+                            {text: 'Continuer'},
+                           ]
+                      );
+        if (res.success === true) {
+          this.Pseudo.clear();
+          this.Email.clear();
+          this.Password1.clear();
+          this.Password2.clear();
+          this.state.username = null;
+          this.state.email = null;
+          this.state.password1 = null;
+          this.state.password2 = null;
+          Alert.alert(
+            'Compte créé'
+            ,'Votre compte à été crée avec succès'
+            ,[
+              {text: 'Continuer'},
+            ]
+          );
+          this.props.navigation.navigate('Login');
+        }
+    })}
   }
   const loginStyles = StyleSheet.create({
     container: {

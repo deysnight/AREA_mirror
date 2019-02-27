@@ -70,15 +70,15 @@
                     }
                 }
             });
-            /*
+            
             $.ajax({
-                url: "http://localhost:8080/internal/oauth2/google/?token" + access_token,
+                url: "http://localhost:8080/internal/oauth2/google/?token=" + access_token,
                 method: "GET",
                 success: function (response) {
                     location.reload();
                 }
             });
-            */
+            
         }
         function onFailure(error) {
             console.log(error);
