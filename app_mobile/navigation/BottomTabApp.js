@@ -11,7 +11,7 @@ import SyncStorage from 'sync-storage';
 
 Logout = async (navigation) => {
     SyncStorage.remove('USERNAME');
-    //SyncStorage.remove('USER_ID');
+    SyncStorage.remove('USER_ID');
     navigation.navigate('Login');
 }
 

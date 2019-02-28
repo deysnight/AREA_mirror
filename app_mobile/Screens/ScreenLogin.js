@@ -83,23 +83,16 @@ EncryptPass = (pass1) => {
                            ]
                       );
     var data = btoa(username + ':' + this.EncryptPass(password));
-    console.log(data);
     const url = "http://" + SyncStorage.get("IP") + ":8080/internal/login/" + data;
     this.setState({ loading: true });
     fetch(url, {
          method: 'GET',
+         headers: new Headers({
+          'Content-Type': 'application/x-www-form-urlencoded',
+        })
       })
       .then(res => res.json())
       .then(res => {
-        console.log(res);
-        this.setState({refreshing: false});
-        this.setState({
-          data: res.data,
-          error: res.error || null,
-          loading: false,
-          refreshing: false
-        });
-
         if (res.reason === "login or user incorrect")
           return Alert.alert(
                           'Erreur'
@@ -117,12 +110,13 @@ EncryptPass = (pass1) => {
                            ]
                       );
         if (res.success === true) {
+          var user_id = res.user_id;
           this.Username.clear();
           this.passwordInput.clear();
           this.state.username = null;
           this.state.password = null;
           SyncStorage.set('USERNAME', username);
-          //SyncStorage.set('USER_ID', ID);
+          SyncStorage.set('USER_ID', user_id);
           this.props.navigation.navigate('App');
         }
       })
@@ -140,15 +134,10 @@ EncryptPass = (pass1) => {
         scopes: ["profile", "email", "https://mail.google.com/", "https://www.googleapis.com/auth/youtube.force-ssl", "https://www.googleapis.com/auth/drive", "https://www.googleapis.com/auth/spreadsheets"]
       })
       if (result.type === "success") {
-        console.log(result);
         var google_token = result.accessToken;
         var id_token = result.idToken;
         var username = result.user.name;
         var email = result.user.email;
-        SyncStorage.set('USERNAME', username);
-        console.log(id_token);
-        console.log(username);
-        console.log(email);
         const url = "http://" + SyncStorage.get("IP") + ":8080/internal/goauth2"
         this.setState({ loading: true });
         await fetch(url, {
@@ -156,11 +145,12 @@ EncryptPass = (pass1) => {
             headers: new Headers({
              'Content-Type': 'application/x-www-form-urlencoded',
            }),
-          body: "user_id_token=" + id_token + "&user_name=" + username + "&user_email=" + email
+            body: "user_id_token=" + id_token + "&user_name=" + username + "&user_email=" + email
           })
           .then(res => res.json())
           .then(res => {
             console.log(res);
+            var user_id = res.user_id;
             this.setState({
               status: res.status,
               error: res.error || null,
@@ -168,7 +158,7 @@ EncryptPass = (pass1) => {
               refreshing: false
             });
             SyncStorage.set('USERNAME', username);
-            //SyncStorage.set('USER_ID', ID_RECU_PENDANT_LE_LOGIN);
+            SyncStorage.set('USER_ID', user_id);
           })
           .catch(error => {
             this.setState({ error, loading: false });
@@ -179,7 +169,7 @@ EncryptPass = (pass1) => {
             method: 'GET',
             credentials: "same-origin",
             headers: {
-              Cookie: "user_id=" + 7
+              Cookie: "user_id=" + SyncStorage.get("USER_ID")
           },
          })
          .then(res => res.json())
