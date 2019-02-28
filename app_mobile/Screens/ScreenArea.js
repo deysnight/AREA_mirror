@@ -384,7 +384,7 @@ class ScreenArea extends React.Component {
                                         />
                                     </View>
                                     <View style={{flex: 7}}>
-                                        <Text style={{color: "white", textAlign: "center", fontSize: 13, fontWeight: 'bold', marginBottom: 5, marginTop: 5}}>Partage fichier</Text>
+                                        <Text style={{color: "white", textAlign: "center", fontSize: 18, fontWeight: 'bold', marginBottom: 5, marginTop: 5}}>Partage fichier</Text>
                                         <Text style={{color: "white", textAlign: "center", fontSize: 13}}>Partage d'un fichier avec vous sur OneDrive</Text>
                                     </View>
                                     <View style={{flex: 3, display: 'flex', flexDirection: 'row', justifyContent: 'center', alignSelf: 'center'}}>

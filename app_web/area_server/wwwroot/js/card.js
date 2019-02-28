@@ -30,7 +30,7 @@ var USER_ID = parseInt(getCookie("user_id"), 10);
 var user_token_json = [
     {
         "user_id": 3,
-        "facebook": null,
+        "facebook": 3,
         "twitch": 1,
         "google": "lul",
         "onedrive": 1
