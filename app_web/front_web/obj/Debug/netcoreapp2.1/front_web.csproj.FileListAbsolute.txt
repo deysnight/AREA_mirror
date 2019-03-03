@@ -1,0 +1,28 @@
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\bin\Debug\netcoreapp2.1\front_web.deps.json
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\bin\Debug\netcoreapp2.1\front_web.runtimeconfig.json
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\bin\Debug\netcoreapp2.1\front_web.runtimeconfig.dev.json
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\bin\Debug\netcoreapp2.1\front_web.dll
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\bin\Debug\netcoreapp2.1\front_web.pdb
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.csprojAssemblyReference.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.csproj.CoreCompileInputs.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.RazorAssemblyInfo.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.RazorAssemblyInfo.cs
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.AssemblyInfoInputs.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.AssemblyInfo.cs
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.RazorTargetAssemblyInfo.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.dll
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.pdb
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\bin\Debug\netcoreapp2.1\front_web.deps.json
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\bin\Debug\netcoreapp2.1\front_web.runtimeconfig.json
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\bin\Debug\netcoreapp2.1\front_web.runtimeconfig.dev.json
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\bin\Debug\netcoreapp2.1\front_web.dll
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\bin\Debug\netcoreapp2.1\front_web.pdb
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.csprojAssemblyReference.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.csproj.CoreCompileInputs.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.RazorAssemblyInfo.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.RazorAssemblyInfo.cs
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.AssemblyInfoInputs.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.AssemblyInfo.cs
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.RazorTargetAssemblyInfo.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.dll
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\app_web\front_web\obj\Debug\netcoreapp2.1\front_web.pdb

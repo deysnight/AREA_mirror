@@ -1,0 +1,888 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>AREA - Home</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="google-signin-client_id" content="218486788454-ib26rj3me8cia6dmft0p6gdhbt0qmelj.apps.googleusercontent.com">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/active_card.css" />
+    <script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=411072423035343&autoLogAppEvents=1"></script>
+</head>
+<body>    
+    <header>
+        <div id="header_nav">
+            <h2><a class="header_text_title" href="/">AREA</a></h2>
+            <ul id="header_list">
+
+            </ul>
+        </div>
+    </header>
+    <div id="glob">
+        <div id="service_wrap">
+            <div class="card" id="youtube_card">
+                <div id="data">
+                    <div id="icon">
+                        <i class="fa fa-youtube-play fa-4x" aria-hidden="true"></i>
+                    </div>
+                    <div id="title">
+                        <p>YouTube</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card" id="facebook_card">
+                <div id="data">
+                    <div id="icon">
+                        <i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i>
+                    </div>
+                    <div id="title">
+                        <p>Facebook</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card" id="twitch_card">
+                <div id="data">
+                    <div id="icon">
+                        <i class="fa fa-twitch fa-4x" aria-hidden="true"></i>
+                    </div>
+                    <div id="title">
+                        <p>Twitch</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card" id="onedrive_card">
+                <div id="data">
+                    <div id="icon">
+                        <i class="fa fa-cloud fa-4x" aria-hidden="true"></i>
+                    </div>
+                    <div id="title">
+                        <p>OneDrive</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card" id="drive_card">
+                <div id="data">
+                    <div id="icon">
+                        <i class="fab fa-google-drive fa-4x" aria-hidden="true"></i>
+                    </div>
+                    <div id="title">
+                        <p>Drive</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card" id="sheet_card">
+                <div id="data">
+                    <div id="icon">
+                        <i class="fa fa-file-text-o fa-4x" aria-hidden="true"></i>
+                    </div>
+                    <div id="title">
+                        <p>Sheet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="action">
+            <div id="youtube_reaction" class="active_reaction_card">
+                <div class="reaction_card yt" id="youtube_first">
+                    <div>
+                        <div class="card_reaction_title">
+                            <p class="reaction_title">Abonnement</p>
+                            <i class="fa fa-youtube-play fa-3x" aria-hidden="true\"></i>
+                        </div>
+
+                        <div class="card_reaction_desc">
+                            <p class="reaction_description">Augmentation du nombre d'abonnés sur Youtube</p>
+                        </div>
+                    </div>
+                    <hr class="card_separator">
+                    <div class="compatible">
+                        <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="reaction_card yt" id="youtube_second">
+                    <div>
+                        <div class="card_reaction_title">
+                            <p class="reaction_title">Like Vidéo</p>
+                            <i class="fa fa-youtube-play fa-3x" aria-hidden="true\"></i>
+                        </div>
+                        <div class="card_reaction_desc">
+                            <p class="reaction_description">Like ou Dislike d'une vidéo Youtube</p>
+                        </div>
+                    </div>
+                    <hr class="card_separator">
+                    <div class="compatible">
+                        <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="reaction_card yt" id="youtube_third">
+                    <div>
+                        <div class="card_reaction_title">
+                            <p class="reaction_title">Youtuber actif</p>
+                            <i class="fa fa-youtube-play fa-3x" aria-hidden="true\"></i>
+                        </div>
+                        <div class="card_reaction_desc">
+                            <p class="reaction_description">Nouvelle vidéo de votre youtuber favoris</p>
+                        </div>
+                    </div>
+                    <hr class="card_separator">
+                    <div class="compatible">
+                        <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="facebook_reaction">
+                 <div class="reaction_card fb" id="facebook_first">
+                    <div>
+                        <div class="card_reaction_title">
+                            <p class="reaction_title">Like page</p>
+                            <i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="card_reaction_desc">
+                            <p class="reaction_description">Gain de fan sur votre page Facebook</p>
+                        </div>
+                    </div>
+                    <hr class="card_separator">
+                    <div class="compatible">
+                        <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="reaction_card fb" id="facebook_second">
+                    <div>
+                        <div class="card_reaction_title">
+                            <p class="reaction_title">Nouvelle page</p>
+                            <i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="card_reaction_desc">
+                            <p class="reaction_description">Création d'une nouvelle page Facebook</p>
+                        </div>
+                    </div>
+                    <hr class="card_separator">
+                    <div class="compatible">
+                        <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="reaction_card fb" id="facebook_third">
+                    <div>
+                        <div class="card_reaction_title">
+                            <p class="reaction_title">Nouveau post</p>
+                            <i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="card_reaction_desc">
+                            <p class="reaction_description">Nouveau post sur votre mur Facebook</p>
+                        </div>
+                    </div>
+                    <hr class="card_separator">
+                    <div class="compatible">
+                        <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="twitch_reaction">
+                <div class="reaction_card twitch" id="twitch_first">
+                    <div>
+                        <div class="card_reaction_title">
+                            <p class="reaction_title">Follow Streamer</p>
+                            <i class="fa fa-twitch fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="card_reaction_desc">
+                            <p class="reaction_description">Nouvelle chaîne follow sur Twitch</p>
+                        </div>
+                    </div>
+                    <hr class="card_separator">
+                    <div class="compatible">
+                        <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="reaction_card twitch" id="twitch_second">
+                    <div>
+                        <div class="card_reaction_title">
+                            <p class="reaction_title">Nouveau follow</p>
+                            <i class="fa fa-twitch fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="card_reaction_desc">
+                            <p class="reaction_description">Gain de follower sur Twitch</p>
+                        </div>
+                    </div>
+                    <hr class="card_separator">
+                    <div class="compatible">
+                        <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="reaction_card twitch" id="twitch_third">
+                    <div>
+                        <div class="card_reaction_title">
+                            <p class="reaction_title">Streamer live</p>
+                            <i class="fa fa-twitch fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="card_reaction_desc">
+                            <p class="reaction_description">Passage live de votre streamer favoris</p>
+                        </div>
+                    </div>
+                    <hr class="card_separator">
+                    <div class="compatible">
+                        <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="onedrive_reaction">
+                <div class="reaction_card onedrive" id="onedrive_first">
+                    <div>
+                        <div class="card_reaction_title">
+                            <p class="reaction_title">Partage fichier</p>
+                            <i class="fa fa-cloud fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="card_reaction_desc">
+                            <p class="reaction_description">Soyez notifié par lorsque quelqu'un partage un fichier avec vous sur OneDrive</p>
+                        </div>
+                    </div>
+                    <hr class="card_separator">
+                    <div class="compatible">
+                        <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+            </div>
+            <div id="drive_reaction">
+                <div class="reaction_card gdrive" id="gdrive_first">
+                    <div>
+                        <div class="card_reaction_title">
+                            <p class="reaction_title">Upload fichier</p>
+                            <i class="fab fa-google-drive fa-3x"></i>
+                        </div>
+                        <div class="card_reaction_desc">
+                            <p class="reaction_description">Soyez notifié lorsque quelqu'un upload un fichier sur votre Google Drive</p>
+                        </div>
+                    </div>
+                    <hr class="card_separator">
+                    <div class="compatible">
+                        <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div> 
+            <div id="sheet_reaction">
+                <div class="reaction_card gsheet" id="gsheet_first">
+                    <div>
+                        <div class="card_reaction_title">
+                            <p class="reaction_title">Upload fichier</p>
+                            <i class="fas fa-file-alt fa-3x"></i>
+                        </div>
+                        <div class="card_reaction_desc">
+                            <p class="reaction_description">Soyez notifié lorsque quelqu'un upload un fichier sur votre Drive Google Sheet</p>
+                        </div>
+                    </div>
+                    <hr class="card_separator">
+                    <div class="compatible">
+                            <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>   
+        </div>
+        <div id="reaction">
+            <div id="reaction_1">
+                <div id="mail_react" class="reaction_ball">
+                    <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                </div>
+                <div id="sheet_react" class="reaction_ball">
+                    <i class="fas fa-file-alt fa-2x"></i>
+                </div>
+                <div id="facebook_react" class="reaction_ball">
+                    <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div id="validate">
+
+            <div id="validate_youtube1-1" class="form_validate">
+                <p class="validate_title">Abonnement Youtube par mail</p>
+                <div class="validate_icon">
+                    <i class="fa fa-youtube-play fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-envelope fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_ytb_1-1">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_ytb_1_1();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_youtube1-2" class="form_validate">
+                <p class="validate_title">Abonnement Youtube par Google Sheet</p>
+                <div class="validate_icon">
+                    <i class="fa fa-youtube-play fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-file-alt fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_ytb_1-2">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_ytb_1_2();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_youtube1-3" class="form_validate">
+                <p class="validate_title">Abonnement Youtube par Facebook</p>
+                <div class="validate_icon">
+                    <i class="fa fa-youtube-play fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="facebook_page_youtube_1-3" placeholder="Page_id" type="number" />
+                    <select id="timer_ytb_1-3">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_ytb_1_3();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_youtube2-1" class="form_validate">
+                <p class="validate_title">Like vidéo par mail</p>
+                <div class="validate_icon">
+                    <i class="fa fa-youtube-play fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-envelope fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="video_id_youtube_2-1" placeholder="Video_id"/>
+                    <select id="timer_ytb_2-1">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_ytb_2_1();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_youtube2-2" class="form_validate">
+                <p class="validate_title">Like vidéo par Google Sheet</p>
+                <div class="validate_icon">
+                    <i class="fa fa-youtube-play fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-file-alt fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="video_id_youtube_2-2" placeholder="Video_id"/>
+                    <select id="timer_ytb_2-2">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_ytb_2_2();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_youtube2-3" class="form_validate">
+                <p class="validate_title">Like vidéo par Facebook</p>
+                <div class="validate_icon">
+                    <i class="fa fa-youtube-play fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="video_id_youtube_2-3" placeholder="Video_id"/>
+                    <input id="facebook_page_youtube_2-3" placeholder="Page_id" type="number" />
+                    <select id="timer_ytb_2-3">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_ytb_2_3();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_youtube3-1" class="form_validate">
+                <p class="validate_title">Youtuber actif par mail</p>
+                <div class="validate_icon">
+                    <i class="fa fa-youtube-play fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-envelope fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="youtuber_3-1" placeholder="Youtuber"/>
+                    <select id="timer_ytb_3-1">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_ytb_3_1();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_youtube3-3" class="form_validate">
+                <p class="validate_title">Youtuber actif par Facebook</p>
+                <div class="validate_icon">
+                    <i class="fa fa-youtube-play fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="youtuber_3-3" placeholder="Youtuber"/>
+                    <input id="facebook_page_youtube_3-3" placeholder="Page_id" type="number" />
+                    <select id="timer_ytb_3-3">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_ytb_3_3();" class="validate_button">Valider</p>
+            </div>
+
+            <div id="validate_facebook1-1" class="form_validate">
+                <p class="validate_title">Like page par mail</p>
+                <div class="validate_icon">
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-envelope fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="page_facebook_1-1" placeholder="Page action" type="number" />
+                    <select id="timer_fb_1-1">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_fb_1_1();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_facebook1-2" class="form_validate">
+                <p class="validate_title">Like page par Google Sheet</p>
+                <div class="validate_icon">
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-file-alt fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="page_facebook_1-2" placeholder="Page action" type="number" />
+                    <select id="timer_fb_1-2">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_fb_1_2();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_facebook1-3" class="form_validate">
+                <p class="validate_title">Like page par Facebook</p>
+                <div class="validate_icon">
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true\"></i>
+                </div>
+                <div class="input_div">
+                    <input id="page_facebook_1-3" placeholder="Page action" type="number" />
+                    <input id="facebook_page_facebook_1-3" placeholder="Page reaction" type="number" />
+                    <select id="timer_fb_1-3">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_fb_1_3();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_facebook2-1" class="form_validate">
+                <p class="validate_title">Nouvelle page par mail</p>
+                <div class="validate_icon">
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-envelope fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_fb_2-1">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_fb_2_1();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_facebook2-2" class="form_validate">
+                <p class="validate_title">Nouvelle page par Google Sheet</p>
+                <div class="validate_icon">
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-file-alt fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_fb_2-2">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_fb_2_2();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_facebook2-3" class="form_validate">
+                <p class="validate_title">Nouvelle page par Facebook</p>
+                <div class="validate_icon">
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true\"></i>
+                </div>
+                <div class="input_div">
+                    <input id="facebook_page_facebook_2-3" placeholder="Page_id" type="number" />
+                    <select id="timer_fb_2-3">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_fb_2_3();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_facebook3-1" class="form_validate">
+                <p class="validate_title">Nouveau post par mail</p>
+                <div class="validate_icon">
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-envelope fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_fb_3-1">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_fb_3_1();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_facebook3-2" class="form_validate">
+                <p class="validate_title">Nouveau post par Google Sheet</p>
+                <div class="validate_icon">
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-file-alt fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_fb_3-2">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_fb_3_2();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_facebook3-3" class="form_validate">
+                <p class="validate_title">Nouveau post par Facebook</p>
+                <div class="validate_icon">
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true\"></i>
+                </div>
+                <div class="input_div">
+                    <input id="facebook_page_facebook_3-3" placeholder="Page_id" type="number" />
+                    <select id="timer_fb_3-3">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_fb_3_3();" class="validate_button">Valider</p>
+            </div>
+
+            <div id="validate_twitch1-1" class="form_validate">
+                <p class="validate_title">Follow streamer par mail</p>
+                <div class="validate_icon">
+                    <i class="fa fa-twitch fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-envelope fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_twitch_1-1">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_twitch_1_1();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_twitch1-2" class="form_validate">
+                <p class="validate_title">Follow streamer par Google Sheet</p>
+                <div class="validate_icon">
+                    <i class="fa fa-twitch fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-file-alt fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_twitch_1-2">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_twitch_1_2();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_twitch1-3" class="form_validate">
+                <p class="validate_title">Follow streamer par Facebook</p>
+                <div class="validate_icon">
+                    <i class="fa fa-twitch fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="facebook_page_twitch_1-3" placeholder="Page_id" type="number" />
+                    <select id="timer_twitch_1-3">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_twitch_1_3();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_twitch2-1" class="form_validate">
+                <p class="validate_title">Nouveau follow par mail</p>
+                <div class="validate_icon">
+                    <i class="fa fa-twitch fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-envelope fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_twitch_2-1">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_twitch_2_1();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_twitch2-2" class="form_validate">
+                <p class="validate_title">Nouveau follow par Google Sheet</p>
+                <div class="validate_icon">
+                    <i class="fa fa-twitch fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-file-alt fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_twitch_2-2">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_twitch_2_2();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_twitch2-3" class="form_validate">
+                <p class="validate_title">Nouveau follow par Facebook</p>
+                <div class="validate_icon">
+                    <i class="fa fa-twitch fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="facebook_page_twitch_2-3" placeholder="Page_id" type="number" />
+                    <select id="timer_twitch_2-3">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_twitch_2_3();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_twitch3-1" class="form_validate">
+                <p class="validate_title">Streamer live par mail</p>
+                <div class="validate_icon">
+                    <i class="fa fa-twitch fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-envelope fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="streamer_twitch_3-1" placeholder="Streamer"/>
+                    <select id="timer_twitch_3-1">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_twitch_3_1();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_twitch3-3" class="form_validate">
+                <p class="validate_title">Streamer live par Facebook</p>
+                <div class="validate_icon">
+                    <i class="fa fa-twitch fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="streamer_twitch_3-3" placeholder="Streamer"/>
+                    <input id="facebook_page_twitch_3-3" placeholder="Page_id" type="number" />
+                    <select id="timer_twitch_3-3">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_twitch_3_3();" class="validate_button">Valider</p>
+            </div>
+
+            <div id="validate_onedrive1-1" class="form_validate">
+                <p class="validate_title">Partage fichier par mail</p>
+                <div class="validate_icon">
+                    <i class="fa fa-cloud fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-envelope fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_onedrive_1-1">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_onedrive_1_1();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_onedrive1-2" class="form_validate">
+                <p class="validate_title">Partage fichier par Google Sheet</p>
+                <div class="validate_icon">
+                    <i class="fa fa-cloud fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-file-alt fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_onedrive_1-2">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_onedrive_1_2();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_onedrive1-3" class="form_validate">
+                <p class="validate_title">Partage fichier par Facebook</p>
+                <div class="validate_icon">
+                    <i class="fa fa-cloud fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="facebook_page_onedrive_1-3" placeholder="Page_id" type="number" />
+                    <select id="timer_onedrive_1-3">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_onedrive_1_3();" class="validate_button">Valider</p>
+            </div>
+
+            <div id="validate_gdrive1-1" class="form_validate">
+                <p class="validate_title">Upload fichier par mail</p>
+                <div class="validate_icon">
+                    <i class="fab fa-google-drive fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-envelope fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_gdrive_1-1">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_gdrive_1_1();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_gdrive1-3" class="form_validate">
+                <p class="validate_title">Upload fichier par Facebook</p>
+                <div class="validate_icon">
+                    <i class="fab fa-google-drive fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="facebook_page_gdrive_1-3" placeholder="Page_id" type="number" />
+                    <select id="timer_gdrive_1-3">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_gdrive_1_3();" class="validate_button">Valider</p>
+            </div>
+
+            <div id="validate_gsheet1-1" class="form_validate">
+                <p class="validate_title">Upload fichier par mail</p>
+                <div class="validate_icon">
+                    <i class="fa fa-file-alt fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-envelope fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <select id="timer_gsheet_1-1">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_gsheet_1_1();" class="validate_button">Valider</p>
+            </div>
+            <div id="validate_gsheet1-3" class="form_validate">
+                <p class="validate_title">Upload fichier par Facebook</p>
+                <div class="validate_icon">
+                    <i class="fa fa-file-alt fa-4x" aria-hidden="true\"></i>
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i>
+                </div>
+                <div class="input_div">
+                    <input id="facebook_page_gsheet_1-3" placeholder="Page_id" type="number" />
+                    <select id="timer_gsheet_1-3">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                    </select>
+                </div>
+                <p onclick="send_gsheet_1_3();" class="validate_button">Valider</p>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        function onSuccess(googleUser) {
+            var access_token = googleUser.getAuthResponse().access_token;
+            $.ajax({
+                url: "/internal/oauth2/google/?token=" + access_token,
+                method: "GET",
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (response) {
+                }
+            });
+        }
+        function onFailure(error) {
+            console.log(error);
+          }
+        function renderButton() {
+            gapi.signin2.render('my-signin2', {
+            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets',
+            'longtitle': true,
+            'width': 240,
+            'height': 50,
+            'theme': 'dark',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+            });
+            gapi.signin2.render('my-signin3', {
+            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets',
+            'longtitle': true,
+            'width': 240,
+            'height': 50,
+            'theme': 'dark',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+            });
+            gapi.signin2.render('my-signin4', {
+            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets',
+            'longtitle': true,
+            'width': 240,
+            'height': 50,
+            'theme': 'dark',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+            });
+            gapi.signin2.render('my-signin5', {
+            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets',
+            'longtitle': true,
+            'width': 240,
+            'height': 50,
+            'theme': 'dark',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+            });
+      }
+    </script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <script src="js/header.js"></script>
+    <script src="js/card.js"></script>
+    <script src="js/send_area.js"></script>
+</body>
+</html>

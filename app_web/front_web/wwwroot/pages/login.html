@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>AREA - Se connecter</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/registration.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <meta name="google-signin-client_id" content="218486788454-ib26rj3me8cia6dmft0p6gdhbt0qmelj.apps.googleusercontent.com">
+</head>
+<body>
+    <header>
+        <div id="header_nav">
+            <h2><a class="header_text_title" href="/">AREA</a></h2>
+            <ul id="header_list">
+                <li><a class="header_text_menu" href="/signup">S'inscrire</a></li>
+            </ul>
+        </div>
+    </header>
+    <div id="glob">
+        <div id="wrap01">
+            <h2>Se connecter</h2>
+        </div>
+        <div id="wrap-form">
+            <div id="mail">
+                
+            </div>
+            <div id="container-form">
+                <form id="login_form" method="post">
+                    <div class="form-group">
+                        <input id="login_username" type="text" placeholder="Votre login" />
+                    </div>
+                    <div class="form-group pass1_div">
+                        <input id="login_pass1" type="password" placeholder="Votre mot de passe" />
+                    </div>
+                    <a class="redirect_form" href="/signup"><br/>Cliquez-ici pour créer un compte.</a>
+                    <div id="button_container">
+                        <div id="my-signin2"></div>
+                        <p class="or_form">- OU -</p>
+                        <button id="login_button" class="link_button" type="submit"><span>Se connecter</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function onSuccess(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            var id_token = googleUser.getAuthResponse().id_token;
+            var access_token = googleUser.getAuthResponse().access_token;
+            var name = profile.getName();
+            var mail = profile.getEmail();
+            $.ajax({
+                url: "http://localhost:8080/internal/goauth2",
+                method: "POST",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    user_id_token: id_token,
+                    user_name: name,
+                    user_email: mail
+                },
+                success: function (response) {
+                    console.log(response);
+                    let jsonObject = JSON.parse(response);
+                    if (jsonObject.success == false) {
+                        console.log("error");
+                        return;
+                    }
+                    $.ajax({
+                        url: "http://localhost:8080/internal/oauth2/google/?token=" + access_token,
+                        method: "GET",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        success: function (response) {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+            
+        }
+        function onFailure(error) {
+            console.log(error);
+          }
+        function renderButton() {
+            gapi.signin2.render('my-signin2', {
+            'scope': 'https://mail.google.com/ https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+            });
+      }
+    </script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\bin\Debug\netcoreapp2.1\area_server.deps.json
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\bin\Debug\netcoreapp2.1\area_server.runtimeconfig.json
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\bin\Debug\netcoreapp2.1\area_server.runtimeconfig.dev.json
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\bin\Debug\netcoreapp2.1\area_server.dll
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\bin\Debug\netcoreapp2.1\area_server.pdb
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\obj\Debug\netcoreapp2.1\area_server.csprojAssemblyReference.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\obj\Debug\netcoreapp2.1\area_server.csproj.CoreCompileInputs.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\obj\Debug\netcoreapp2.1\area_server.RazorAssemblyInfo.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\obj\Debug\netcoreapp2.1\area_server.RazorAssemblyInfo.cs
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\obj\Debug\netcoreapp2.1\area_server.AssemblyInfoInputs.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\obj\Debug\netcoreapp2.1\area_server.AssemblyInfo.cs
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\obj\Debug\netcoreapp2.1\area_server.RazorTargetAssemblyInfo.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\obj\Debug\netcoreapp2.1\area_server.dll
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\obj\Debug\netcoreapp2.1\area_server.pdb
+C:\Users\louison.harizi\Desktop\AREA_mirror\app_web\area_server\bin\Debug\netcoreapp2.1\wwwroot\database\area_base.db
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\bin\Debug\netcoreapp2.1\wwwroot\database\area_base.db
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\bin\Debug\netcoreapp2.1\area_server.deps.json
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\bin\Debug\netcoreapp2.1\area_server.runtimeconfig.json
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\bin\Debug\netcoreapp2.1\area_server.runtimeconfig.dev.json
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\bin\Debug\netcoreapp2.1\area_server.dll
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\bin\Debug\netcoreapp2.1\area_server.pdb
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.csprojAssemblyReference.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.csproj.CoreCompileInputs.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.RazorAssemblyInfo.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.RazorAssemblyInfo.cs
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.AssemblyInfoInputs.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.AssemblyInfo.cs
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.RazorTargetAssemblyInfo.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.dll
+C:\Users\louison.harizi\Desktop\AREA_mirror\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.pdb
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.csprojAssemblyReference.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.csproj.CoreCompileInputs.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.RazorAssemblyInfo.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.RazorAssemblyInfo.cs
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.AssemblyInfoInputs.cache
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.AssemblyInfo.cs
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.dll
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.pdb
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\bin\Debug\netcoreapp2.1\wwwroot\database\area_base.db
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\bin\Debug\netcoreapp2.1\area_server.deps.json
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\bin\Debug\netcoreapp2.1\area_server.runtimeconfig.json
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\bin\Debug\netcoreapp2.1\area_server.runtimeconfig.dev.json
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\bin\Debug\netcoreapp2.1\area_server.dll
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\bin\Debug\netcoreapp2.1\area_server.pdb
+C:\Users\louison.harizi\Desktop\AREA_mirror merge\web_api\area_server\obj\Debug\netcoreapp2.1\area_server.RazorTargetAssemblyInfo.cache
