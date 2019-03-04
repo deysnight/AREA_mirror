@@ -7,7 +7,7 @@ class ScreenOauth extends React.Component {
     constructor(props) {
         super(props);
     
-        this.request = {
+        this.state = {
           loading: false,
           data: [],
           error: null,
@@ -42,7 +42,7 @@ class ScreenOauth extends React.Component {
                     method: 'GET',
                     credentials: "same-origin",
                     headers: {
-                      Cookie: "user_id=" + 7
+                      Cookie: "user_id=" + 21
                   },
                  })
                  .then(res => res.json())
@@ -84,7 +84,7 @@ class ScreenOauth extends React.Component {
                 method: 'GET',
                 credentials: "same-origin",
                 headers: {
-                  Cookie: "user_id=" + 7
+                  Cookie: "user_id=" + 21
               },
              })
              .then(res => res.json())
@@ -127,7 +127,7 @@ class ScreenOauth extends React.Component {
                 method: 'GET',
                 credentials: "same-origin",
                 headers: {
-                  Cookie: "user_id=" + 7
+                  Cookie: "user_id=" + 21
               },
              })
              .then(res => res.json())
@@ -167,7 +167,7 @@ class ScreenOauth extends React.Component {
                 method: 'GET',
                 credentials: "same-origin",
                 headers: {
-                  Cookie: "user_id=" + 6
+                  Cookie: "user_id=" + 21
               },
              })
              .then(res => res.json())

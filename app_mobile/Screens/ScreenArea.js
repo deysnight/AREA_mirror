@@ -2,45 +2,9 @@ import React, { Component } from 'react';
 import { Text, ScrollView, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/Entypo'
+import SyncStorage from 'sync-storage';
 
 class ScreenArea extends React.Component {
-    
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-            google: "null",
-            facebook: "null",
-            twitch: "null",
-            onedrive: "null"
-        };
-      }
-
-    componentDidMount() {
-        //this.makeRemoteRequest();
-    }
-
-    makeRemoteRequest = () => {
-        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/oauth2/token/" + SyncStorage.get("USER_ID");
-        this.setState({ loading: true });
-        fetch(url, {
-             method: 'GET',
-          })
-            .then(res => res.json())
-            .then(res => {
-                this.setState({refreshing: false});
-                this.setState({
-                    google: res.google,
-                    facebook : res.facebook,
-                    twitch : res.twitch,
-                    onedrive : res.onedrive,
-                });
-            })
-        .catch(error => {
-            this.setState({ error, loading: false });
-        });
-    };
-
     render() {
         const { navigation } = this.props;
         return (
@@ -52,7 +16,7 @@ class ScreenArea extends React.Component {
                     <ScrollView
                     showsVerticalScrollIndicator={false}
                     >
-                    { this.state.google ?
+                    { SyncStorage.get("GOOGLE_TOKEN") ?
                         <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -155,7 +119,7 @@ class ScreenArea extends React.Component {
                         </ScrollView>
                     : null }
 
-                    { this.state.facebook ?
+                    { SyncStorage.get("FACEBOOK_TOKEN") ?
                         <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -264,7 +228,7 @@ class ScreenArea extends React.Component {
                         </ScrollView>
                         : null }
 
-                        { this.state.twitch ?
+                        { SyncStorage.get("TWITCH_TOKEN") ?
                         <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -367,7 +331,7 @@ class ScreenArea extends React.Component {
                         </ScrollView>
                         : null }
 
-                        { this.state.onedrive ?
+                        { SyncStorage.get("ONEDRIVE_TOKEN") ?
                         <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -409,7 +373,7 @@ class ScreenArea extends React.Component {
                         </ScrollView>
                         : null }
 
-                        { this.state.google ?
+                        { SyncStorage.get("GOOGLE_TOKEN") ?
                         <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -446,7 +410,7 @@ class ScreenArea extends React.Component {
                         </ScrollView>
                         : null }
 
-                        { this.state.google ?
+                        { SyncStorage.get("GOOGLE_TOKEN") ?
                         <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}

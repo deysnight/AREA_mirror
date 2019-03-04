@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {View, StyleSheet, Text, ScrollView, TouchableOpacity} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon2 from 'react-native-vector-icons/Entypo'
+import SyncStorage from 'sync-storage';
 
 class ViewHome extends Component {
 
@@ -9,32 +10,36 @@ class ViewHome extends Component {
         super(props);
     
         this.state = {
-            google: "null",
+            loading: false,
+            data: [],
+            error: null,
+            refreshing: false,
+            google: null,
             facebook: null,
             twitch: null,
             onedrive: null
         };
       }
 
+      
+
     componentDidMount() {
-        //this.makeRemoteRequest();
+        this.makeRemoteRequest();
     }
 
     makeRemoteRequest = () => {
-        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/oauth2/token/" + SyncStorage.get("USER_ID");
+        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/oauth2/token/21" //+ SyncStorage.get("USER_ID");
         this.setState({ loading: true });
-        fetch(url, {
+        result = fetch(url, {
              method: 'GET',
           })
-            .then(res => res.json())
-            .then(res => {
+            .then(result => result.json())
+            .then(result => {
                 this.setState({refreshing: false});
-                this.setState({
-                    google: res.google,
-                    facebook : res.facebook,
-                    twitch : res.twitch,
-                    onedrive : res.onedrive,
-                });
+                SyncStorage.set("GOOGLE_TOKEN", result[0].google);
+                SyncStorage.set("FACEBOOK_TOKEN", result[0].facebook);
+                SyncStorage.set("TWITCH_TOKEN", result[0].twitch);
+                SyncStorage.set("ONEDRIVE_TOKEN", result[0].onedrive);
             })
         .catch(error => {
             this.setState({ error, loading: false });
@@ -42,28 +47,28 @@ class ViewHome extends Component {
     };
 
     getLoggedGoogle = () => {
-        if (this.state.google)
+        if (SyncStorage.get("GOOGLE_TOKEN"))
             this.props.navigation.navigate('Area');
         else
             this.props.navigation.navigate('Oauth2', {type: "Google"})
     }
 
     getLoggedFacebook = () => {
-        if (this.state.facebook)
+        if (SyncStorage.get("FACEBOOK_TOKEN"))
             this.props.navigation.navigate('Area');
         else
             this.props.navigation.navigate('Oauth2', {type: "Facebook"})
     }
 
     getLoggedTwitch = () => {
-        if (this.state.twitch)
+        if (SyncStorage.get("TWITCH_TOKEN"))
             this.props.navigation.navigate('Area');
         else
             this.props.navigation.navigate('Oauth2', {type: "Twitch"})
     }
 
     getLoggedOneDrive = () => {
-        if (this.state.onedrive)
+        if (SyncStorage.get("ONEDRIVE_TOKEN"))
             this.props.navigation.navigate('Area');
         else
             this.props.navigation.navigate('Oauth2', {type: "OneDrive"})

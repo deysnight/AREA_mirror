@@ -22,6 +22,9 @@ $.ajax(
     {
     url: "http://localhost:8080/internal/oauth2/token/" + USER_ID,
     type: "get",
+    xhrFields: {
+        withCredentials: true
+    },
     async: false,
     success: function(response){
         user_token_json = JSON.parse(response);
@@ -695,7 +698,7 @@ var fb_login =
 
 var onedrive_login =
 "<div class=\"login_button_container\">" +
-"<a class=\"login_button_container_onedrive\" href=\"https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=9d1f0555-d6d2-4e41-aaae-8a661a8dd511&scope=Files.ReadWrite.All&response_type=token&redirect_uri=http://localhost:8080/&state=onedrive\">Login Onedrive</a>"
+"<a class=\"login_button_container_onedrive\" href=\"https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=9d1f0555-d6d2-4e41-aaae-8a661a8dd511&scope=Files.ReadWrite.All&response_type=token&redirect_uri=http://localhost:8081/&state=onedrive\">Login Onedrive</a>"
 "</div>";
 
 var ytb_login = 
@@ -760,7 +763,7 @@ function checkLoginState() {
 function initiateFBLogin() {
     FB.login(function(response) {
         send_FB_data_to_serv(response);
-    }, {scope: 'public_profile,email,manage_pages,publish_pages'});
+    }, {scope: 'public_profile,email,manage_pages,publish_pages,user_posts,pages_show_list,publish_to_groups'});
 }
 
 function send_FB_data_to_serv(response) {
@@ -790,7 +793,7 @@ if (window.location.href.indexOf("state=twitch") > -1) {
             withCredentials: true
         },
         success: function (response) {
-            location.reload();
+            window.location = "http://localhost:8081/";
         }
     });
 }
@@ -808,7 +811,7 @@ if (window.location.href.indexOf("state=onedrive") > -1) {
             withCredentials: true
         },
         success: function (response) {
-            location.reload();
+            window.location = "http://localhost:8081/";
         }
     });
 }

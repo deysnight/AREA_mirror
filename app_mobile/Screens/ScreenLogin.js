@@ -117,6 +117,11 @@ EncryptPass = (pass1) => {
           this.state.password = null;
           SyncStorage.set('USERNAME', username);
           SyncStorage.set('USER_ID', user_id);
+          SyncStorage.set('GOOGLE_TOKEN', null);
+          SyncStorage.set('FACEBOOK_TOKEN', null);
+          SyncStorage.set('TWITCH_TOKEN', null);
+          SyncStorage.set('ONEDRIVE_TOKEN', null);
+
           this.props.navigation.navigate('App');
         }
       })
@@ -159,6 +164,10 @@ EncryptPass = (pass1) => {
             });
             SyncStorage.set('USERNAME', username);
             SyncStorage.set('USER_ID', user_id);
+            SyncStorage.set('GOOGLE_TOKEN', null);
+            SyncStorage.set('FACEBOOK_TOKEN', null);
+            SyncStorage.set('TWITCH_TOKEN', null);
+            SyncStorage.set('ONEDRIVE_TOKEN', null);
           })
           .catch(error => {
             this.setState({ error, loading: false });
