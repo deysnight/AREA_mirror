@@ -45,71 +45,91 @@ class ViewProfile extends Component {
         this.makeRemoteRequest()
     }
     
-    delete_area = (id) => {
-        // send request to delete a card with id in param
+    delete_area = async (id) => {
+        this.setState({ loading: true })
+        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/area/21/" + id ; //SyncStorage.get("USER_ID");
+        try {
+            const response = await fetch(url, {
+                method: 'DELETE'
+            })            
+            const result = await response.json();
+            console.log(result);
+            this.setState(
+            {
+             loading: false,
+             refreshing: false,
+           },
+         );
+     } catch (error) {
+       this.setState({ error, loading: false });
+      }
+
+        this.setState({refreshing: true});
+        this.makeRemoteRequest();
+        this.setState({refreshing: false});
     }
     
-    create_card = (lulz, i) => {
+    create_card = (item) => {
 
-        var rofl = lulz;
+        var lulz = item;
         var card_type = null;
         var icon_main = null;
         var icon_second = null;
-        if (rofl.action_id === 1 || rofl.action_id === 2 || rofl.action_id === 3) {
+        if (lulz.action_id === 1 || lulz.action_id === 2 || lulz.action_id === 3) {
             card_type = "YtbCard";
             icon_main = "youtube-play";
         }
-        if (rofl.action_id === 4 || rofl.action_id === 5 || rofl.action_id === 6) {
+        if (lulz.action_id === 4 || lulz.action_id === 5 || lulz.action_id === 6) {
             card_type = "FbCard";
             icon_main = "facebook-square";
         }
-        if (rofl.action_id === 7 || rofl.action_id === 8 || rofl.action_id === 9) {
+        if (lulz.action_id === 7 || lulz.action_id === 8 || lulz.action_id === 9) {
             card_type = "TwCard";
             icon_main = "twitch";
         }
-        if (rofl.action_id === 10) {
+        if (lulz.action_id === 10) {
             card_type = "OnedCard";
             icon_main = "cloud";
         }
-        if (rofl.action_id === 11) {
+        if (lulz.action_id === 11) {
             card_type = "GdriveCard";
             icon_main = "hdd-o";
         }
-        if (rofl.action_id === 12) {
+        if (lulz.action_id === 12) {
             card_type = "GSheetCard";
             icon_main = "file-text";
         }
 
-        if (rofl.action_id === 1)
+        if (lulz.action_id === 1)
             var desc = "Augmentation du nombre d'abonnés sur Youtube"
-        if (rofl.action_id === 2)
+        if (lulz.action_id === 2)
             var desc = "Like ou Dislike d'une vidéo Youtube"
-        if (rofl.action_id === 3)
+        if (lulz.action_id === 3)
             var desc = "Nouvelle vidéo de votre youtuber favoris"
-        if (rofl.action_id === 4)
+        if (lulz.action_id === 4)
             var desc = "Gain de fan sur votre page Facebook"
-        if (rofl.action_id === 5)
+        if (lulz.action_id === 5)
             var desc = "Création d'une nouvelle page Facebook"
-        if (rofl.action_id === 6)
+        if (lulz.action_id === 6)
             var desc = "Nouveau post sur votre mur Facebook"
-        if (rofl.action_id === 7)
+        if (lulz.action_id === 7)
             var desc = "Nouvelle chaîne follow sur Twitch"
-        if (rofl.action_id === 8)
+        if (lulz.action_id === 8)
             var desc = "Gain de follower sur Twitch"
-        if (rofl.action_id === 9)
+        if (lulz.action_id === 9)
             var desc = "Passage live de votre streamer favoris"
-        if (rofl.action_id === 10)
+        if (lulz.action_id === 10)
             var desc = "Nouveau partage de fichier avec vous"
-        if (rofl.action_id === 11)
+        if (lulz.action_id === 11)
             var desc = "Nouvel upload de fichier sur votre Google Drive"
-        if (rofl.action_id === 12)
+        if (lulz.action_id === 12)
             var desc = "Nouvel upload de fichier sur votre Drive Google Sheet"
 
-        if (rofl.reaction_id === 1)
+        if (lulz.reaction_id === 1)
             icon_second = "envelope";
-        if (rofl.reaction_id === 2)
+        if (lulz.reaction_id === 2)
             icon_second = "file-text";
-        if (rofl.reaction_id === 3)
+        if (lulz.reaction_id === 3)
             icon_second = "facebook-square";
         return (
             <TouchableOpacity style={homePage[card_type]}>
@@ -123,7 +143,7 @@ class ViewProfile extends Component {
                     <View style={{flex: 4, justifyContent: 'space-between', alignSelf: 'center'}}>
                         <Text style={{color: "white", textAlign: "center", fontSize: 13}}>{desc}</Text>
                         <TouchableOpacity 
-                        onPress={() => this.delete_area(rofl.id)}
+                        onPress={() => this.delete_area(lulz.id)}
                         style={{borderRadius: 30, backgroundColor: "#D50000", fontSize: 13, paddingLeft: 10, paddingRight: 10, paddingTop: 6, paddingBottom: 6}}>
                             <Text style={{color: "white", textAlign: "center"}}>Supprimer</Text>
                         </TouchableOpacity>
@@ -146,14 +166,15 @@ class ViewProfile extends Component {
     }
 
     render() {
+        const items = this.state.data;
         return (
           <View style={{display: 'flex', flex: 1, flexDirection: 'column'}}>
             <View style={{display: 'flex', justifyContent: 'center', alignSelf: 'center', paddingTop: 60, paddingBottom: 20}}>
                 <Text style={{fontSize: 30, fontWeight: 'bold'}}>Mon profil</Text>
             </View>
-            <GridView refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh}/>}
+            <GridView
                 itemDimension={130}
-                items={this.state.data}
+                items={items}
                 style={homePage.gridView}
                 renderItem={({ item, index }) => (
                     <View style={{alignSelf: 'center', height: 240, width: 160, borderRadius: 8, marginTop: 5, marginBottom: 5, display: 'flex'}}>
@@ -176,6 +197,7 @@ const homePage = StyleSheet.create({
     gridView: { 
         alignSelf: 'flex-start',
         flex: 8,
+        alignSelf: 'stretch',
     },
     YtbCard: {
         paddingLeft: 15,
