@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace area_server.Controllers
 {
@@ -49,18 +55,24 @@ namespace area_server.Controllers
             return ("");
         }
 
-        /*[Route("")]
+        [Route("about.json")]
         [HttpGet]
-        public ActionResult<string> Home()
+        public ActionResult<string> About()
         {
-            if (Utils.user_logged(Request) != true)
-                Response.Redirect("/login");
-            else
-                return Utils.Retrive_file("dashboard.html", "text/html", "pages");
-            return "";
+           string filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\pages");
+            filePath += "\\about.json";
+            dynamic about = JsonConvert.DeserializeObject(System.IO.File.ReadAllText(filePath));
+
+            var remoteIpAddress = HttpContext.Features.Get<IHttpConnectionFeature>()?.RemoteIpAddress.ToString();
+            about.client.host = remoteIpAddress;
+
+            TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            int secondsSinceEpoch = (int)t.TotalSeconds;
+            about.server.current_time = secondsSinceEpoch;
+            return JsonConvert.SerializeObject(about);
         }
 
-        [Route("login")]
+        /*[Route("login")]
         [HttpGet]
         public ActionResult<string> Login()
         {
