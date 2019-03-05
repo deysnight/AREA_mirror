@@ -63,7 +63,7 @@ namespace area_server.Controllers
                 Response.Cookies.Append("dot_user", tmp, option);
                 Response.Cookies.Append("logged_in", "true", option);
                 Response.Cookies.Append("user_id", Convert.ToString(inn));//result[0].id), option);
-                return "{\"success\": true, \"reason\": null}";
+                return "{\"success\": true, \"reason\": null, \"user_id\": \"" + Convert.ToString(inn) + "\"}";
             }
             return JsonConvert.SerializeObject(json);
         }
@@ -100,7 +100,7 @@ namespace area_server.Controllers
                 Response.Cookies.Append("dot_user", tmp[0], option);
                 Response.Cookies.Append("logged_in", "true", option);
                 Response.Cookies.Append("user_id", Convert.ToString(result[0].id));
-                return "{\"success\": true, \"reason\": null}";
+                return "{\"success\": true, \"reason\": null, \"user_id\": \"" + Convert.ToString(result[0].id) + "\"}";
             }
             else if (result.Count > 1)
             {

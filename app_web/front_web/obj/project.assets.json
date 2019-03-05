@@ -11506,11 +11506,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\louison.harizi\\Desktop\\AREA_mirror merge\\app_web\\front_web\\front_web.csproj",
+      "projectUniqueName": "C:\\Users\\louison.harizi\\Desktop\\AREA_mirror\\app_web\\front_web\\front_web.csproj",
       "projectName": "front_web",
-      "projectPath": "C:\\Users\\louison.harizi\\Desktop\\AREA_mirror merge\\app_web\\front_web\\front_web.csproj",
+      "projectPath": "C:\\Users\\louison.harizi\\Desktop\\AREA_mirror\\app_web\\front_web\\front_web.csproj",
       "packagesPath": "C:\\Users\\louison.harizi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\louison.harizi\\Desktop\\AREA_mirror merge\\app_web\\front_web\\obj\\",
+      "outputPath": "C:\\Users\\louison.harizi\\Desktop\\AREA_mirror\\app_web\\front_web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

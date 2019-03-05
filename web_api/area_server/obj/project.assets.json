@@ -12367,11 +12367,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\louison.harizi\\Desktop\\AREA_mirror merge\\web_api\\area_server\\area_server.csproj",
+      "projectUniqueName": "C:\\Users\\louison.harizi\\Desktop\\AREA_mirror\\web_api\\area_server\\area_server.csproj",
       "projectName": "area_server",
-      "projectPath": "C:\\Users\\louison.harizi\\Desktop\\AREA_mirror merge\\web_api\\area_server\\area_server.csproj",
+      "projectPath": "C:\\Users\\louison.harizi\\Desktop\\AREA_mirror\\web_api\\area_server\\area_server.csproj",
       "packagesPath": "C:\\Users\\louison.harizi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\louison.harizi\\Desktop\\AREA_mirror merge\\web_api\\area_server\\obj\\",
+      "outputPath": "C:\\Users\\louison.harizi\\Desktop\\AREA_mirror\\web_api\\area_server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
