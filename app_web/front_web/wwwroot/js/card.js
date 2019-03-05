@@ -15,6 +15,7 @@ function getCookie(cname) {
   }
 
 var USER_ID = parseInt(getCookie("user_id"), 10);
+console.log(USER_ID);
 
 var user_token_json;
 
@@ -184,9 +185,14 @@ $("#youtube_first").click(function() {
 
     $("#reaction_1").css("display", "flex");
 
-    $("#reaction_1 #sheet_react").css("border", "1px black solid");    
-    $("#reaction_1 #sheet_react i").css("color", "black");
-    $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    if (user_token_json[0].google === null) {
+        $("#sheet_react").css("background-color", "grey");
+        $("#sheet_react").css("pointer-events", "none");
+    }
+    else {
+        $("#reaction_1 #sheet_react").css("background-color", "#0F9854");
+        $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    }
 
     $("#mail_react").removeClass("active");
     $("#sheet_react").removeClass("active");
@@ -201,9 +207,14 @@ $("#youtube_second").click(function() {
 
     $("#reaction_1").css("display", "flex");
 
-    $("#reaction_1 #sheet_react").css("border", "1px black solid");    
-    $("#reaction_1 #sheet_react i").css("color", "black");
-    $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    if (user_token_json[0].google === null) {
+        $("#sheet_react").css("background-color", "grey");
+        $("#sheet_react").css("pointer-events", "none");
+    }
+    else {
+        $("#reaction_1 #sheet_react").css("background-color", "#0F9854");
+        $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    }
 
     $("#mail_react").removeClass("active");
     $("#sheet_react").removeClass("active");
@@ -219,9 +230,8 @@ $("#youtube_third").click(function() {
 
     $("#reaction_1").css("display", "flex");
 
-    $("#reaction_1 #sheet_react").css("border", "1px grey solid");    
-    $("#reaction_1 #sheet_react i").css("color", "grey");
-    $("#reaction_1 #sheet_react").css("pointer-events", "none");
+    $("#sheet_react").css("background-color", "grey");
+    $("#sheet_react").css("pointer-events", "none");
 
     $("#mail_react").removeClass("active");
     $("#sheet_react").removeClass("active");
@@ -236,9 +246,14 @@ $("#facebook_first").click(function() {
 
     $("#reaction_1").css("display", "flex");
 
-    $("#reaction_1 #sheet_react").css("border", "1px black solid");    
-    $("#reaction_1 #sheet_react i").css("color", "black");
-    $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    if (user_token_json[0].google === null) {
+        $("#sheet_react").css("background-color", "grey");
+        $("#sheet_react").css("pointer-events", "none");
+    }
+    else {
+        $("#reaction_1 #sheet_react").css("background-color", "#0F9854");
+        $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    }
     
     $("#mail_react").removeClass("active");
     $("#sheet_react").removeClass("active");
@@ -253,9 +268,14 @@ $("#facebook_second").click(function() {
 
     $("#reaction_1").css("display", "flex");
 
-    $("#reaction_1 #sheet_react").css("border", "1px black solid");    
-    $("#reaction_1 #sheet_react i").css("color", "black");
-    $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    if (user_token_json[0].google === null) {
+        $("#sheet_react").css("background-color", "grey");
+        $("#sheet_react").css("pointer-events", "none");
+    }
+    else {
+        $("#reaction_1 #sheet_react").css("background-color", "#0F9854");
+        $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    }
 
     $("#mail_react").removeClass("active");
     $("#sheet_react").removeClass("active");
@@ -270,9 +290,14 @@ $("#facebook_third").click(function() {
 
     $("#reaction_1").css("display", "flex");
 
-    $("#reaction_1 #sheet_react").css("border", "1px black solid");    
-    $("#reaction_1 #sheet_react i").css("color", "black");
-    $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    if (user_token_json[0].google === null) {
+        $("#sheet_react").css("background-color", "grey");
+        $("#sheet_react").css("pointer-events", "none");
+    }
+    else {
+        $("#reaction_1 #sheet_react").css("background-color", "#0F9854");
+        $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    }
 
     $("#mail_react").removeClass("active");
     $("#sheet_react").removeClass("active");
@@ -287,9 +312,14 @@ $("#twitch_first").click(function() {
 
     $("#reaction_1").css("display", "flex");
 
-    $("#reaction_1 #sheet_react").css("border", "1px black solid");    
-    $("#reaction_1 #sheet_react i").css("color", "black");
-    $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    if (user_token_json[0].google === null) {
+        $("#sheet_react").css("background-color", "grey");
+        $("#sheet_react").css("pointer-events", "none");
+    }
+    else {
+        $("#reaction_1 #sheet_react").css("background-color", "#0F9854");
+        $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    }
 
     $("#mail_react").removeClass("active");
     $("#sheet_react").removeClass("active");
@@ -304,9 +334,14 @@ $("#twitch_second").click(function() {
 
     $("#reaction_1").css("display", "flex");
 
-    $("#reaction_1 #sheet_react").css("border", "1px black solid");    
-    $("#reaction_1 #sheet_react i").css("color", "black");
-    $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    if (user_token_json[0].google === null) {
+        $("#sheet_react").css("background-color", "grey");
+        $("#sheet_react").css("pointer-events", "none");
+    }
+    else {
+        $("#reaction_1 #sheet_react").css("background-color", "#0F9854");
+        $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    }
 
     $("#mail_react").removeClass("active");
     $("#sheet_react").removeClass("active");
@@ -321,8 +356,7 @@ $("#twitch_third").click(function() {
 
     $("#reaction_1").css("display", "flex");
 
-    $("#reaction_1 #sheet_react").css("border", "1px grey solid");    
-    $("#reaction_1 #sheet_react i").css("color", "grey");
+    $("#reaction_1 #sheet_react").css("background-color", "grey");
     $("#reaction_1 #sheet_react").css("pointer-events", "none");
 
     $("#mail_react").removeClass("active");
@@ -336,9 +370,14 @@ $("#onedrive_first").click(function() {
 
     $("#reaction_1").css("display", "flex");
 
-    $("#reaction_1 #sheet_react").css("border", "1px black solid");    
-    $("#reaction_1 #sheet_react i").css("color", "black");
-    $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    if (user_token_json[0].google === null) {
+        $("#sheet_react").css("background-color", "grey");
+        $("#sheet_react").css("pointer-events", "none");
+    }
+    else {
+        $("#reaction_1 #sheet_react").css("background-color", "#0F9854");
+        $("#reaction_1 #sheet_react").css("pointer-events", "auto");
+    }
 
     $("#mail_react").removeClass("active");
     $("#sheet_react").removeClass("active");
@@ -351,8 +390,7 @@ $("#gdrive_first").click(function() {
 
     $("#reaction_1").css("display", "flex");
 
-    $("#reaction_1 #sheet_react").css("border", "1px grey solid");    
-    $("#reaction_1 #sheet_react i").css("color", "grey");
+    $("#reaction_1 #sheet_react").css("background-color", "grey");
     $("#reaction_1 #sheet_react").css("pointer-events", "none");
 
     $("#mail_react").removeClass("active");
@@ -366,8 +404,7 @@ $("#gsheet_first").click(function() {
 
     $("#reaction_1").css("display", "flex");
 
-    $("#reaction_1 #sheet_react").css("border", "1px grey solid");    
-    $("#reaction_1 #sheet_react i").css("color", "grey");
+    $("#reaction_1 #sheet_react").css("background-color", "grey");
     $("#reaction_1 #sheet_react").css("pointer-events", "none"); 
 
     $("#mail_react").removeClass("active");
@@ -720,12 +757,13 @@ var gsheet_login =
 if (user_token_json[0].google === null) {
     $('#youtube_reaction').append(ytb_login);
     $(".yt").css("display", "none");
+    $("#sheet_react").css("background-color", "grey");
+    $("#sheet_react").css("pointer-events", "none");
 }
 if (user_token_json[0].facebook === null) {
     $('#facebook_reaction').append(fb_login);
     $(".fb").css("display", "none");
-    $("#facebook_react").css("border-color", "grey");
-    $("#facebook_react i").css("color", "grey");
+    $("#facebook_react").css("background-color", "grey");
     $("#facebook_react").css("pointer-events", "none");
 }
 if (user_token_json[0].twitch === null) {
@@ -739,10 +777,14 @@ if (user_token_json[0].onedrive === null) {
 if (user_token_json[0].google === null) {
     $('#drive_reaction').append(gdrive_login);
     $(".gdrive").css("display", "none");
+    $("#sheet_react").css("background-color", "grey");
+    $("#sheet_react").css("pointer-events", "none");
 }
 if (user_token_json[0].google === null) {
     $('#sheet_reaction').append(gsheet_login);
     $(".gsheet").css("display", "none");
+    $("#sheet_react").css("background-color", "grey");
+    $("#sheet_react").css("pointer-events", "none");
 }
 
 function statusChangeCallback(response) {

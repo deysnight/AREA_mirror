@@ -62,30 +62,16 @@
     display: flex;
     flex: 3;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     border-right: 1px solid rgba(0, 0, 0, 0.30);
 }
 
 #reaction_1 {
     display: none;
     flex-direction: column;
-}
-
-.reaction_ball {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    border-radius: 50%;
-    margin-top: 3em;
-    align-self: center;
-    margin-bottom: 3em;
-    display: flex;
-    cursor: pointer;
-}
-
-.reaction_ball i {
-    margin: auto;
-    font-size: 36px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
 #validate {
@@ -97,7 +83,9 @@
 }
 
 .card {
-    margin: 1em;
+    margin-left: 1em;
+    margin-bottom: 1em;
+    margin-right: 1em;
     display: flex;
     cursor: pointer;
     transition: all ease-in-out 0.1s;
@@ -132,6 +120,7 @@
 }
 
 #youtube_card {
+    margin-top: 1em;
     height: 130px;
     background-color: #FF0000;
     display: flex;
@@ -165,6 +154,28 @@
     height: 130px;
     background-color: #0F9854;
     display: flex;
+}
+
+.reaction_card_reaction {
+    border-radius: 5px;
+    cursor: pointer;
+    height: 150px;
+    width: 230px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    text-align: center;
+}
+
+#mail_react {
+    background-color: #D6463B;
+}
+
+#sheet_react {
+    background-color: #0F9854;
+}
+
+#facebook_react {
+    background-color: #4267B2;
 }
 
 .active {
@@ -438,10 +449,29 @@
     border: 1px solid grey;
     border-radius: 4px;
     padding: 1em;
-    margin-top: 1em;
+    margin-top: 8px;
     margin-bottom: 1em;
 }
 
+
+.input_top {
+    margin: 0;
+    font-weight: bold;
+}
+
+.card_reaction_title_reaction {
+    margin-top: 1em;
+    height: 100%;
+}
+
+.reaction_card_reaction .card_reaction_title_reaction p {
+    margin-bottom: 1em;
+    color: white;
+}
+
+.reaction_card_reaction .card_reaction_title_reaction i {
+    color: white!important;
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

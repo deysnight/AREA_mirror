@@ -5,42 +5,42 @@ import SyncStorage from 'sync-storage';
 
 class IpScreen extends React.Component {
   
-    state = {
-        IP: null,
-    }
+  state = {
+    IP: null,
+  }
   
-    render() {
-        return (
-            <KeyboardAvoidingView behavior="padding" style={loginStyles.container} onPress={Keyboard.dismiss}>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <View style={loginStyles.logoContainer}>
-                    <Icon3 name="API" color={'black'} size={120} />
-                    <Text style={loginStyles.title}>AREA</Text>
-                    <TextInput 
-                        placeholder="IP"
-                        placeholderTextColor="rgba(0, 0, 0, 0.7)"
-                        autoCorrect={false}
-                        style={styles.input}
-                        ref={(input) => this.IP = input}
-                        onChangeText={(IP) => this.setState({IP})}
-                    />
-                <TouchableOpacity style={styles.buttonContainer} onPress={this.getIP}>
-                   <Text style={styles.buttonText}>Valider</Text>
-                </TouchableOpacity>
-              </View>
-            </TouchableWithoutFeedback>
-          </KeyboardAvoidingView>
+  render() {
+    return (
+      <KeyboardAvoidingView behavior="padding" style={loginStyles.container} onPress={Keyboard.dismiss}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={loginStyles.logoContainer}>
+      <Icon3 name="API" color={'black'} size={120} />
+      <Text style={loginStyles.title}>AREA</Text>
+      <TextInput 
+      placeholder="IP"
+      placeholderTextColor="rgba(0, 0, 0, 0.7)"
+      autoCorrect={false}
+      style={styles.input}
+      ref={(input) => this.IP = input}
+      onChangeText={(IP) => this.setState({IP})}
+      />
+      <TouchableOpacity style={styles.buttonContainer} onPress={this.getIP}>
+      <Text style={styles.buttonText}>Valider</Text>
+      </TouchableOpacity>
+      </View>
+      </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
       );
     }
     getIP = () => {
-        var IP = this.state.IP;
-        SyncStorage.set('IP', IP);
-        this.IP.clear();
-        this.props.navigation.navigate('Login');
+      var IP = this.state.IP;
+      SyncStorage.set('IP', IP);
+      this.IP.clear();
+      this.props.navigation.navigate('Login');
     }
-}
+  }
 
-const loginStyles = StyleSheet.create({
+  const loginStyles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#F6F6F6'
@@ -95,6 +95,6 @@ const loginStyles = StyleSheet.create({
       paddingLeft: 30,
       borderRadius: 30
     }
-});
+  });
 
-export default IpScreen
+  export default IpScreen
