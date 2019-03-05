@@ -1,0 +1,164 @@
+{
+  "client": {
+    "host": "10.101.53.35"
+  },
+  "server": {
+    "current_time": 1531680780,
+    "services": [
+      {
+        "name": "youtuber",
+        "actions": [
+          {
+            "name": "abonnement",
+            "description": "augmentation du nombre d'abonnés sur Youtube"
+          },
+          {
+            "name": "like_video",
+            "description ": "like ou dislike d'une vidéo Youtube"
+          },
+          {
+            "name": "youtuber_actif",
+            "description ": "nouvelle vidéo de votre youtuber favoris"
+          }
+        ],
+        "reactions": [
+          {
+            "name": "email",
+            "description": "envoie un mail à l'utilisateur"
+          },
+          {
+            "name": "google_sheet_reaction",
+            "description": "écris sur la sheet d'un user"
+          },
+          {
+            "name": "facebook_page_reaction",
+            "description": "poste sur la page facebook d'un user"
+          }
+        ]
+      },
+      {
+        "name": "facebook",
+        "actions": [
+          {
+            "name": "like_page",
+            "description": "gain de fan sur votre page facebook"
+          },
+          {
+            "name": "nouvelle_page",
+            "description ": "création d'une nouvelle page facebook"
+          },
+          {
+            "name": "nouveau_post",
+            "description ": "nouveau post sur votre mur facebook"
+          }
+        ],
+        "reactions": [
+          {
+            "name": "email",
+            "description": "envoie un mail à l'utilisateur"
+          },
+          {
+            "name": "google_sheet_reaction",
+            "description": "écris sur la sheet d'un user"
+          },
+          {
+            "name": "facebook_page_reaction",
+            "description": "poste sur la page facebook d'un user"
+          }
+        ]
+      },
+      {
+        "name": "twitch",
+        "actions": [
+          {
+            "name": "follow_streamer",
+            "description": "nouvelle chaine follow sur Twitch"
+          },
+          {
+            "name": "nouveau_follow",
+            "description ": "gain de follower sur Twitch"
+          },
+          {
+            "name": "streamer_live",
+            "description ": "passage live de votre streamer favoris"
+          }
+        ],
+        "reactions": [
+          {
+            "name": "email",
+            "description": "envoie un mail à l'utilisateur"
+          },
+          {
+            "name": "google_sheet_reaction",
+            "description": "écris sur la sheet d'un user"
+          },
+          {
+            "name": "facebook_page_reaction",
+            "description": "poste sur la page facebook d'un user"
+          }
+        ]
+      },
+      {
+        "name": "onedrive",
+        "actions": [
+          {
+            "name": "partage_fichier",
+            "description": "soyez notifié par lorsque quelqu'un partage un fichier avec vous sur onedrive"
+          }
+        ],
+        "reactions": [
+          {
+            "name": "email",
+            "description": "envoie un mail à l'utilisateur"
+          },
+          {
+            "name": "google_sheet_reaction",
+            "description": "écris sur la sheet d'un user"
+          },
+          {
+            "name": "facebook_page_reaction",
+            "description": "poste sur la page facebook d'un user"
+          }
+        ]
+      },
+      {
+        "name": "google_drive",
+        "actions": [
+          {
+            "name": "upload_fichier",
+            "description": "soyez notifié lorsque quelqu'un upload un fichier sur votre google drive"
+          }
+        ],
+        "reactions": [
+          {
+            "name": "email",
+            "description": "envoie un mail à l'utilisateur"
+          },
+          {
+            "name": "facebook_page_reaction",
+            "description": "poste sur la page facebook d'un user"
+          }
+        ]
+      },
+      {
+        "name": "google_sheet",
+        "actions": [
+          {
+            "name": "upload_fichier",
+            "description": "soyez notifié lorsque quelqu'un upload un fichier sur votre google sheet"
+          }
+        ],
+        "reactions": [
+          {
+            "name": "email",
+            "description": "envoie un mail à l'utilisateur"
+          },
+          {
+            "name": "facebook_page_reaction",
+            "description": "poste sur la page facebook d'un user"
+          }
+        ]
+      }
+    ]
+  }
+}

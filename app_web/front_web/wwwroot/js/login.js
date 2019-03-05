@@ -52,7 +52,7 @@ $("#login_button").click(function () {
                 if (jsonObject.success == true) {
                     $("#error_login").remove();
                     cpt_login_error = 0;
-                    location.reload();
+                    //location.reload();
                 }
                 else {
                     if (jsonObject.reason === "account require email validation") {

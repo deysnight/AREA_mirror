@@ -9,7 +9,7 @@ import {
     createStackNavigator,
     createAppContainer,
     createSwitchNavigator
-  } from 'react-navigation';
+} from 'react-navigation';
 
 export default class App extends Component {
     AREA() {
@@ -21,21 +21,21 @@ export default class App extends Component {
 }
 
 const LoginStack = createStackNavigator(
-    {
-        AuthStack: { screen: AuthNavigation }
-    },
-    {
-        headerMode: 'none',
-    }
+{
+    AuthStack: { screen: AuthNavigation }
+},
+{
+    headerMode: 'none',
+}
 )
 
 const BottomTabNavigation = createStackNavigator(
-    {
-        HomeStack: { screen: AppNavigation }
-    },
-    {
-        headerMode: 'none',
-    }
+{
+    HomeStack: { screen: AppNavigation }
+},
+{
+    headerMode: 'none',
+}
 )
 
 const AppNavigator = createSwitchNavigator({

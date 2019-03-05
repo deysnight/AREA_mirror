@@ -17,98 +17,98 @@ class LoginScreen extends React.Component {
 
     };
   }
-    state = {
-      username: null,
-      password: null,
-      result: null,
-    }
-
-    render() {
-        return (
-        <KeyboardAvoidingView behavior="padding" style={loginStyles.container}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-            <View style={loginStyles.logoContainer}>
-              <Icon3 name="API" color={'black'} size={120} />
-                <Text style={loginStyles.title}>AREA</Text>
-                <TextInput 
-                placeholder="Pseudo"
-                placeholderTextColor="rgba(0, 0, 0, 0.7)"
-                returnKeyType="next"
-                onSubmitEditing={() => this.passwordInput.focus()}
-                autoCorrect={false}
-                style={styles.input}
-                ref={(input) => this.Username = input}
-                onChangeText={(username) => this.setState({username})}
-                />
-                <TextInput
-                placeholder="Mot de passe"
-                placeholderTextColor="rgba(0, 0, 0, 0.7)"
-                returnKeyType="send"
-                secureTextEntry
-                style={styles.input}
-                onSubmitEditing={(event) => this.getLogged(event)}
-                ref={(input) => this.passwordInput = input}
-                onChangeText={(password) => this.setState({password})}
-                />
-              <TouchableOpacity style={styles.buttonContainer} onPress={this.getLogged}>
-                 <Text style={styles.buttonText}>Se connecter</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.googleContainer} onPress={this.GoogleSignIn}>
-                  <Text style={styles.buttonText}>Se connecter via Google</Text>
-              </TouchableOpacity>
-            </View>
-          </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
-    );
+  state = {
+    username: null,
+    password: null,
+    result: null,
   }
-EncryptPass = (pass1) => {
-  var hash = 0, i, chr;
-    for (i = 0; i < pass1.length; i++) {
+
+  render() {
+    return (
+      <KeyboardAvoidingView behavior="padding" style={loginStyles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={loginStyles.logoContainer}>
+      <Icon3 name="API" color={'black'} size={120} />
+      <Text style={loginStyles.title}>AREA</Text>
+      <TextInput 
+      placeholder="Pseudo"
+      placeholderTextColor="rgba(0, 0, 0, 0.7)"
+      returnKeyType="next"
+      onSubmitEditing={() => this.passwordInput.focus()}
+      autoCorrect={false}
+      style={styles.input}
+      ref={(input) => this.Username = input}
+      onChangeText={(username) => this.setState({username})}
+      />
+      <TextInput
+      placeholder="Mot de passe"
+      placeholderTextColor="rgba(0, 0, 0, 0.7)"
+      returnKeyType="send"
+      secureTextEntry
+      style={styles.input}
+      onSubmitEditing={(event) => this.getLogged(event)}
+      ref={(input) => this.passwordInput = input}
+      onChangeText={(password) => this.setState({password})}
+      />
+      <TouchableOpacity style={styles.buttonContainer} onPress={this.getLogged}>
+      <Text style={styles.buttonText}>Se connecter</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.googleContainer} onPress={this.GoogleSignIn}>
+      <Text style={styles.buttonText}>Se connecter via Google</Text>
+      </TouchableOpacity>
+      </View>
+      </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+      );
+    }
+    EncryptPass = (pass1) => {
+      var hash = 0, i, chr;
+      for (i = 0; i < pass1.length; i++) {
         chr = pass1.charCodeAt(i);
         hash = ((hash << 5) - hash) + chr;
         hash |= 0;
+      }
+      return hash;
     }
-    return hash;
-}
 
-  getLogged = () => {
-    username = this.state.username;
-    password = this.state.password;
-    if (!username || !password)
+    getLogged = () => {
+      username = this.state.username;
+      password = this.state.password;
+      if (!username || !password)
         return Alert.alert(
-                          'Erreur'
-                          ,'Vous devez remplir tout les champs'
-                          ,[
-                            {text: 'Continuer'},
-                           ]
-                      );
-    var data = btoa(username + ':' + this.EncryptPass(password));
-    const url = "http://" + SyncStorage.get("IP") + ":8080/internal/login/" + data;
-    this.setState({ loading: true });
-    fetch(url, {
-         method: 'GET',
-         headers: new Headers({
-          'Content-Type': 'application/x-www-form-urlencoded',
-        })
+      'Erreur'
+      ,'Vous devez remplir tout les champs'
+      ,[
+      {text: 'Continuer'},
+      ]
+      );
+      var data = btoa(username + ':' + this.EncryptPass(password));
+      const url = "http://" + SyncStorage.get("IP") + ":8080/internal/login/" + data;
+      this.setState({ loading: true });
+      fetch(url, {
+       method: 'GET',
+       headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded',
       })
+     })
       .then(res => res.json())
       .then(res => {
         if (res.reason === "login or user incorrect")
           return Alert.alert(
-                          'Erreur'
-                          ,'Vos données de connexion sont incorrectes'
-                          ,[
-                            {text: 'Continuer'},
-                           ]
-                      );
+            'Erreur'
+            ,'Vos données de connexion sont incorrectes'
+            ,[
+            {text: 'Continuer'},
+            ]
+            );
         else if (res.reason === "account require email validation")
           return Alert.alert(
-                          'Erreur'
-                          ,'Vous devez valider votre email'
-                          ,[
-                            {text: 'Continuer'},
-                           ]
-                      );
+            'Erreur'
+            ,'Vous devez valider votre email'
+            ,[
+            {text: 'Continuer'},
+            ]
+            );
         if (res.success === true) {
           var user_id = res.user_id;
           this.Username.clear();
@@ -117,17 +117,22 @@ EncryptPass = (pass1) => {
           this.state.password = null;
           SyncStorage.set('USERNAME', username);
           SyncStorage.set('USER_ID', user_id);
+          SyncStorage.set('GOOGLE_TOKEN', null);
+          SyncStorage.set('FACEBOOK_TOKEN', null);
+          SyncStorage.set('TWITCH_TOKEN', null);
+          SyncStorage.set('ONEDRIVE_TOKEN', null);
+
           this.props.navigation.navigate('App');
         }
       })
       .catch(error => {
         this.setState({ error, loading: false });
       });
-}
+    }
 
-  GoogleSignIn = async () => {
-    let redirectUrl = AuthSession.getRedirectUrl();
-    const result = await Expo.Google.logInAsync({
+    GoogleSignIn = async () => {
+      let redirectUrl = AuthSession.getRedirectUrl();
+      const result = await Expo.Google.logInAsync({
         androidClientId: "218486788454-is3b9o2utppp7mfjonuhnd9v2kp74ve9.apps.googleusercontent.com",
         iosClientId: "218486788454-is3b9o2utppp7mfjonuhnd9v2kp74ve9.apps.googleusercontent.com",
         behavior: 'web',
@@ -141,59 +146,63 @@ EncryptPass = (pass1) => {
         const url = "http://" + SyncStorage.get("IP") + ":8080/internal/goauth2"
         this.setState({ loading: true });
         await fetch(url, {
-            method: 'POST',
-            headers: new Headers({
-             'Content-Type': 'application/x-www-form-urlencoded',
-           }),
-            body: "user_id_token=" + id_token + "&user_name=" + username + "&user_email=" + email
-          })
-          .then(res => res.json())
-          .then(res => {
-            console.log(res);
-            var user_id = res.user_id;
-            this.setState({
-              status: res.status,
-              error: res.error || null,
-              loading: false,
-              refreshing: false
-            });
-            SyncStorage.set('USERNAME', username);
-            SyncStorage.set('USER_ID', user_id);
-          })
-          .catch(error => {
-            this.setState({ error, loading: false });
+          method: 'POST',
+          headers: new Headers({
+           'Content-Type': 'application/x-www-form-urlencoded',
+         }),
+          body: "user_id_token=" + id_token + "&user_name=" + username + "&user_email=" + email
+        })
+        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+          var user_id = res.user_id;
+          this.setState({
+            status: res.status,
+            error: res.error || null,
+            loading: false,
+            refreshing: false
           });
+          SyncStorage.set('USERNAME', username);
+          SyncStorage.set('USER_ID', user_id);
+          SyncStorage.set('GOOGLE_TOKEN', null);
+          SyncStorage.set('FACEBOOK_TOKEN', null);
+          SyncStorage.set('TWITCH_TOKEN', null);
+          SyncStorage.set('ONEDRIVE_TOKEN', null);
+        })
+        .catch(error => {
+          this.setState({ error, loading: false });
+        });
         const url2 = "http://" + SyncStorage.get("IP") + ":8080/internal/oauth2/google/?token=" + google_token;
         this.setState({ loading: true });
         fetch(url2, {
-            method: 'GET',
-            credentials: "same-origin",
-            headers: {
-              Cookie: "user_id=" + SyncStorage.get("USER_ID")
+          method: 'GET',
+          credentials: "same-origin",
+          headers: {
+            Cookie: "user_id=" + SyncStorage.get("USER_ID")
           },
-         })
-         .then(res => res.json())
-         .then(res => {
-           console.log(res);
-           this.setState({refreshing: false});
-           this.setState({
-             data: res.data,
-             error: res.error || null,
-             loading: false,
-             refreshing: false
-           });
-           if (res.success === true) {
-             this.Username.clear();
-             this.passwordInput.clear();
-             this.state.username = null;
-             this.state.password = null;
-             this.props.navigation.navigate('App');
-           }
-         })
-         .catch(error => {
-           this.setState({ error, loading: false });
+        })
+        .then(res => res.json())
+        .then(res => {
+         console.log(res);
+         this.setState({refreshing: false});
+         this.setState({
+           data: res.data,
+           error: res.error || null,
+           loading: false,
+           refreshing: false
          });
-        }
+         if (res.success === true) {
+           this.Username.clear();
+           this.passwordInput.clear();
+           this.state.username = null;
+           this.state.password = null;
+           this.props.navigation.navigate('App');
+         }
+       })
+        .catch(error => {
+         this.setState({ error, loading: false });
+       });
+      }
       else
         console.log("cancelled")
     }
@@ -254,6 +263,6 @@ EncryptPass = (pass1) => {
       paddingLeft: 30,
       borderRadius: 30
     }
-});
+  });
 
-export default LoginScreen
+  export default LoginScreen
