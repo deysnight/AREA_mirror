@@ -55,23 +55,6 @@ namespace area_server.Controllers
             return ("");
         }
 
-        [Route("about.json")]
-        [HttpGet]
-        public ActionResult<string> About()
-        {
-           string filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\pages");
-            filePath += "\\about.json";
-            dynamic about = JsonConvert.DeserializeObject(System.IO.File.ReadAllText(filePath));
-
-            var remoteIpAddress = HttpContext.Features.Get<IHttpConnectionFeature>()?.RemoteIpAddress.ToString();
-            about.client.host = remoteIpAddress;
-
-            TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
-            int secondsSinceEpoch = (int)t.TotalSeconds;
-            about.server.current_time = secondsSinceEpoch;
-            return JsonConvert.SerializeObject(about);
-        }
-
         /*[Route("login")]
         [HttpGet]
         public ActionResult<string> Login()
