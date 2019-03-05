@@ -21,8 +21,6 @@ class ViewHome extends Component {
         };
       }
 
-      
-
     componentDidMount() {
         this.makeRemoteRequest();
     }
@@ -36,10 +34,12 @@ class ViewHome extends Component {
             .then(result => result.json())
             .then(result => {
                 this.setState({refreshing: false});
-                SyncStorage.set("GOOGLE_TOKEN", result[0].google);
-                SyncStorage.set("FACEBOOK_TOKEN", result[0].facebook);
-                SyncStorage.set("TWITCH_TOKEN", result[0].twitch);
-                SyncStorage.set("ONEDRIVE_TOKEN", result[0].onedrive);
+                this.setState({
+                    google: result[0].google,
+                    facebook: result[0].facebook,
+                    twitch: result[0].twitch,
+                    onedrive: result[0].onedrive
+                });
             })
         .catch(error => {
             this.setState({ error, loading: false });
@@ -47,28 +47,28 @@ class ViewHome extends Component {
     };
 
     getLoggedGoogle = () => {
-        if (SyncStorage.get("GOOGLE_TOKEN"))
+        if (this.state.google)
             this.props.navigation.navigate('Area');
         else
             this.props.navigation.navigate('Oauth2', {type: "Google"})
     }
 
     getLoggedFacebook = () => {
-        if (SyncStorage.get("FACEBOOK_TOKEN"))
+        if (this.state.facebook)
             this.props.navigation.navigate('Area');
         else
             this.props.navigation.navigate('Oauth2', {type: "Facebook"})
     }
 
     getLoggedTwitch = () => {
-        if (SyncStorage.get("TWITCH_TOKEN"))
+        if (this.state.twitch)
             this.props.navigation.navigate('Area');
         else
             this.props.navigation.navigate('Oauth2', {type: "Twitch"})
     }
 
     getLoggedOneDrive = () => {
-        if (SyncStorage.get("ONEDRIVE_TOKEN"))
+        if (this.state.onedrive)
             this.props.navigation.navigate('Area');
         else
             this.props.navigation.navigate('Oauth2', {type: "OneDrive"})

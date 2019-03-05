@@ -3,41 +3,52 @@ import { Text, View, TextInput, TouchableOpacity, Alert, TouchableWithoutFeedbac
 import SyncStorage from 'sync-storage';
 
 class ScreenFormulaire extends React.Component {
-        
-    state = {
+    
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+            loading: false,
+            data: [],
+            error: null,
+            refreshing: false,
             id_action: null,
             id_reaction: null,
-            user_id: SyncStorage.get("USER_ID"),
+            user_id: 21, //SyncStorage.get("USER_ID"),
             timer_area: null,
             page_id_for_action: null,
             video_id: null,
             youtuber_name: null,
             facebook_page_id: null,
             streamer_live: null
-        }
-
-        data_json = {
-            "id_action": null,
-            "id_reaction": null,
-            "user_id": SyncStorage.get("USER_ID"),
-            "timer_area": null,
+        };
+        this.data_json = {
+            "id_action": "nope",
+            "id_reaction": "nope",
+            "user_id": 21,
+            "timer_area": "nope",
             "data": {
-                "page_id_for_action": null,
-                "video_id": null,
-                "youtuber_name": null,
-                "facebook_page_id": null,
-                "streamer_live": null
+                "page_id_for_action": "nope",
+                "video_id": "nope",
+                "youtuber_name": "nope",
+                "facebook_page_id": "nope",
+                "streamer_live": "nope"
             }
         }
+      }
+
+        
 
     makeRemoteRequest = () => {
-        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/area/" + SyncStorage.get("USER_ID");
+        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/area/";
         this.setState({ loading: true });
         fetch(url, {
              method: 'POST',
+             body: JSON.stringify(this.data_json)
           })
             .then(res => res.json())
             .then(res => {
+                console.log(res);
                 this.setState({refreshing: false});
                 this.setState({
                     data: res.data,
@@ -49,14 +60,14 @@ class ScreenFormulaire extends React.Component {
         .catch(error => {
             this.setState({ error, loading: false });
         });
+        this.props.navigation.navigate('Profil');
     };
 
     ValidateAREA = (id_action, id_reaction) => {
-        this.state.id_action = id_action;
-        this.state.id_reaction = id_reaction;
-        console.log(this.state);
+        this.data_json.id_action = id_action;
+        this.data_json.id_reaction = id_reaction;
         if (id_reaction === 3) {
-            if (this.state.facebook_page_id === null)
+            if (this.data_json.facebook_page_id === null)
             return Alert.alert(
                 'Erreur'
                 ,'Vous devez remplir tout les champs'
@@ -66,7 +77,7 @@ class ScreenFormulaire extends React.Component {
             );
         }
         if (id_action === 2) {
-            if (this.state.video_id === null)
+            if (this.data_json.video_id === null)
             return Alert.alert(
                 'Erreur'
                 ,'Vous devez remplir tout les champs'
@@ -76,7 +87,7 @@ class ScreenFormulaire extends React.Component {
             );
         }
         if (id_action === 3) {
-            if (this.state.youtuber_name === null)
+            if (this.data_json.youtuber_name === null)
             return Alert.alert(
                 'Erreur'
                 ,'Vous devez remplir tout les champs'
@@ -86,7 +97,7 @@ class ScreenFormulaire extends React.Component {
             );
         }
         if (id_action === 4) {
-            if (this.state.page_id_for_action === null)
+            if (this.data_json.page_id_for_action === null)
             return Alert.alert(
                 'Erreur'
                 ,'Vous devez remplir tout les champs'
@@ -96,7 +107,7 @@ class ScreenFormulaire extends React.Component {
             );
         }
         if (id_action === 9) {
-            if (this.state.streamer_live === null)
+            if (this.data_json.streamer_live === null)
             return Alert.alert(
                 'Erreur'
                 ,'Vous devez remplir tout les champs'
@@ -119,7 +130,7 @@ class ScreenFormulaire extends React.Component {
                     selectedValue={this.state.timer_area}
                     style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
                     onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-                    this.state.timer_area = parseInt(timer_area, 10)}}>
+                    this.data_json.timer_area = parseInt(timer_area, 10)}}>
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
                         <Picker.Item label="5" value="5" />
@@ -140,7 +151,7 @@ class ScreenFormulaire extends React.Component {
                     selectedValue={this.state.timer_area}
                     style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
                     onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-                    this.state.timer_area = parseInt(timer_area, 10)}}>
+                    this.data_json.timer_area = parseInt(timer_area, 10)}}>
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
                         <Picker.Item label="5" value="5" />
@@ -169,7 +180,7 @@ class ScreenFormulaire extends React.Component {
                     selectedValue={this.state.timer_area}
                     style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
                     onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-                    this.state.timer_area = parseInt(timer_area, 10)}}>
+                    this.data_json.timer_area = parseInt(timer_area, 10)}}>
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
                         <Picker.Item label="5" value="5" />
@@ -198,7 +209,7 @@ class ScreenFormulaire extends React.Component {
                     selectedValue={this.state.timer_area}
                     style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
                     onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-                    this.state.timer_area = parseInt(timer_area, 10)}}>
+                    this.data_json.timer_area = parseInt(timer_area, 10)}}>
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
                         <Picker.Item label="5" value="5" />
@@ -236,7 +247,7 @@ class ScreenFormulaire extends React.Component {
                     selectedValue={this.state.timer_area}
                     style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
                     onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-                    this.state.timer_area = parseInt(timer_area, 10)}}>
+                    this.data_json.timer_area = parseInt(timer_area, 10)}}>
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
                         <Picker.Item label="5" value="5" />
@@ -265,7 +276,7 @@ class ScreenFormulaire extends React.Component {
                     selectedValue={this.state.timer_area}
                     style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
                     onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-                    this.state.timer_area = parseInt(timer_area, 10)}}>
+                    this.data_json.timer_area = parseInt(timer_area, 10)}}>
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
                         <Picker.Item label="5" value="5" />
@@ -303,7 +314,7 @@ class ScreenFormulaire extends React.Component {
                     selectedValue={this.state.timer_area}
                     style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
                     onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-                    this.state.timer_area = parseInt(timer_area, 10)}}>
+                    this.data_json.timer_area = parseInt(timer_area, 10)}}>
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
                         <Picker.Item label="5" value="5" />
@@ -332,7 +343,7 @@ class ScreenFormulaire extends React.Component {
                     selectedValue={this.state.timer_area}
                     style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
                     onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-                    this.state.timer_area = parseInt(timer_area, 10)}}>
+                    this.data_json.timer_area = parseInt(timer_area, 10)}}>
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
                         <Picker.Item label="5" value="5" />
@@ -370,7 +381,7 @@ class ScreenFormulaire extends React.Component {
                     selectedValue={this.state.timer_area}
                     style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
                     onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-                    this.state.timer_area = parseInt(timer_area, 10)}}>
+                    this.data_json.timer_area = parseInt(timer_area, 10)}}>
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
                         <Picker.Item label="5" value="5" />
@@ -399,7 +410,7 @@ class ScreenFormulaire extends React.Component {
                     selectedValue={this.state.timer_area}
                     style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
                     onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-                    this.state.timer_area = parseInt(timer_area, 10)}}>
+                    this.data_json.timer_area = parseInt(timer_area, 10)}}>
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
                         <Picker.Item label="5" value="5" />

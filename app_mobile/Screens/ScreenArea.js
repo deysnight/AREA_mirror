@@ -1,10 +1,59 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, View, TouchableOpacity } from 'react-native';
+import { Text, ScrollView, View, TouchableOpacity, RefreshControl } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/Entypo'
 import SyncStorage from 'sync-storage';
 
 class ScreenArea extends React.Component {
+
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+            loading: false,
+            data: [],
+            error: null,
+            refreshing: false,
+            google: null,
+            facebook: null,
+            twitch: null,
+            onedrive: null
+        };
+      }
+
+
+    componentDidMount() {
+        this.makeRemoteRequest();
+    }
+
+    makeRemoteRequest = () => {
+        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/oauth2/token/21" //+ SyncStorage.get("USER_ID");
+        this.setState({ loading: true });
+        result = fetch(url, {
+             method: 'GET',
+          })
+            .then(result => result.json())
+            .then(result => {
+                this.setState({refreshing: false});
+                this.setState({
+                    google: result[0].google,
+                    facebook: result[0].facebook,
+                    twitch: result[0].twitch,
+                    onedrive: result[0].onedrive
+                });
+            })
+        .catch(error => {
+            this.setState({ error, loading: false });
+        });
+    };
+
+
+    _onRefresh = () => {
+        this.setState({refreshing: true});
+        this.makeRemoteRequest();
+        this.setState({refreshing: false});
+    }
+
     render() {
         const { navigation } = this.props;
         return (
@@ -12,11 +61,19 @@ class ScreenArea extends React.Component {
                 <View style={{display: 'flex', justifyContent: 'flex-end', alignSelf: 'center', flex: 2, paddingLeft: 10, paddingRight: 10}}>
                     <Text style={{fontSize: 30, fontWeight: 'bold', textAlign: 'center'}}>Choisissez une Action</Text>
                 </View>
-                <View style={{alignSelf: 'center', justifyContent: 'center', flex: 8}}>
+                <View style={{alignSelf: 'center', justifyContent: 'center', alignContent: 'center', flex: 8}}>
+                    {(this.state.google || this.state.facebook || this.state.twitch || this.state.onedrive)
+                    ?
                     <ScrollView
                     showsVerticalScrollIndicator={false}
+                    refreshControl={
+                        <RefreshControl
+                          refreshing={this.state.refreshing}
+                          onRefresh={this._onRefresh}
+                        />
+                      }
                     >
-                    { SyncStorage.get("GOOGLE_TOKEN") ?
+                    { this.state.google ?
                         <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -119,7 +176,7 @@ class ScreenArea extends React.Component {
                         </ScrollView>
                     : null }
 
-                    { SyncStorage.get("FACEBOOK_TOKEN") ?
+                    { this.state.facebook ?
                         <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -228,7 +285,7 @@ class ScreenArea extends React.Component {
                         </ScrollView>
                         : null }
 
-                        { SyncStorage.get("TWITCH_TOKEN") ?
+                        { this.state.twitch ?
                         <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -331,7 +388,7 @@ class ScreenArea extends React.Component {
                         </ScrollView>
                         : null }
 
-                        { SyncStorage.get("ONEDRIVE_TOKEN") ?
+                        { this.state.onedrive ?
                         <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -373,7 +430,7 @@ class ScreenArea extends React.Component {
                         </ScrollView>
                         : null }
 
-                        { SyncStorage.get("GOOGLE_TOKEN") ?
+                        { this.state.google ?
                         <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -410,7 +467,7 @@ class ScreenArea extends React.Component {
                         </ScrollView>
                         : null }
 
-                        { SyncStorage.get("GOOGLE_TOKEN") ?
+                        { this.state.google ?
                         <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -447,7 +504,13 @@ class ScreenArea extends React.Component {
                         </ScrollView>
                         : null }
                     </ScrollView>
-                    
+                    :
+                    <ScrollView contentContainerStyle={{flexGrow: 1, justifyContent : 'center'}}
+                    refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh}/>}
+                    >
+                    <Text style={{alignSelf: 'center', justifyContent: 'center', fontSize: 40, fontWeight: 'bold'}}>No Data</Text>
+                    </ScrollView>
+                    }
                 </View>
             </View>
     );

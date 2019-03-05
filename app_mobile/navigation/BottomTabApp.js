@@ -12,10 +12,6 @@ import SyncStorage from 'sync-storage';
 Logout = async (navigation) => {
     SyncStorage.remove('USERNAME');
     SyncStorage.remove('USER_ID');
-    SyncStorage.remove("GOOGLE_TOKEN");
-    SyncStorage.remove("FACEBOOK_TOKEN");
-    SyncStorage.remove("TWITCH_TOKEN");
-    SyncStorage.remove("ONEDRIVE_TOKEN");
     navigation.navigate('Login');
 }
 

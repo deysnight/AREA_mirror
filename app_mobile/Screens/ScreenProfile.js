@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
-import {View, StyleSheet, Text, TouchableOpacity, RefreshControl} from "react-native";
+import {View, StyleSheet, Text, TouchableOpacity, RefreshControl, ScrollView} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import GridView from 'react-native-super-grid';
 import SyncStorage from 'sync-storage';
-import syncStorage from 'sync-storage';
 
 class ViewProfile extends Component {
     
@@ -18,32 +17,27 @@ class ViewProfile extends Component {
         };
       }
 
+
     componentDidMount() {
         this.setState({ loading: true }, () => this.makeRemoteRequest())  
     }
 
-  makeRemoteRequest = async () => {
-    const url = "http://" + SyncStorage.get('IP') + ":8080/internal/area/21"; //SyncStorage.get("USER_ID");
-    try {
-      const response = await fetch(url);
-      const result = await response.json();
-      this.setState(
-        {
-          data: result.data,
-          error: result.error || null,
-          loading: false,
-          refreshing: false,
-        },
-      );
-    } catch (error) {
-      this.setState({ error, loading: false });
-    }
-  };
-
-    _onRefresh = () => {
-        this.setState({refreshing: true});
-        this.makeRemoteRequest()
-    }
+    makeRemoteRequest = async () => {
+        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/area/21"; //SyncStorage.get("USER_ID");
+        try {
+            const response = await fetch(url);
+            const result = await response.json();
+            console.log(result);
+            if (result.success === true) {
+                this.setState({data: result.data, error: result.error || null, loading: false, refreshing: false});
+            }
+            else {
+                this.setState({data: "nothing", error: result.error || null, loading: false, refreshing: false});
+            }
+        } catch (error) {
+            this.setState({ error, loading: false });
+        }
+    };
     
     delete_area = async (id) => {
         this.setState({ loading: true })
@@ -172,7 +166,13 @@ class ViewProfile extends Component {
             <View style={{display: 'flex', justifyContent: 'center', alignSelf: 'center', paddingTop: 60, paddingBottom: 20}}>
                 <Text style={{fontSize: 30, fontWeight: 'bold'}}>Mon profil</Text>
             </View>
-            <GridView
+            {this.state.data != "nothing" ?
+                <GridView refreshControl={
+                    <RefreshControl
+                      refreshing={this.state.refreshing}
+                      onRefresh={this._onRefresh}
+                    />
+                  }
                 itemDimension={130}
                 items={items}
                 style={homePage.gridView}
@@ -182,6 +182,13 @@ class ViewProfile extends Component {
                     </View>
                 )}
                 />
+                :
+                <ScrollView contentContainerStyle={{flexGrow: 1, justifyContent : 'center'}}
+                    refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh}/>}
+                    >
+                    <Text style={{alignSelf: 'center', justifyContent: 'center', fontSize: 40, fontWeight: 'bold'}}>No Data</Text>
+                </ScrollView>
+                    }
             </View>
         );
       }
