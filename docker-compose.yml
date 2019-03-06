@@ -1,0 +1,15 @@
+version: '3'
+services:
+      
+services:
+  server:
+    image: area_server
+    build: ./web_api/area_server
+    ports:
+      - "8080:80"
+      
+  front:
+    image: front_web
+    build: ./app_web/front_web
+    ports:
+      - "8081:80"
