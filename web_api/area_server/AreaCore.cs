@@ -40,6 +40,8 @@ namespace area_server
             "fichier onedrive",
             "nombre de gsheeet"};
 
+        private static string[] cell_sheet = new string[] { "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", "B11", "B12", "B13"};
+
         private static string uri_youtube_sub = "https://www.googleapis.com/youtube/v3/channels?access_token={0}&part=statistics&mine=true";
         private static string uri_youtube_like = "https://www.googleapis.com/youtube/v3/videos?part=statistics&id={0}&access_token={1}";
         private static string uri_youtube_vod = "https://www.googleapis.com/youtube/v3/channels?id={0}&access_token={1}&part=statistics";
@@ -652,8 +654,8 @@ namespace area_server
             string query_list = "https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.spreadsheet%27";
             string query_create = "https://sheets.googleapis.com/v4/spreadsheets";
             string query_modif = "https://sheets.googleapis.com/v4/spreadsheets/{0}/values/B2?valueInputOption=USER_ENTERED";
-            try
-            {
+            //try
+            //{
                 var tmp = param.Split("]!#![");
 
                 //JArray json = (JArray)DBConnect.my_select("users WHERE id = '" + current_area["user_id"] + "'", "*");
@@ -684,23 +686,52 @@ namespace area_server
                     var hc = new HttpClient();
                     hc.DefaultRequestHeaders.Add("Authorization", "Bearer " + token_user);
                     hc.DefaultRequestHeaders.Add("Accept", "application/json");
-                    hc.DefaultRequestHeaders.Add("Content-Type", "application/json");
+                    //hc.DefaultRequestHeaders.Add("Content-Type", "application/json");
                     var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
                     var result_req = hc.PostAsync(query_create, content).Result;
                     dynamic rep_json = JsonConvert.DeserializeObject(result_req.ToString());
-                    current = rep_json.spreadsheetId;
+                current = rep_json.spreadsheetId;
+                Console.WriteLine(rep_json);
                 }
                 query_modif = string.Format(query_modif, current);
-                dynamic jsonn = JsonConvert.DeserializeObject("{\"range\":\"B2\",\"values\":[[\"" + str_sheet[int.Parse(current_area["action_id"].ToString()) - 1] + "\", \"" + tmp[0]+ "\"]]}");
-                var hcc = new HttpClient();
-                hcc.DefaultRequestHeaders.Add("Authorization", "Bearer " + token_user);
-                hcc.DefaultRequestHeaders.Add("Accept", "application/json");
-                hcc.DefaultRequestHeaders.Add("Content-Type", "application/json");
-                var contentt = new StringContent(jsonn.ToString(), Encoding.UTF8, "application/json");
-                var result = hcc.PutAsync(query_create, contentt).Result;
 
-            }
-            catch (Exception) { return (null); }
+
+                dynamic jsonn = JsonConvert.DeserializeObject("{\"range\":\"B2\",\"values\":[[\"Nom de la chaine\", \"uihuhuhihihi\"]]}");
+            /*                var hcc = new HttpClient();
+                            hcc.DefaultRequestHeaders.Add("Authorization", "Bearer " + token_user);
+                            hcc.DefaultRequestHeaders.Add("Accept", "application/json");
+                            //hcc.DefaultRequestHeaders.Add("Content-Type", "application/json");
+                            var contentt = new StringContent(jsonn.ToString(), Encoding.UTF8, "application/json");
+                            var result = hcc.PutAsync(query_create, contentt).Result;
+                        var lol = result.Content;
+                            Console.WriteLine(lol.ToString());*/
+
+            HttpWebRequest b_request = (HttpWebRequest)WebRequest.Create(query_modif);
+            b_request.KeepAlive = false;
+            b_request.Method = "PUT";
+
+            byte[] postBytes = Encoding.ASCII.GetBytes(jsonn.ToString());
+            b_request.ContentType = "application/application/json";
+            b_request.ContentLength = postBytes.Length;
+
+            Stream requestStream = b_request.GetRequestStream();
+            requestStream.Write(postBytes, 0, postBytes.Length);
+            requestStream.Close();
+
+            HttpWebResponse b_response = (HttpWebResponse)request.GetResponse();
+            StreamReader b_sr = new StreamReader(response.GetResponseStream());
+
+            Console.WriteLine(b_sr.ReadToEnd());
+
+
+
+
+
+
+
+
+            //}
+            //catch (Exception) { return (null); }
             return ("NaN");
         }
     }

@@ -62,13 +62,14 @@ namespace area_server.Controllers
         [HttpPost]
         public ActionResult<string> area_post()
         {
-            dynamic json_rep = JsonConvert.SerializeObject("{\"success\": false, \"reason\": null}");
+            dynamic json_rep = JsonConvert.DeserializeObject("{\"success\": false, \"reason\": null}");
             dynamic json;
+
             using (var reader = new StreamReader(Request.Body))
             {
-                var body = reader.ReadToEnd();
-                var dict = HttpUtility.ParseQueryString(body);
-                json = JsonConvert.DeserializeObject(JsonConvert.SerializeObject(dict.AllKeys.ToDictionary(k => k, k => dict[k])));
+                var body = JsonConvert.DeserializeObject(reader.ReadToEnd());
+                json = body;
+                Console.WriteLine(json);
             }
             /*{
                 id_action: null,
