@@ -42,7 +42,7 @@ class ScreenOauth extends React.Component {
         method: 'GET',
         credentials: "same-origin",
         headers: {
-          Cookie: "user_id=" + 21
+          Cookie: "user_id=" + SyncStorage.get("USER_ID")
         },
       })
       .then(res => res.json())
@@ -84,7 +84,7 @@ class ScreenOauth extends React.Component {
         method: 'GET',
         credentials: "same-origin",
         headers: {
-          Cookie: "user_id=" + 21
+          Cookie: "user_id=" + SyncStorage.get("USER_ID")
         },
       })
       .then(res => res.json())
@@ -127,7 +127,7 @@ class ScreenOauth extends React.Component {
       method: 'GET',
       credentials: "same-origin",
       headers: {
-        Cookie: "user_id=" + 21
+        Cookie: "user_id=" + SyncStorage.get("USER_ID")
       },
     })
     .then(res => res.json())
@@ -167,7 +167,7 @@ class ScreenOauth extends React.Component {
       method: 'GET',
       credentials: "same-origin",
       headers: {
-        Cookie: "user_id=" + 21
+        Cookie: "user_id=" + SyncStorage.get("USER_ID")
       },
     })
     .then(res => res.json())

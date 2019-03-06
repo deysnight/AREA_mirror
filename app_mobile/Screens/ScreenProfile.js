@@ -23,7 +23,7 @@ class ViewProfile extends Component {
 }
 
 makeRemoteRequest = async () => {
-        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/area/21"; //SyncStorage.get("USER_ID");
+        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/area/" + SyncStorage.get("USER_ID");
         try {
             const response = await fetch(url);
             const result = await response.json();
@@ -41,7 +41,7 @@ makeRemoteRequest = async () => {
     
     delete_area = async (id) => {
         this.setState({ loading: true })
-        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/area/21/" + id ; //SyncStorage.get("USER_ID");
+        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/area/" + SyncStorage.get("USER_ID") + "/" + id;
         try {
             const response = await fetch(url, {
                 method: 'DELETE'

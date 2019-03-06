@@ -26,7 +26,7 @@ class ViewHome extends Component {
     }
 
     makeRemoteRequest = () => {
-        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/oauth2/token/21" //+ SyncStorage.get("USER_ID");
+        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/oauth2/token/" + SyncStorage.get("USER_ID");
         this.setState({ loading: true });
         result = fetch(url, {
            method: 'GET',

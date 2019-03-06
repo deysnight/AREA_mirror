@@ -1,17 +1,48 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-
-// FAIRE UNE REQUEST POUR GET LES TOKENS
-// SI ON A PAS FB ON GRISE SA REACTION ET ON LA REND NON CLICKABLE
+import SyncStorage from 'sync-storage';
 
 class ScreenReaction extends React.Component {
-    state = {
-        google: "null",
-        facebook: "null",
-        twitch: "null",
-        onedrive: "null"
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            loading: false,
+            data: [],
+            error: null,
+            refreshing: false,
+            google: null,
+            facebook: null,
+            twitch: null,
+            onedrive: null
+        };
+    }
+
+
+    componentDidMount() {
+        this.makeRemoteRequest();
+    }
+
+    makeRemoteRequest = () => {
+        const url = "http://" + SyncStorage.get('IP') + ":8080/internal/oauth2/token/" + SyncStorage.get("USER_ID");
+        this.setState({ loading: true });
+        result = fetch(url, {
+           method: 'GET',
+       })
+        .then(result => result.json())
+        .then(result => {
+            this.setState({refreshing: false});
+            this.setState({
+                google: result[0].google,
+                facebook: result[0].facebook,
+                twitch: result[0].twitch,
+                onedrive: result[0].onedrive
+            });
+        })
+        .catch(error => {
+            this.setState({ error, loading: false });
+        });
     };
 
     getReaction = (id_action) => {
