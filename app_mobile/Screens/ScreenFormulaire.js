@@ -14,7 +14,7 @@ class ScreenFormulaire extends React.Component {
             refreshing: false,
             id_action: null,
             id_reaction: null,
-            user_id: 21, //SyncStorage.get("USER_ID"),
+            user_id: SyncStorage.get("USER_ID"),
             timer_area: null,
             page_id_for_action: null,
             video_id: null,
@@ -25,7 +25,7 @@ class ScreenFormulaire extends React.Component {
         this.data_json = {
             "id_action": "nope",
             "id_reaction": "nope",
-            "user_id": 21,
+            "user_id": SyncStorage.get("USER_ID"),
             "timer_area": "nope",
             "data": {
                 "page_id_for_action": "nope",

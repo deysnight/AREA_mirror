@@ -93,6 +93,7 @@ class LoginScreen extends React.Component {
      })
       .then(res => res.json())
       .then(res => {
+        console.log(res);
         if (res.reason === "login or user incorrect")
           return Alert.alert(
             'Erreur'
