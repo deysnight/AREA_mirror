@@ -81,7 +81,7 @@ namespace area_server.Controllers
                     ...
                 }
             }*/
-            string str_value = string.Format("{0}, '{1}', '{2}', {3}, '{4}', '{5}', '{6}', '{7}', '{8}'", json.user_id, json.id_action, json.id_reaction, json.timer_area, json.data.video_id, json.data.page_id_for_reaction, json.data.facebook_page_id, json.data.youtuber_name, json.data.streamer_live);
+            string str_value = string.Format("{0}, '{1}', '{2}', {3}, '{4}', '{5}', '{6}', '{7}', '{8}'", json.user_id, json.id_action, json.id_reaction, json.timer_area, json.data.video_id, json.data.page_id_for_action, json.data.facebook_page_id, json.data.youtuber_name, json.data.streamer_live);
             int area_id = DBConnect.my_insert_return("area", "user_id, action_id, reaction_id, timer_area, p_video_id, p_page_id, p_fbpage_id, p_ytb_name, p_streamer", str_value);
             if (area_id == -1)
             {
@@ -110,7 +110,7 @@ namespace area_server.Controllers
                 json = JsonConvert.DeserializeObject(JsonConvert.SerializeObject(dict.AllKeys.ToDictionary(k => k, k => dict[k])));
             }
 
-            string str_value = string.Format("timer_area = {0}, p_video_id = '{1}', p_page_id = '{2}', p_fbpage_id = '{2}', p_ytb_name = '{3}', p_streamer = '{4}'", json.timer_area, json.data.video_id, json.data.page_id_for_reaction, json.data.facebook_page_id, json.data.youtuber_name, json.data.streamer_live);
+            string str_value = string.Format("timer_area = {0}, p_video_id = '{1}', p_page_id = '{2}', p_fbpage_id = '{2}', p_ytb_name = '{3}', p_streamer = '{4}'", json.timer_area, json.data.video_id, json.data.page_id_for_action, json.data.facebook_page_id, json.data.youtuber_name, json.data.streamer_live);
             DBConnect.my_update("area", str_value, "user_id = " + user_id + " AND id = " + area_id);
             return (json_rep);
         }

@@ -22,19 +22,20 @@ class ScreenFormulaire extends React.Component {
             facebook_page_id: null,
             streamer_live: null
         };
-        this.data_json = {
-            "id_action": "nope",
-            "id_reaction": "nope",
+        this.data_json =
+        {
+            "id_action": "null",
+            "id_reaction": "null",
             "user_id": SyncStorage.get("USER_ID"),
-            "timer_area": "nope",
+            "timer_area": "null",
             "data": {
-                "page_id_for_action": "nope",
-                "video_id": "nope",
-                "youtuber_name": "nope",
-                "facebook_page_id": "nope",
-                "streamer_live": "nope"
+              "page_id_for_action": "null",
+              "video_id": "null",
+              "youtuber_name": "null",
+              "facebook_page_id": "null",
+              "streamer_live": "null"
             }
-        }
+          }
     }
 
     
