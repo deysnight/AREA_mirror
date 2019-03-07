@@ -2,65 +2,77 @@
 
   
 
-**Equipe de developement**: Claude Charles, Brice Aug, Louisson l'arabe, Lucien Claussin
+**Equipe de dévelopement**: Claude Charles, Brice Aug, Louison Harizi, Lucien Claussin
 
-Ce projet à pour but de créer des actions/réactions en utilisant des services externes (e.g google api, twitter api, ...). Lorsqu'un evenement arrive sur une action, l'utilisateur peut programmer d'être prévenu via un autre service (réactions).
+Ce projet a pour but de créer des Actions/REActions (AREA) en utilisant des services externes (e.g Google api, Facebook api, ...). Lorsqu'un évènement est trigger sur une de vos Actions, a lieu une REAction programmée à l'avance par l'utilisateur, à l'aide de différents services.
 
-Il se décompose en **3 parties**:
+Le projet se décompose en **3 parties**:
 
-- une **API rest** qui s'occupe des actions et des réactions
+- Une **API REST** qui gère des Actions et des REActions
 
-- une **application mobile**
+- Une **application mobile**
 
-- un **site web**
+- Un **site web**
 
 # Utilisation:
 
-- Pour lancer l'api et le site web il faut run la solution via visual studio
-- Pour l'application mobile suivant les commandes suivantes:
+Pour lancer l'api et le site web il faut soit lancer la solution via visual studio soit grâce à Docker à l'aide de ces commandes :
 
-Allez dans le dossier racine du projet
+	 > docker-compose build
+	 > docker-compose up 
+
+Pour l'application mobile, entrer les commandes suivantes :
+
 
 	 > cd app_mobile
 	 > npm install 
 	 > npm start
-Vous pouvez utiliser expo pour tester la solution.
+	 
+Vous pouvez utiliser Expo pour tester la solution en scannant le QR code généré par ces commandes.
 	
-# Actions disponibles:
+# Actions
 
-- **Youtube:**
-	- Etre alerté pour tout changement d'abonnés
-	- Etre alerté pour tout nouveau like/dislike sur une de vos video
-	- Etre alerté si une nouvelle vidéo est postée sur une chaine
+- **Youtube :**
+	- Pour tout changement d'abonnés sur votre chaîne Youtube
+	- Pour tout nouveau like/dislike sur une de vos videos
+	- Etre alerté si une nouvelle vidéo est postée sur la chaîne de votre Youtuber favori
 
-- **Facebook:**
-	- Etre alerté pour tout like sur une page
-	- Etre alerté pour si l'utilisateur crée une nouvelle page
-	- Etre alerté si l'utilisateur fait un poste sur son mur
+- **Facebook :**
+	- Pour tout like sur une de vos pages Facebook publique
+	- Quand l'utilisateur crée une nouvelle page Facebook
+	- Pour tout nouveau post sur le mur Facebook de l'utilisateur
 
-- **Twitch:**
-	- Etre alerté si l'utilisateur follow une nouvelle chaine
-	- Etre alerté si l'utilisateur a un nouveau follower
-	- Etre alerté une chaine followed passe en live
+- **Twitch :**
+	- Quand l'utilisateur follow une nouvelle chaîne Twitch
+	- Quand l'utilisateur voit son compte d'abonné changer
+	- Quand votre streamer favori passe live sur Twitch
 
-- **Google Drive:**
-	- Etre alerté si un fichier est upload sur mon drive
+- **Google Drive :**
+	- Etre alerté si un fichier est upload sur votre Drive Google
 
-- **Onedrive:**
-	- Etre alerté si il y a un nouveau partage de fichier
+- **Onedrive :**
+	- Etre alerté s'il y a un nouveau partage de fichier sur votre Onedrive
 
-- **Google sheet:**
-	- Etre alerté si une nouvelle sheet a était créée
+- **Google Sheet :**
+	- Etre alerté si une nouvelle sheet a été créée sur votre Drive Google Sheet
 
-# Reactions:
+# REActions
 
-Les réactions sont les différentes alertes possibles.
+Les réactions sont les différentes alertes possibles quand une des actions ci-dessus a été trigger.
 
-- **Liste des réaction:**
+- **Liste des REActions:**
     - Mail
-    - Google sheet
+        - Vous envoie un mail de notification directement sur la boîte mail renseigné lors de la création de votre compte.
+    - Google Sheet
+        - Met à jour une SpreadSheet Google sur votre Drive (nécessite un abonnement aux services Google)
     - Facebook
+        - Poste un message de notification directement sur la page Facebook renseignée (nécessite un abonnement au service Facebook)
     
+# Notes supplémentaires:
+
+ - Toutes Action et REAction créées par l'utilisateur est soumis à un timer renseigné lors de la création de l'AREA. Il s'agit de tout les x minutes ou le serveur performera une requête pour déterminer si une REAction a lieu d'être.
+
+- Certaines Actions ou REActions nécessitent le renseignement de champs de configuration supplémentaire par l'utilisateur comme : le nom d'un streamer, l'id d'une vidéo Youtube ou encore la page Facebook sur laquel l'application doit écrire en cas de trigger d'Action. Remplir ces champs est obligatoire.
 
 		
 
