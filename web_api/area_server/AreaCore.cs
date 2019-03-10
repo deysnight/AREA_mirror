@@ -74,8 +74,10 @@ namespace area_server
         public AreaCore(int timer)
         {
             Interval = timer;
-            area_list = (JArray)DBConnect.my_select("area", "*", "user_id");
+            area_list = (JArray)DBConnect.my_select("area WHERE timer_area = " + Interval, "*", "user_id");
             current_user_id = -1;
+
+            Console.WriteLine(Interval + " " + area_list.Count);
 
             area_action.Add(new areaAction(youtube_subscriber));
             area_action.Add(new areaAction(youtube_like));
@@ -102,16 +104,6 @@ namespace area_server
         }
 
         public int Interval { get; }
-
-        public void test_method()
-        {
-            Console.WriteLine("methoed exec");
-            Console.WriteLine(Utils.generate_token("3:2")); // creation uid
-            Console.WriteLine(get_area_value("MakA"));
-            set_area_value("MakA", "78");
-            Console.WriteLine(get_area_value("MakA"));
-            set_area_value("Makp", "78");
-        }
 
         public void run()
         {
@@ -179,7 +171,6 @@ namespace area_server
         private static string youtube_subscriber(JObject token, string user_uid, JObject extra)
         {
             string token_user = token["google"].ToString();
-            Console.WriteLine(extra);
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(uri_youtube_sub, token_user));
