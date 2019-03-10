@@ -22,25 +22,27 @@ class ScreenFormulaire extends React.Component {
             facebook_page_id: null,
             streamer_live: null
         };
-        this.data_json = {
-            "id_action": "nope",
-            "id_reaction": "nope",
+        this.data_json =
+        {
+            "id_action": null,
+            "id_reaction": null,
             "user_id": SyncStorage.get("USER_ID"),
-            "timer_area": "nope",
+            "timer_area": null,
             "data": {
-                "page_id_for_action": "nope",
-                "video_id": "nope",
-                "youtuber_name": "nope",
-                "facebook_page_id": "nope",
-                "streamer_live": "nope"
+              "page_id_for_action": null,
+              "video_id": null,
+              "youtuber_name": null,
+              "facebook_page_id": null,
+              "streamer_live": null
             }
-        }
+          }
     }
 
     
 
     makeRemoteRequest = () => {
         const url = "http://" + SyncStorage.get('IP') + ":8080/internal/area/";
+        console.log(this.data_json);
         this.setState({ loading: true });
         fetch(url, {
            method: 'POST',
@@ -67,7 +69,7 @@ class ScreenFormulaire extends React.Component {
         this.data_json.id_action = id_action;
         this.data_json.id_reaction = id_reaction;
         if (id_reaction === 3) {
-            if (this.data_json.facebook_page_id === null)
+            if (this.data_json.data.facebook_page_id === null)
                 return Alert.alert(
                     'Erreur'
                     ,'Vous devez remplir tout les champs'
@@ -77,7 +79,7 @@ class ScreenFormulaire extends React.Component {
                     );
         }
         if (id_action === 2) {
-            if (this.data_json.video_id === null)
+            if (this.data_json.data.video_id === null)
                 return Alert.alert(
                     'Erreur'
                     ,'Vous devez remplir tout les champs'
@@ -87,7 +89,7 @@ class ScreenFormulaire extends React.Component {
                     );
         }
         if (id_action === 3) {
-            if (this.data_json.youtuber_name === null)
+            if (this.data_json.data.youtuber_name === null)
                 return Alert.alert(
                     'Erreur'
                     ,'Vous devez remplir tout les champs'
@@ -97,7 +99,7 @@ class ScreenFormulaire extends React.Component {
                     );
         }
         if (id_action === 4) {
-            if (this.data_json.page_id_for_action === null)
+            if (this.data_json.data.page_id_for_action === null)
                 return Alert.alert(
                     'Erreur'
                     ,'Vous devez remplir tout les champs'
@@ -107,7 +109,7 @@ class ScreenFormulaire extends React.Component {
                     );
         }
         if (id_action === 9) {
-            if (this.data_json.streamer_live === null)
+            if (this.data_json.data.streamer_live === null)
                 return Alert.alert(
                     'Erreur'
                     ,'Vous devez remplir tout les champs'
@@ -116,6 +118,14 @@ class ScreenFormulaire extends React.Component {
                     ]
                     );
         }
+        if (this.data_json.timer_area === null)
+            return Alert.alert(
+                'Erreur'
+                ,'Vous devez remplir tout les champs'
+                ,[
+                {text: 'Continuer'},
+                ]
+            );
         this.makeRemoteRequest()
     }
 
@@ -126,15 +136,15 @@ class ScreenFormulaire extends React.Component {
             (id_action === 11 && id_reaction === 1) || (id_action === 12 && id_reaction === 1)) {
             return (
                 <View style={{alignSelf: 'center', justifyContent: 'center', flex: 8}}>
-                <Picker
-                selectedValue={this.state.timer_area}
+                <TextInput
                 style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
-                onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-                this.data_json.timer_area = parseInt(timer_area, 10)}}>
-                <Picker.Item label="1" value="1" />
-                <Picker.Item label="2" value="2" />
-                <Picker.Item label="5" value="5" />
-                </Picker>
+                placeholder="Timer"
+                placeholderTextColor="rgba(0, 0, 0, 0.7)"
+                returnKeyType="send"
+                autoCorrect={false}
+                ref={(input) => this.timer_area = input}
+                onChangeText={(timer_area) => this.data_json.timer_area = parseInt(timer_area, 10)}
+                />
                 <TouchableOpacity
                 style={{backgroundColor: '#D50000', padding: 12, paddingLeft: 30, paddingRight: 30, borderRadius: 30}}
                 onPress={() => this.ValidateAREA(id_action, id_reaction)}>
@@ -147,15 +157,15 @@ class ScreenFormulaire extends React.Component {
         (id_action === 8 && id_reaction === 3) || (id_action === 10 && id_reaction === 3) || (id_action === 11 && id_reaction === 3) || (id_action === 12 && id_reaction === 3)) {
         return (
             <View style={{alignSelf: 'center', justifyContent: 'center', flex: 8}}>
-            <Picker
-            selectedValue={this.state.timer_area}
-            style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
-            onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-            this.data_json.timer_area = parseInt(timer_area, 10)}}>
-            <Picker.Item label="1" value="1" />
-            <Picker.Item label="2" value="2" />
-            <Picker.Item label="5" value="5" />
-            </Picker>
+            <TextInput
+                style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
+                placeholder="Timer"
+                placeholderTextColor="rgba(0, 0, 0, 0.7)"
+                returnKeyType="send"
+                autoCorrect={false}
+                ref={(input) => this.timer_area = input}
+                onChangeText={(timer_area) => this.data_json.timer_area = parseInt(timer_area, 10)}
+                />
             <TextInput
             style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
             placeholder="Page_ID"
@@ -163,7 +173,7 @@ class ScreenFormulaire extends React.Component {
             returnKeyType="send"
             autoCorrect={false}
             ref={(input) => this.facebook_page_id = input}
-            onChangeText={(facebook_page_id) => this.state.facebook_page_id = parseInt(facebook_page_id, 10)}
+            onChangeText={(facebook_page_id) => this.data_json.data.facebook_page_id = parseInt(facebook_page_id, 10)}
             />
             <TouchableOpacity
             style={{backgroundColor: '#D50000', padding: 12, paddingLeft: 30, paddingRight: 30, borderRadius: 30}}
@@ -176,15 +186,15 @@ class ScreenFormulaire extends React.Component {
         else if ((id_action === 2 && id_reaction === 1) || (id_action === 2 && id_reaction === 2)) {
             return (
             <View style={{alignSelf: 'center', justifyContent: 'center', flex: 8}}>
-            <Picker
-            selectedValue={this.state.timer_area}
-            style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
-            onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-            this.data_json.timer_area = parseInt(timer_area, 10)}}>
-            <Picker.Item label="1" value="1" />
-            <Picker.Item label="2" value="2" />
-            <Picker.Item label="5" value="5" />
-            </Picker>
+            <TextInput
+                style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
+                placeholder="Timer"
+                placeholderTextColor="rgba(0, 0, 0, 0.7)"
+                returnKeyType="send"
+                autoCorrect={false}
+                ref={(input) => this.timer_area = input}
+                onChangeText={(timer_area) => this.data_json.timer_area = parseInt(timer_area, 10)}
+                />
             <TextInput
             style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
             placeholder="Video_ID"
@@ -192,7 +202,7 @@ class ScreenFormulaire extends React.Component {
             returnKeyType="send"
             autoCorrect={false}
             ref={(input) => this.video_id = input}
-            onChangeText={(video_id) => this.state.video_id = video_id}
+            onChangeText={(video_id) => this.data_json.data.video_id = video_id}
             />
             <TouchableOpacity
             style={{backgroundColor: '#D50000', padding: 12, paddingLeft: 30, paddingRight: 30, borderRadius: 30}}
@@ -205,15 +215,15 @@ class ScreenFormulaire extends React.Component {
         else if (id_action === 2 && id_reaction === 3) {
             return (
             <View style={{alignSelf: 'center', justifyContent: 'center', flex: 8}}>
-            <Picker
-            selectedValue={this.state.timer_area}
-            style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
-            onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-            this.data_json.timer_area = parseInt(timer_area, 10)}}>
-            <Picker.Item label="1" value="1" />
-            <Picker.Item label="2" value="2" />
-            <Picker.Item label="5" value="5" />
-            </Picker>
+            <TextInput
+                style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
+                placeholder="Timer"
+                placeholderTextColor="rgba(0, 0, 0, 0.7)"
+                returnKeyType="send"
+                autoCorrect={false}
+                ref={(input) => this.timer_area = input}
+                onChangeText={(timer_area) => this.data_json.timer_area = parseInt(timer_area, 10)}
+                />
             <TextInput
             style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
             placeholder="Video_ID"
@@ -221,7 +231,7 @@ class ScreenFormulaire extends React.Component {
             returnKeyType="next"
             autoCorrect={false}
             ref={(input) => this.video_id = input}
-            onChangeText={(video_id) => this.state.video_id = video_id}
+            onChangeText={(video_id) => this.data_json.data.video_id = video_id}
             />
             <TextInput
             style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
@@ -230,7 +240,7 @@ class ScreenFormulaire extends React.Component {
             returnKeyType="send"
             autoCorrect={false}
             ref={(input) => this.facebook_page_id = input}
-            onChangeText={(facebook_page_id) => this.state.facebook_page_id = parseInt(facebook_page_id,10)}
+            onChangeText={(facebook_page_id) => this.data_json.data.facebook_page_id = parseInt(facebook_page_id,10)}
             />
             <TouchableOpacity
             style={{backgroundColor: '#D50000', padding: 12, paddingLeft: 30, paddingRight: 30, borderRadius: 30}}
@@ -243,15 +253,15 @@ class ScreenFormulaire extends React.Component {
         else if (id_action === 3 && id_reaction === 1) {
             return (
             <View style={{alignSelf: 'center', justifyContent: 'center', flex: 8}}>
-            <Picker
-            selectedValue={this.state.timer_area}
-            style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
-            onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-            this.data_json.timer_area = parseInt(timer_area, 10)}}>
-            <Picker.Item label="1" value="1" />
-            <Picker.Item label="2" value="2" />
-            <Picker.Item label="5" value="5" />
-            </Picker>
+            <TextInput
+                style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
+                placeholder="Timer"
+                placeholderTextColor="rgba(0, 0, 0, 0.7)"
+                returnKeyType="send"
+                autoCorrect={false}
+                ref={(input) => this.timer_area = input}
+                onChangeText={(timer_area) => this.data_json.timer_area = parseInt(timer_area, 10)}
+                />
             <TextInput
             style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
             placeholder="Youtuber"
@@ -259,7 +269,7 @@ class ScreenFormulaire extends React.Component {
             returnKeyType="send"
             autoCorrect={false}
             ref={(input) => this.youtuber_name = input}
-            onChangeText={(youtuber_name) => this.state.youtuber_name = youtuber_name}
+            onChangeText={(youtuber_name) => this.data_json.data.youtuber_name = youtuber_name}
             />
             <TouchableOpacity
             style={{backgroundColor: '#D50000', padding: 12, paddingLeft: 30, paddingRight: 30, borderRadius: 30}}
@@ -272,15 +282,15 @@ class ScreenFormulaire extends React.Component {
         else if (id_action === 3 && id_reaction === 3) {
             return (
             <View style={{alignSelf: 'center', justifyContent: 'center', flex: 8}}>
-            <Picker
-            selectedValue={this.state.timer_area}
-            style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
-            onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-            this.data_json.timer_area = parseInt(timer_area, 10)}}>
-            <Picker.Item label="1" value="1" />
-            <Picker.Item label="2" value="2" />
-            <Picker.Item label="5" value="5" />
-            </Picker>
+            <TextInput
+                style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
+                placeholder="Timer"
+                placeholderTextColor="rgba(0, 0, 0, 0.7)"
+                returnKeyType="send"
+                autoCorrect={false}
+                ref={(input) => this.timer_area = input}
+                onChangeText={(timer_area) => this.data_json.timer_area = parseInt(timer_area, 10)}
+                />
             <TextInput
             style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
             placeholder="Youtuber"
@@ -288,7 +298,7 @@ class ScreenFormulaire extends React.Component {
             returnKeyType="next"
             autoCorrect={false}
             ref={(input) => this.youtuber_name = input}
-            onChangeText={(youtuber_name) => this.state.youtuber_name = youtuber_name}
+            onChangeText={(youtuber_name) => this.data_json.data.youtuber_name = youtuber_name}
             />
             <TextInput
             style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
@@ -297,7 +307,7 @@ class ScreenFormulaire extends React.Component {
             returnKeyType="send"
             autoCorrect={false}
             ref={(input) => this.facebook_page_id = input}
-            onChangeText={(facebook_page_id) => this.state.facebook_page_id = parseInt(facebook_page_id, 10)}
+            onChangeText={(facebook_page_id) => this.data_json.data.facebook_page_id = parseInt(facebook_page_id, 10)}
             />
             <TouchableOpacity
             style={{backgroundColor: '#D50000', padding: 12, paddingLeft: 30, paddingRight: 30, borderRadius: 30}}
@@ -310,15 +320,15 @@ class ScreenFormulaire extends React.Component {
         else if ((id_action === 4 && id_reaction === 1) || (id_action === 4 && id_reaction === 2)) {
             return (
             <View style={{alignSelf: 'center', justifyContent: 'center', flex: 8}}>
-            <Picker
-            selectedValue={this.state.timer_area}
-            style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
-            onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-            this.data_json.timer_area = parseInt(timer_area, 10)}}>
-            <Picker.Item label="1" value="1" />
-            <Picker.Item label="2" value="2" />
-            <Picker.Item label="5" value="5" />
-            </Picker>
+            <TextInput
+                style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
+                placeholder="Timer"
+                placeholderTextColor="rgba(0, 0, 0, 0.7)"
+                returnKeyType="send"
+                autoCorrect={false}
+                ref={(input) => this.timer_area = input}
+                onChangeText={(timer_area) => this.data_json.timer_area = parseInt(timer_area, 10)}
+                />
             <TextInput
             style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
             placeholder="Page Action"
@@ -326,7 +336,7 @@ class ScreenFormulaire extends React.Component {
             returnKeyType="send"
             autoCorrect={false}
             ref={(input) => this.page_id_for_action = input}
-            onChangeText={(page_id_for_action) => this.state.page_id_for_action = parseInt(page_id_for_action, 10)}
+            onChangeText={(page_id_for_action) => this.data_json.data.page_id_for_action = parseInt(page_id_for_action, 10)}
             />
             <TouchableOpacity
             style={{backgroundColor: '#D50000', padding: 12, paddingLeft: 30, paddingRight: 30, borderRadius: 30}}
@@ -339,15 +349,15 @@ class ScreenFormulaire extends React.Component {
         else if (id_action === 4 && id_reaction === 3) {
             return (
             <View style={{alignSelf: 'center', justifyContent: 'center', flex: 8}}>
-            <Picker
-            selectedValue={this.state.timer_area}
-            style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
-            onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-            this.data_json.timer_area = parseInt(timer_area, 10)}}>
-            <Picker.Item label="1" value="1" />
-            <Picker.Item label="2" value="2" />
-            <Picker.Item label="5" value="5" />
-            </Picker>
+            <TextInput
+                style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
+                placeholder="Timer"
+                placeholderTextColor="rgba(0, 0, 0, 0.7)"
+                returnKeyType="send"
+                autoCorrect={false}
+                ref={(input) => this.timer_area = input}
+                onChangeText={(timer_area) => this.data_json.timer_area = parseInt(timer_area, 10)}
+                />
             <TextInput
             style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
             placeholder="Page Action"
@@ -355,7 +365,7 @@ class ScreenFormulaire extends React.Component {
             returnKeyType="next"
             autoCorrect={false}
             ref={(input) => this.page_id_for_action = input}
-            onChangeText={(page_id_for_action) => this.state.page_id_for_action = parseInt(page_id_for_action, 10)}
+            onChangeText={(page_id_for_action) => this.data_json.data.page_id_for_action = parseInt(page_id_for_action, 10)}
             />
             <TextInput
             style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
@@ -364,7 +374,7 @@ class ScreenFormulaire extends React.Component {
             returnKeyType="send"
             autoCorrect={false}
             ref={(input) => this.facebook_page_id = input}
-            onChangeText={(facebook_page_id) => this.state.facebook_page_id = parseInt(facebook_page_id, 10)}
+            onChangeText={(facebook_page_id) => this.data_json.data.facebook_page_id = parseInt(facebook_page_id, 10)}
             />
             <TouchableOpacity
             style={{backgroundColor: '#D50000', padding: 12, paddingLeft: 30, paddingRight: 30, borderRadius: 30}}
@@ -377,15 +387,15 @@ class ScreenFormulaire extends React.Component {
         else if (id_action === 9 && id_reaction === 1) {
             return (
             <View style={{alignSelf: 'center', justifyContent: 'center', flex: 8}}>
-            <Picker
-            selectedValue={this.state.timer_area}
-            style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
-            onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-            this.data_json.timer_area = parseInt(timer_area, 10)}}>
-            <Picker.Item label="1" value="1" />
-            <Picker.Item label="2" value="2" />
-            <Picker.Item label="5" value="5" />
-            </Picker>
+            <TextInput
+                style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
+                placeholder="Timer"
+                placeholderTextColor="rgba(0, 0, 0, 0.7)"
+                returnKeyType="send"
+                autoCorrect={false}
+                ref={(input) => this.timer_area = input}
+                onChangeText={(timer_area) => this.data_json.timer_area = parseInt(timer_area, 10)}
+                />
             <TextInput
             style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
             placeholder="Streamer"
@@ -393,7 +403,7 @@ class ScreenFormulaire extends React.Component {
             returnKeyType="next"
             autoCorrect={false}
             ref={(input) => this.streamer_live = input}
-            onChangeText={(streamer_live) => this.state.streamer_live = streamer_live}
+            onChangeText={(streamer_live) => this.data_json.data.streamer_live = streamer_live}
             />
             <TouchableOpacity
             style={{backgroundColor: '#D50000', padding: 12, paddingLeft: 30, paddingRight: 30, borderRadius: 30}}
@@ -406,15 +416,15 @@ class ScreenFormulaire extends React.Component {
         else if (id_action === 9 && id_reaction === 3) {
             return (
             <View style={{alignSelf: 'center', justifyContent: 'center', flex: 8}}>
-            <Picker
-            selectedValue={this.state.timer_area}
-            style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
-            onValueChange={(timer_area) => {this.state && this.setState({timer_area: timer_area})
-            this.data_json.timer_area = parseInt(timer_area, 10)}}>
-            <Picker.Item label="1" value="1" />
-            <Picker.Item label="2" value="2" />
-            <Picker.Item label="5" value="5" />
-            </Picker>
+            <TextInput
+                style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
+                placeholder="Timer"
+                placeholderTextColor="rgba(0, 0, 0, 0.7)"
+                returnKeyType="send"
+                autoCorrect={false}
+                ref={(input) => this.timer_area = input}
+                onChangeText={(timer_area) => this.data_json.timer_area = parseInt(timer_area, 10)}
+                />
             <TextInput
             style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
             placeholder="Streamer"
@@ -422,7 +432,7 @@ class ScreenFormulaire extends React.Component {
             returnKeyType="next"
             autoCorrect={false}
             ref={(input) => this.streamer_live = input}
-            onChangeText={(streamer_live) => this.state.streamer_live = streamer_live}
+            onChangeText={(streamer_live) => this.data_json.data.streamer_live = streamer_live}
             />
             <TextInput
             style={{height: 60, width: 240, backgroundColor: '#EEEEEE', marginBottom: 20, color: 'black', paddingLeft: 10, paddingRight: 10}}
@@ -431,7 +441,7 @@ class ScreenFormulaire extends React.Component {
             returnKeyType="send"
             autoCorrect={false}
             ref={(input) => this.facebook_page_id = input}
-            onChangeText={(facebook_page_id) => this.state.facebook_page_id = parseInt(facebook_page_id, 10)}
+            onChangeText={(facebook_page_id) => this.data_json.data.facebook_page_id = parseInt(facebook_page_id, 10)}
             />
             <TouchableOpacity
             style={{backgroundColor: '#D50000', padding: 12, paddingLeft: 30, paddingRight: 30, borderRadius: 30}}

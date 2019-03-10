@@ -164,8 +164,8 @@ class LoginScreen extends React.Component {
             refreshing: false
           });
           SyncStorage.set('USERNAME', username);
-          SyncStorage.set('USER_ID', user_id);
           SyncStorage.set('GOOGLE_TOKEN', null);
+          SyncStorage.set('USER_ID', user_id);
           SyncStorage.set('FACEBOOK_TOKEN', null);
           SyncStorage.set('TWITCH_TOKEN', null);
           SyncStorage.set('ONEDRIVE_TOKEN', null);

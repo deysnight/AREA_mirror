@@ -76,7 +76,7 @@ function send_ytb_1_3() {
         return;
     data_json.id_action = 1;
     data_json.id_reaction = 3;
-    data_json.data.page_id_for_reaction = parseInt(document.getElementById("facebook_page_youtube_1-3").value, 10);
+    data_json.data.facebook_page_id = parseInt(document.getElementById("facebook_page_youtube_1-3").value, 10);
     data_json.timer_area = parseInt($("#timer_ytb_1-3").val(), 10);
     result = JSON.stringify(data_json);
     $.ajax({
@@ -145,7 +145,7 @@ function send_ytb_2_3() {
     data_json.id_action = 2;
     data_json.id_reaction = 3;
     data_json.data.video_id = document.getElementById("video_id_youtube_2-3").value
-    data_json.data.page_id_for_reaction = parseInt(document.getElementById("facebook_page_youtube_2-3").value, 10);
+    data_json.data.facebook_page_id = parseInt(document.getElementById("facebook_page_youtube_2-3").value, 10);
     data_json.timer_area = parseInt($("#timer_ytb_2-3").val(), 10);
     result = JSON.stringify(data_json);
     $.ajax({
@@ -217,6 +217,8 @@ function send_fb_1_1() {
     data_json.data.page_id_for_action = parseInt(document.getElementById("page_facebook_1-1").value, 10);
     data_json.timer_area = parseInt($("#timer_fb_1-1").val(), 10);
     result = JSON.stringify(data_json);
+    console.log(result);
+
     $.ajax({
         url: final_url,
         method: "POST",
@@ -226,7 +228,7 @@ function send_fb_1_1() {
         async: false,
         data: result,
         success: function (response) {
-            location.reload();
+            //location.reload();
         }
     })
 };
@@ -239,6 +241,8 @@ function send_fb_1_2() {
     data_json.data.page_id_for_action = parseInt(document.getElementById("page_facebook_1-2").value, 10);
     data_json.timer_area = parseInt($("#timer_fb_1-2").val(), 10);
     result = JSON.stringify(data_json);
+    console.log(result);
+
     $.ajax({
         url: final_url,
         method: "POST",
@@ -249,7 +253,7 @@ function send_fb_1_2() {
         data: result,
         dataType : "json",
         success: function (response) {
-            location.reload();
+            //location.reload();
         }
     })
 };
@@ -265,6 +269,8 @@ function send_fb_1_3() {
     data_json.data.page_id_for_action = parseInt(document.getElementById("page_facebook_1-3").value, 10);
     data_json.timer_area = parseInt($("#timer_fb_1-3").val(), 10);
     result = JSON.stringify(data_json);
+    console.log(result);
+
     $.ajax({
         url: final_url,
         method: "POST",
@@ -274,7 +280,7 @@ function send_fb_1_3() {
         async: false,
         data: result,
         success: function (response) {
-            location.reload();
+            //location.reload();
         }
     })
 };

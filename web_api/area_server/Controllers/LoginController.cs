@@ -45,7 +45,7 @@ namespace area_server.Controllers
 
 
 
-                return "{\"success\": true, \"reason\": null}";
+                return "{\"success\": true, \"reason\": null, \"user_id\": \"" + Convert.ToString(result[0].id) + "\"}";
             }
             else if (result.Count > 1)
             {

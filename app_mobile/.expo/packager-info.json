@@ -2,8 +2,8 @@
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://ts-vvv.orphiucus.app-mobile.exp.direct",
   "packagerNgrokUrl": "https://packager.ts-vvv.orphiucus.app-mobile.exp.direct",
-  "ngrokPid": 7780,
+  "ngrokPid": 13416,
   "devToolsPort": 19002,
-  "packagerPort": null,
-  "packagerPid": null
+  "packagerPort": 19001,
+  "packagerPid": 25684
 }
