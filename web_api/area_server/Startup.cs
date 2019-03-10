@@ -52,16 +52,16 @@ namespace area_server
                 app.UseDeveloperExceptionPage();
             }
 
-            /*app.UseStatusCodePagesWithReExecute("/error/{0}.html");
+            /*app.UseStatusCodePagesWithReExecute("/error/{0}.html");*/
 
             app.UseStaticFiles(new StaticFileOptions()
             {
-                OnPrepareResponse = context =>
+                /*OnPrepareResponse = context =>
                 {
                     context.Context.Response.Headers.Add("Cache-Control", "no-cache, no-store");
                     context.Context.Response.Headers.Add("Expires", "-1");
-                }
-            });*/
+                }*/
+            });
             app.UseMvc();
         }
     }
