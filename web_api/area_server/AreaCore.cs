@@ -653,9 +653,9 @@ namespace area_server
             string token_user = token["google"].ToString();
             string query_list = "https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.spreadsheet%27";
             string query_create = "https://sheets.googleapis.com/v4/spreadsheets";
-            string query_modif = "https://sheets.googleapis.com/v4/spreadsheets/{0}/values/B2?valueInputOption=USER_ENTERED";
-            //try
-            //{
+            string query_modif = "https://sheets.googleapis.com/v4/spreadsheets/{0}/values/{1}?valueInputOption=USER_ENTERED";
+            try
+            {
                 var tmp = param.Split("]!#![");
 
                 //JArray json = (JArray)DBConnect.my_select("users WHERE id = '" + current_area["user_id"] + "'", "*");
@@ -669,11 +669,12 @@ namespace area_server
                 {
                     myResponse = (JObject)JsonConvert.DeserializeObject(sr.ReadToEnd());
                 }
-                string current = null;
+            Console.WriteLine(myResponse);
+            string current = null;
                 foreach (var file in myResponse.files)
                 {
-                    if (file.name == "[AREA] sheet_reaction")
-                    {
+                if (file.name == "[AREA] area_sheet_reaction")
+                {
                         current = file.id;
                         break;
                     }
@@ -681,57 +682,53 @@ namespace area_server
 
                 if (current == null)
                 {
-                    dynamic json = JsonConvert.DeserializeObject("{\"properties\":{\"title\":\"[AREA] sheet_reaction\"}}");
+                    dynamic jsonc = JsonConvert.DeserializeObject("{\"properties\":{\"title\":\"[AREA] area_sheet_reaction\"}}");
 
-                    var hc = new HttpClient();
-                    hc.DefaultRequestHeaders.Add("Authorization", "Bearer " + token_user);
-                    hc.DefaultRequestHeaders.Add("Accept", "application/json");
-                    //hc.DefaultRequestHeaders.Add("Content-Type", "application/json");
-                    var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                    var result_req = hc.PostAsync(query_create, content).Result;
-                    dynamic rep_json = JsonConvert.DeserializeObject(result_req.ToString());
-                current = rep_json.spreadsheetId;
-                Console.WriteLine(rep_json);
-                }
-                query_modif = string.Format(query_modif, current);
+                HttpWebRequest c_request = (HttpWebRequest)WebRequest.Create(query_create);
+                c_request.KeepAlive = false;
+                c_request.Method = "POST";
+                c_request.Headers.Add("Authorization", "Bearer " + token_user);
+                c_request.Headers.Add("Accept", "application/json");
+
+                byte[] postBytesc = Encoding.ASCII.GetBytes(jsonc.ToString());
+                c_request.ContentType = "application/json";
+                c_request.ContentLength = postBytesc.Length;
+
+                Stream requestStreamc = c_request.GetRequestStream();
+                requestStreamc.Write(postBytesc, 0, postBytesc.Length);
+                requestStreamc.Close();
+
+                HttpWebResponse c_response = (HttpWebResponse)c_request.GetResponse();
+                StreamReader c_sr = new StreamReader(c_response.GetResponseStream());
+            }
+            query_modif = string.Format(query_modif, current, cell_sheet[int.Parse(current_area["action_id"].ToString()) - 1]);
 
 
-                dynamic jsonn = JsonConvert.DeserializeObject("{\"range\":\"B2\",\"values\":[[\"Nom de la chaine\", \"uihuhuhihihi\"]]}");
-            /*                var hcc = new HttpClient();
-                            hcc.DefaultRequestHeaders.Add("Authorization", "Bearer " + token_user);
-                            hcc.DefaultRequestHeaders.Add("Accept", "application/json");
-                            //hcc.DefaultRequestHeaders.Add("Content-Type", "application/json");
-                            var contentt = new StringContent(jsonn.ToString(), Encoding.UTF8, "application/json");
-                            var result = hcc.PutAsync(query_create, contentt).Result;
-                        var lol = result.Content;
-                            Console.WriteLine(lol.ToString());*/
+                dynamic jsonn = JsonConvert.DeserializeObject("{\"range\":\"" + cell_sheet[int.Parse(current_area["action_id"].ToString()) - 1] + "\",\"values\":[[\"" + str_sheet[int.Parse(current_area["action_id"].ToString()) - 1] + "\", \"" + tmp[0] + "\"]]}");
+
+
+            Console.WriteLine(jsonn);
 
             HttpWebRequest b_request = (HttpWebRequest)WebRequest.Create(query_modif);
             b_request.KeepAlive = false;
             b_request.Method = "PUT";
+            b_request.Headers.Add("Authorization", "Bearer " + token_user);
+            b_request.Headers.Add("Accept", "application/json");
 
             byte[] postBytes = Encoding.ASCII.GetBytes(jsonn.ToString());
-            b_request.ContentType = "application/application/json";
+            b_request.ContentType = "application/json";
             b_request.ContentLength = postBytes.Length;
 
             Stream requestStream = b_request.GetRequestStream();
             requestStream.Write(postBytes, 0, postBytes.Length);
             requestStream.Close();
 
-            HttpWebResponse b_response = (HttpWebResponse)request.GetResponse();
-            StreamReader b_sr = new StreamReader(response.GetResponseStream());
+            HttpWebResponse b_response = (HttpWebResponse)b_request.GetResponse();
+            StreamReader b_sr = new StreamReader(b_response.GetResponseStream());
 
             Console.WriteLine(b_sr.ReadToEnd());
-
-
-
-
-
-
-
-
-            //}
-            //catch (Exception) { return (null); }
+            }
+            catch (Exception) { return (null); }
             return ("NaN");
         }
     }
