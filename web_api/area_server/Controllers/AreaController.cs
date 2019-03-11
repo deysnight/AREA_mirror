@@ -17,8 +17,8 @@ namespace area_server.Controllers
         [HttpGet]
         public ActionResult<string> area_get_all()
         {
-            int lol = DBConnect.my_insert_return("area", "user_id, action_id, reaction_id", "3, 4, 6");
-            return ("lolgetall " + lol);
+            dynamic result = (Newtonsoft.Json.Linq.JArray)DBConnect.my_select("area", "*");
+            return (JsonConvert.SerializeObject(result));
         }
 
         [HttpGet("{user_id}")]

@@ -101,6 +101,7 @@ namespace area_server
 
             area_reaction.Add(new areaReaction(reac_mail));
             area_reaction.Add(new areaReaction(reac_gsheet));
+            area_reaction.Add(new areaReaction(reac_facebook));
         }
 
         public int Interval { get; }
@@ -271,8 +272,14 @@ namespace area_server
                 {
                     myResponse = (JObject)JsonConvert.DeserializeObject(sr.ReadToEnd());
                 }
-                string page_name = myResponse.data[0].name;
-                string page_id = myResponse.data[0].id;
+
+                string page_id = extra["p_page_id"].ToString();
+                string page_name = "";
+                foreach (dynamic element in myResponse.data)
+                {
+                    if (element.id == page_id)
+                        page_name = element.name;
+                }
 
                 request = (HttpWebRequest)WebRequest.Create(string.Format(uri_facebook_get_page_like, page_id, token_user));
                 response = (HttpWebResponse)request.GetResponse();
@@ -660,8 +667,8 @@ namespace area_server
                 {
                     myResponse = (JObject)JsonConvert.DeserializeObject(sr.ReadToEnd());
                 }
-            Console.WriteLine(myResponse);
-            string current = null;
+
+                string current = null;
                 foreach (var file in myResponse.files)
                 {
                 if (file.name == "[AREA] area_sheet_reaction")
@@ -675,49 +682,87 @@ namespace area_server
                 {
                     dynamic jsonc = JsonConvert.DeserializeObject("{\"properties\":{\"title\":\"[AREA] area_sheet_reaction\"}}");
 
-                HttpWebRequest c_request = (HttpWebRequest)WebRequest.Create(query_create);
-                c_request.KeepAlive = false;
-                c_request.Method = "POST";
-                c_request.Headers.Add("Authorization", "Bearer " + token_user);
-                c_request.Headers.Add("Accept", "application/json");
+                    HttpWebRequest c_request = (HttpWebRequest)WebRequest.Create(query_create);
+                    c_request.KeepAlive = false;
+                    c_request.Method = "POST";
+                    c_request.Headers.Add("Authorization", "Bearer " + token_user);
+                    c_request.Headers.Add("Accept", "application/json");
 
-                byte[] postBytesc = Encoding.ASCII.GetBytes(jsonc.ToString());
-                c_request.ContentType = "application/json";
-                c_request.ContentLength = postBytesc.Length;
+                    byte[] postBytesc = Encoding.ASCII.GetBytes(jsonc.ToString());
+                    c_request.ContentType = "application/json";
+                    c_request.ContentLength = postBytesc.Length;
 
-                Stream requestStreamc = c_request.GetRequestStream();
-                requestStreamc.Write(postBytesc, 0, postBytesc.Length);
-                requestStreamc.Close();
+                    Stream requestStreamc = c_request.GetRequestStream();
+                    requestStreamc.Write(postBytesc, 0, postBytesc.Length);
+                    requestStreamc.Close();
 
-                HttpWebResponse c_response = (HttpWebResponse)c_request.GetResponse();
-                StreamReader c_sr = new StreamReader(c_response.GetResponseStream());
-            }
-            query_modif = string.Format(query_modif, current, cell_sheet[int.Parse(current_area["action_id"].ToString()) - 1]);
+                    HttpWebResponse c_response = (HttpWebResponse)c_request.GetResponse();
+                    StreamReader c_sr = new StreamReader(c_response.GetResponseStream());
+                }
+                query_modif = string.Format(query_modif, current, cell_sheet[int.Parse(current_area["action_id"].ToString()) - 1]);
 
 
                 dynamic jsonn = JsonConvert.DeserializeObject("{\"range\":\"" + cell_sheet[int.Parse(current_area["action_id"].ToString()) - 1] + "\",\"values\":[[\"" + str_sheet[int.Parse(current_area["action_id"].ToString()) - 1] + "\", \"" + tmp[0] + "\"]]}");
 
+                HttpWebRequest b_request = (HttpWebRequest)WebRequest.Create(query_modif);
+                b_request.KeepAlive = false;
+                b_request.Method = "PUT";
+                b_request.Headers.Add("Authorization", "Bearer " + token_user);
+                b_request.Headers.Add("Accept", "application/json");
+    
+                byte[] postBytes = Encoding.ASCII.GetBytes(jsonn.ToString());
+                b_request.ContentType = "application/json";
+                b_request.ContentLength = postBytes.Length;
+    
+                Stream requestStream = b_request.GetRequestStream();
+                requestStream.Write(postBytes, 0, postBytes.Length);
+                requestStream.Close();
+    
+                HttpWebResponse b_response = (HttpWebResponse)b_request.GetResponse();
+                StreamReader b_sr = new StreamReader(b_response.GetResponseStream());
 
-            Console.WriteLine(jsonn);
+                Console.WriteLine(b_sr.ReadToEnd());
+            }
+            catch (Exception) { return (null); }
+            return ("NaN");
+        }
 
-            HttpWebRequest b_request = (HttpWebRequest)WebRequest.Create(query_modif);
-            b_request.KeepAlive = false;
-            b_request.Method = "PUT";
-            b_request.Headers.Add("Authorization", "Bearer " + token_user);
-            b_request.Headers.Add("Accept", "application/json");
+        private static string reac_facebook(JObject token, string param, JObject current_area)
+        {
+            string id_page = current_area["p_fbpage_id"].ToString();
+            string token_user = token["facebook"].ToString();
+            string query_write_page = "https://graph.facebook.com/v3.2/{0}/feed?message={1}&access_token={2}";
+            try
+            {
+                var tmp = param.Split("]!#![");
 
-            byte[] postBytes = Encoding.ASCII.GetBytes(jsonn.ToString());
-            b_request.ContentType = "application/json";
-            b_request.ContentLength = postBytes.Length;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(uri_facebook_get_page, token_user));
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                dynamic myResponse;
+                using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+                {
+                    myResponse = (JObject)JsonConvert.DeserializeObject(sr.ReadToEnd());
+                }
 
-            Stream requestStream = b_request.GetRequestStream();
-            requestStream.Write(postBytes, 0, postBytes.Length);
-            requestStream.Close();
+                string page_token = "";
+                foreach (dynamic element in myResponse.data)
+                {
+                    if (element.id == id_page)
+                        page_token = element.access_token;
+                }
 
-            HttpWebResponse b_response = (HttpWebResponse)b_request.GetResponse();
-            StreamReader b_sr = new StreamReader(b_response.GetResponseStream());
+                if (current_area["action_id"].ToString() == "8") { tmp[0] = ""; }
+                string message = string.Format(str_mail[int.Parse(current_area["action_id"].ToString()) - 1], tmp[1], tmp[0]);
+                message = message.Replace("<h1>EZ AREA</h1>", "");
+                message = message.Replace("<p>", "");
+                string query = string.Format(query_write_page, id_page, message, page_token);
 
-            Console.WriteLine(b_sr.ReadToEnd());
+
+                HttpWebRequest c_request = (HttpWebRequest)WebRequest.Create(query);
+                c_request.KeepAlive = false;
+                c_request.Method = "POST";
+                HttpWebResponse b_response = (HttpWebResponse)c_request.GetResponse();
+                StreamReader b_sr = new StreamReader(b_response.GetResponseStream());
             }
             catch (Exception) { return (null); }
             return ("NaN");

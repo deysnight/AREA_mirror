@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using NSwag.AspNetCore;
+using System.Reflection;
 
 namespace area_server
 {
@@ -62,6 +64,26 @@ namespace area_server
                     context.Context.Response.Headers.Add("Expires", "-1");
                 }
             });*/
+
+
+            app.UseSwagger(typeof(Startup).Assembly, settings =>
+            {
+                settings.PostProcess = document =>
+                {
+                    document.Info.Version = "v1";
+                    document.Info.Title = "Manage product's familly API";
+                    document.Info.Description = "This API allows to create a familly of product, set the translation and SEO values and manage product's category in the same maner";
+                    document.Info.TermsOfService = "See Startpoint web site";
+                    
+                };
+            });
+
+            app.UseSwaggerUi3(typeof(Startup).GetTypeInfo().Assembly, settings =>
+            {
+                settings.GeneratorSettings.DefaultPropertyNameHandling = NJsonSchema.PropertyNameHandling.CamelCase;
+            });
+
+
             app.UseMvc();
         }
     }
