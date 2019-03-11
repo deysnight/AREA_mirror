@@ -14,18 +14,18 @@ namespace area_server
 {
     public class AreaCore
     {
-        private static string[] str_mail = new string[] {"<h1>EZ AREA</h1><p>Les nombre d'Abonné a votre chaine youtube https://www.youtube.com/channel/{0} a changer ! Il est desormais de {1}<p>",
-            "<h1>EZ AREA</h1><p>Les nombre de like sur la video https://www.youtube.com/watch?v={0} a changer ! Il est desormais de {1}<p>",
-            "<h1>EZ AREA</h1><p>Les nombre de video sur la chaine youtube https://www.youtube.com/channel/{0} a changer ! Il est desormais de {1}<p>",
-            "<h1>EZ AREA</h1><p>Les nombre de J'Aime votre page Facebook {0} a changer ! Il est desormais de {1}<p>",
-            "<h1>EZ AREA</h1><p>Vous venez de {0} page facebook ! vous possedez desormais {1} page facebook<p>",
-            "<h1>EZ AREA</h1><p>Le nombre de post sur votre mur facebook a changer ! Il est desormais de {0}{1}<p>",
-            "<h1>EZ AREA</h1><p>Le nombre de streamer que vous suivez sur twitch a changer ! Il est desormais de {0}{1}<p>",
-            "<h1>EZ AREA</h1><p>Le nombre de follower qui vous suit sur twitch a changer ! Il est desormais de {0}{1}<p>",
+        private static string[] str_mail = new string[] {"<h1>EZ AREA</h1><p>Le nombre d'abonné à votre chaine Youtube https://www.youtube.com/channel/{0} a changé ! Il est desormais de {1}<p>",
+            "<h1>EZ AREA</h1><p>Les nombres de like sur la video https://www.youtube.com/watch?v={0} a changé ! Il est desormais de {1}<p>",
+            "<h1>EZ AREA</h1><p>Les nombres de video sur la chaine youtube https://www.youtube.com/channel/{0} a changé ! Il est desormais de {1}<p>",
+            "<h1>EZ AREA</h1><p>Le nombre de j'aimes sur votre page Facebook {0} a changé ! Il est desormais de {1}<p>",
+            "<h1>EZ AREA</h1><p>Vous venez de {0} page Facebook ! Vous possedez desormais {1} pages facebook<p>",
+            "<h1>EZ AREA</h1><p>Le nombre de post sur votre mur Facebook a changé ! Il est desormais de {0}{1}<p>",
+            "<h1>EZ AREA</h1><p>Le nombre de streamer que vous suivez sur Twitch a changé ! Il est desormais de {0}{1}<p>",
+            "<h1>EZ AREA</h1><p>Le nombre de follower qui vous suit sur Twitch a changé ! Il est desormais de {0}{1}<p>",
             "<h1>EZ AREA</h1><p>Le streamer {0}{1} est maintenant en live !<p>",
             "<h1>EZ AREA</h1><p>Le contenu de votre google drive a été modifier, il contient desormais {0}{1} fichiers<p>",
             "<h1>EZ AREA</h1><p>Le contenu de votre onedrive a été modifier, il contient desormais {0}{1} fichiers<p>",
-            "<h1>EZ AREA</h1><p>Le nombre de google sheet present sur votre drive, il contient desormais {0}{1} google sheet<p>"};
+            "<h1>EZ AREA</h1><p>Le nombre de Google Sheet present sur votre Drive, il contient desormais {0}{1} Google Sheet<p>"};
 
         private static string[] str_sheet = new string[] {"nombre d'abonné",
             "nombre de like",
