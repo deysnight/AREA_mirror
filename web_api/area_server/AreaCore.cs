@@ -15,29 +15,29 @@ namespace area_server
     public class AreaCore
     {
         private static string[] str_mail = new string[] {"<h1>EZ AREA</h1><p>Le nombre d'abonné à votre chaine Youtube https://www.youtube.com/channel/{0} a changé ! Il est desormais de {1}<p>",
-            "<h1>EZ AREA</h1><p>Les nombres de like sur la video https://www.youtube.com/watch?v={0} a changé ! Il est desormais de {1}<p>",
-            "<h1>EZ AREA</h1><p>Les nombres de video sur la chaine youtube https://www.youtube.com/channel/{0} a changé ! Il est desormais de {1}<p>",
-            "<h1>EZ AREA</h1><p>Le nombre de j'aimes sur votre page Facebook {0} a changé ! Il est desormais de {1}<p>",
-            "<h1>EZ AREA</h1><p>Vous venez de {0} page Facebook ! Vous possedez desormais {1} pages facebook<p>",
+            "<h1>EZ AREA</h1><p>Le nombres de like sur la video https://www.youtube.com/watch?v={0} a changé ! Il est desormais de {1}<p>",
+            "<h1>EZ AREA</h1><p>Le nombres de video sur la chaine youtube https://www.youtube.com/channel/{0} a changé ! Il est desormais de {1}<p>",
+            "<h1>EZ AREA</h1><p>Le nombre de j'aimes sur votre page Facebook {0} a changé ! Votre page compte {1} fans<p>",
+            "<h1>EZ AREA</h1><p>Vous possediez {0} pages Facebook ! Vous en possedez desormais {1}<p>",
             "<h1>EZ AREA</h1><p>Le nombre de post sur votre mur Facebook a changé ! Il est desormais de {0}{1}<p>",
-            "<h1>EZ AREA</h1><p>Le nombre de streamer que vous suivez sur Twitch a changé ! Il est desormais de {0}{1}<p>",
-            "<h1>EZ AREA</h1><p>Le nombre de follower qui vous suit sur Twitch a changé ! Il est desormais de {0}{1}<p>",
+            "<h1>EZ AREA</h1><p>Le nombre de streamer que vous suivez sur Twitch a changé ! Vous en suivez desormais {0}{1}<p>",
+            "<h1>EZ AREA</h1><p>Le nombre de follower qui vous suit sur Twitch a changé ! Il y en a désormais {0}{1}<p>",
             "<h1>EZ AREA</h1><p>Le streamer {0}{1} est maintenant en live !<p>",
-            "<h1>EZ AREA</h1><p>Le contenu de votre google drive a été modifier, il contient desormais {0}{1} fichiers<p>",
-            "<h1>EZ AREA</h1><p>Le contenu de votre onedrive a été modifier, il contient desormais {0}{1} fichiers<p>",
-            "<h1>EZ AREA</h1><p>Le nombre de Google Sheet present sur votre Drive, il contient desormais {0}{1} Google Sheet<p>"};
+            "<h1>EZ AREA</h1><p>Le contenu de votre Onedrive a été modifié, il contient desormais {0}{1} fichiers<p>",
+            "<h1>EZ AREA</h1><p>Le contenu de votre Google drive a été modifié, il contient desormais {0}{1} fichiers<p>",
+            "<h1>EZ AREA</h1><p>Le nombre de Google Sheet present sur votre Drive a changé, il contient desormais {0}{1} Sheet<p>"};
 
-        private static string[] str_sheet = new string[] {"nombre d'abonné",
-            "nombre de like",
+        private static string[] str_sheet = new string[] {"Abonnement",
+            "Like Vidéo",
             "nomber de video",
-            "nombre de like",
-            "nombre de page",
-            "nombre de post",
-            "nombre de streamer",
-            "nombre de follower",
+            "Like page",
+            "Nombre de page Facebook",
+            "Nombre de post",
+            "Nombre de follow",
+            "Nombre de follower",
             "streamer en live",
+            "Fichier partagés",
             "fichier gdrive",
-            "fichier onedrive",
             "nombre de gsheeet"};
 
         private static string[] cell_sheet = new string[] { "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", "B11", "B12", "B13"};
@@ -91,8 +91,8 @@ namespace area_server
             area_action.Add(new areaAction(twitch_new_follower));
             area_action.Add(new areaAction(twitch_streamer_live));
 
-            area_action.Add(new areaAction(drive_new_file));
             area_action.Add(new areaAction(one_drive_new_file));
+            area_action.Add(new areaAction(drive_new_file));
 
             area_action.Add(new areaAction(gsheet_new_sheet));
 
@@ -172,6 +172,7 @@ namespace area_server
         private static string youtube_subscriber(JObject token, string user_uid, JObject extra)
         {
             string token_user = token["google"].ToString();
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(uri_youtube_sub, token_user));
@@ -202,6 +203,7 @@ namespace area_server
         private static string youtube_like(JObject token, string user_uid, JObject extra)
         {
             string token_user = token["google"].ToString();
+
             Console.WriteLine(extra);
             try
             {
@@ -233,6 +235,7 @@ namespace area_server
         private static string youtube_video(JObject token, string user_uid, JObject extra)
         {
             string token_user = token["google"].ToString();
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(uri_youtube_vod, extra["p_ytb_name"], token_user));
@@ -263,6 +266,7 @@ namespace area_server
         private static string facebook_like(JObject token, string user_uid, JObject extra)
         {
             string token_user = token["facebook"].ToString();
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(uri_facebook_get_page, token_user));
@@ -307,6 +311,7 @@ namespace area_server
         private static string facebook_new_page(JObject token, string user_uid, JObject extra)
         {
             string token_user = token["facebook"].ToString();
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(uri_facebook_get_page, token_user));
@@ -343,6 +348,7 @@ namespace area_server
         private static string facebook_new_post(JObject token, string user_uid, JObject extra)
         {
             string token_user = token["facebook"].ToString();
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(uri_facebook_post_count, token_user));
@@ -372,6 +378,7 @@ namespace area_server
         private static string twitch_new_follow(JObject token, string user_uid, JObject extra)
         {
             string token_user = token["twitch"].ToString();
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri_twitch_userid);
@@ -412,6 +419,7 @@ namespace area_server
         private static string twitch_new_follower(JObject token, string user_uid, JObject extra)
         {
             string token_user = token["twitch"].ToString();
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri_twitch_userid);
@@ -452,6 +460,7 @@ namespace area_server
         private static string twitch_streamer_live(JObject token, string user_uid, JObject extra)
         {
             string token_user = token["twitch"].ToString();
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(uri_twitch_streamer_id, extra["p_streamer"]));
@@ -499,6 +508,7 @@ namespace area_server
         private static string drive_new_file(JObject token, string user_uid, JObject extra)
         {
             string token_user = token["google"].ToString();
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(uri_gdrive, token_user));
@@ -555,6 +565,7 @@ namespace area_server
         private static string one_drive_new_file(JObject token, string user_uid, JObject extra)
         {
             string token_user = token["onedrive"].ToString();
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri_onedrive);
@@ -587,6 +598,7 @@ namespace area_server
         private static string gsheet_new_sheet(JObject token, string user_uid, JObject extra)
         {
             string token_user = token["google"].ToString();
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri_gsheet);
@@ -600,17 +612,17 @@ namespace area_server
                 }
 
                 string new_value = "" + myResponse.files.Count;
+
                 string old_value = get_area_value(user_uid);
                 if (old_value == null)
                 {
                     set_area_value(user_uid, new_value);
                     old_value = new_value;
                 }
-
                 if (old_value != new_value)
                 {
                     set_area_value(user_uid, new_value);
-                    return (new_value);
+                    return (new_value + "]!#![" + "");
                 }
             }
             catch (Exception) { return (null); }

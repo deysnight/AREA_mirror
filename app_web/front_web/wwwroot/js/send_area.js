@@ -228,7 +228,7 @@ function send_fb_1_1() {
         async: false,
         data: result,
         success: function (response) {
-            //location.reload();
+            location.reload();
         }
     })
 };
@@ -253,7 +253,7 @@ function send_fb_1_2() {
         data: result,
         dataType : "json",
         success: function (response) {
-            //location.reload();
+            location.reload();
         }
     })
 };
@@ -280,7 +280,7 @@ function send_fb_1_3() {
         async: false,
         data: result,
         success: function (response) {
-            //location.reload();
+            location.reload();
         }
     })
 };
