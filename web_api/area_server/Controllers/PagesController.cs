@@ -21,10 +21,9 @@ namespace area_server.Controllers
         [HttpGet]
         public ActionResult<string> test()
         {
-            AreaCore core = new AreaCore(5);
+            AreaCore core = new AreaCore(1);
             core.run();
-            //Utils.send_mail_confirmation("moimoi", "louison.harizi@epitech.eu");
-            return "test page";
+            return "Trigger all for testing";
         }
 
         [Route("about.json")]

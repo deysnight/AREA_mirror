@@ -23,27 +23,17 @@ namespace area_server
             Configuration = configuration;
         }
 
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAnyOrigin",
-                    builder => builder
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowCredentials()
-                    .AllowAnyHeader());
-            });
-
-            services.Configure<MvcOptions>(options =>
-            {
-                options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAnyOrigin"));
-            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors();
+
         }
 
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,8 +73,16 @@ namespace area_server
                 settings.GeneratorSettings.DefaultPropertyNameHandling = NJsonSchema.PropertyNameHandling.CamelCase;
             });
 
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("http://localhost:8081")
+                       .WithMethods("GET", "POST", "DELETE")
+                       .AllowCredentials()
+                       .AllowAnyHeader();
+            });
 
             app.UseMvc();
+
         }
     }
 }

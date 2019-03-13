@@ -2,14 +2,24 @@ version: '3'
 services:
       
 services:
+  #mobile_app:
+   # build: ./app_mobile
+    #container_name: app_mobile
   server:
     image: area_server
     build: ./web_api/area_server
     ports:
       - "8080:80"
-      
   front:
     image: front_web
     build: ./app_web/front_web
     ports:
       - "8081:80"
+    depends_on:
+      - server
+     # - mobile_app
+    links:
+      - server:server
+
+#volumes:
+#  DataVolume2:
